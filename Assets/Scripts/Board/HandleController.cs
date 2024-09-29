@@ -1,10 +1,8 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.EventSystems;
 
-namespace DontFall
+namespace DontFall.Board
 {
     public class HandleController : MonoBehaviour, IDragHandler
     {
