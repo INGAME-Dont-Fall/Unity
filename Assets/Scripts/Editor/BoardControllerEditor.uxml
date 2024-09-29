@@ -1,0 +1,9 @@
+<ui:UXML xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" xsi="http://www.w3.org/2001/XMLSchema-instance" engine="UnityEngine.UIElements" editor="UnityEditor.UIElements" noNamespaceSchemaLocation="../../../UIElementsSchema/UIElements.xsd" editor-extension-mode="True">
+    <ui:Slider label="Pivot" high-value="0.5" name="Pivot" binding-path="pivot" low-value="-0.5" show-input-field="true" inverted="false" />
+    <ui:FloatField label="Width" value="0.2" binding-path="width" name="Width" />
+    <ui:Foldout text="Edges" name="Edges">
+        <ui:Vector2Field label="Edge 1" name="Edge1" binding-path="edge1" />
+        <ui:Vector2Field label="Edge 2" name="Edge2" binding-path="edge2" />
+    </ui:Foldout>
+    <ui:Button text="Set Board" parse-escape-sequences="true" display-tooltip-when-elided="true" name="SetBoard" />
+</ui:UXML>
