@@ -20,7 +20,7 @@ namespace DontFall.Board
                 pivot = Mathf.Clamp(value, clamp.x - 0.5f, clamp.y - 0.5f);
                 
                 var joint = GetComponent<HingeJoint2D>();
-                joint.anchor = pivot * Vector2.right;
+                joint.anchor = (edge2 - edge1).magnitude * pivot * Vector2.right;
                 joint.connectedAnchor = Vector2.Lerp(edge1, edge2, pivot + 0.5f);
             }
         }
