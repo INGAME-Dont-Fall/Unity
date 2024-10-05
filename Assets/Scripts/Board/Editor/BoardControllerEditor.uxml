@@ -1,0 +1,18 @@
+<ui:UXML xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" xsi="http://www.w3.org/2001/XMLSchema-instance" engine="UnityEngine.UIElements" editor="UnityEditor.UIElements" noNamespaceSchemaLocation="../../../UIElementsSchema/UIElements.xsd" editor-extension-mode="True">
+    <ui:Slider label="Pivot" high-value="0.5" name="Pivot" binding-path="pivot" low-value="-0.5" show-input-field="true" />
+    <ui:VisualElement name="Clamp" class="unity-base-field" style="flex-direction: row;">
+        <ui:Label tabindex="-1" text="Clamp" class="unity-base-field__label" />
+        <ui:FloatField binding-path="clamp.x" name="ClampX" style="width: 50px;" />
+        <ui:MinMaxSlider low-limit="0" high-limit="1" name="ClampRange" binding-path="clamp" style="flex-grow: 1;" />
+        <ui:FloatField binding-path="clamp.y" name="ClampY" style="width: 50px;" />
+    </ui:VisualElement>
+    <ui:Foldout text="Edges" name="Edges">
+        <ui:Vector2Field label="Edge 1" name="Edge1" binding-path="edge1" x="-1" />
+        <ui:Vector2Field label="Edge 2" name="Edge2" binding-path="edge2" x="1" />
+    </ui:Foldout>
+    <uie:ObjectField label="Clamp Object" name="ClampObject" binding-path="clampObject" type="UnityEngine.GameObject, UnityEngine.CoreModule" />
+    <ui:VisualElement style="height: 10px; justify-content: center; padding-top: 0; padding-right: 0; padding-bottom: 0; padding-left: 5px;">
+        <ui:VisualElement style="background-color: rgba(0, 0, 0, 0.35); height: 2px;" />
+    </ui:VisualElement>
+    <ui:Button text="Set Board" name="SetBoard" />
+</ui:UXML>
