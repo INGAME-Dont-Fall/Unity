@@ -113,7 +113,7 @@ public class GameManager : MonoBehaviour, IPointerDownHandler, IPointerUpHandler
         //모든 오브젝트의 물리효과 제거
         foreach(var obj in objs)
         {
-            obj.rb2d.simulated = false;
+            obj.Rb2d.simulated = false;
         }
 
         //모든 오브젝트에 접근해서 하나씩 지우기

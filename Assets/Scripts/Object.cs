@@ -5,15 +5,18 @@ using UnityEngine.InputSystem;
 
 public class Object : MonoBehaviour
 {
-    public Rigidbody2D rb2d;
-
     public bool isDrag = false;
 
-    int score;
-    float deadTime;
-    GameObject gameObj;
-    SpriteRenderer spriteRenderer;
-    public GameObject Effect;
+    private int score;
+    public int Score => score;
+
+    private float deadTime;
+
+    [SerializeField]GameObject Effect;
+    private GameObject gameObj;
+    private SpriteRenderer spriteRenderer;
+    private Rigidbody2D rb2d;
+    public Rigidbody2D Rb2d => rb2d;
 
     void Awake()
     {
