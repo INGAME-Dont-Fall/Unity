@@ -8,67 +8,58 @@ using UnityEngine.UI;
 
 public class GameManager : MonoBehaviour
 {
-
-    public static GameManager Instance;
+    public int Count;
     public int Score;
     public bool IsOver;
 
     public Object lastObject;
-    public GameObject ObjectPrefab;
+    public GameObject[] ObjectPrefab;
+    public GameObject effectPrefab;
     public Transform ObjectGroup;
 
     [Range(1, 30)]
     public int PoolSize;
     public int PoolCursor;
-    public List<Object> ObjectPool;
 
     public GameObject[] HiddenObj;
 
+    //싱글톤
+    public static GameManager instance;
+    public static GameManager Instance
+    {
+        get
+        {
+            return instance;
+        }
+    }
+
     private void Awake()
     {
-        Instance = this;
         Application.targetFrameRate = 60; //프레임 60으로 고정
-
-        ObjectPool = new List<Object>();
-
-
-    }
-    void Start()
-    {
-
     }
 
-    // Update is called once per frame
-    void Update()
+    private void Start()
     {
-        
+        GameStart();
+    }
+
+    public void GameStart()
+    {
+        Invoke("NextObject", 1.5f);
     }
 
     Object MakeObject()
     {
-        //새로운 동글을 동글 그룹에 상속하여 생성
-        GameObject instantObject = Instantiate(ObjectPrefab, ObjectGroup);
-        instantObject.name = "Object" + ObjectPool.Count;
+        int index = Random.Range(0, 3);
+
+        //새로운 오브젝트를 오브젝트 그룹에 상속하여 생성
+        GameObject instantObject = Instantiate(ObjectPrefab[index], ObjectGroup);
+        instantObject.name = "Object" + ++Count;
         Object instantObj = instantObject.GetComponent<Object>();
-        ObjectPool.Add(instantObj);
 
         return instantObj;
     }
 
-    Object GetObject()
-    {
-        for (int index = 0; index < ObjectPool.Count; index++)
-        {
-            PoolCursor = (PoolCursor + 1) % ObjectPool.Count;
-            if (!ObjectPool[PoolCursor].gameObject.activeSelf)
-            {
-                return ObjectPool[PoolCursor];
-            }
-        }
-
-        //다 활성화 되어있어서 넘겨줄 것이 없으면?
-        return MakeObject();
-    }
     void NextObject()
     {
         if (IsOver)
@@ -76,11 +67,7 @@ public class GameManager : MonoBehaviour
             return;
         }
 
-        lastObject = GetObject();
-        //여기서 프리팹 변경해줘야함
-
-        //오브젝트 활성화
-        lastObject.gameObject.SetActive(true);
+        lastObject = MakeObject();
 
         StartCoroutine("WaitNext");
     }
@@ -105,7 +92,7 @@ public class GameManager : MonoBehaviour
             return;
         }
 
-        //lastObject.Drag();
+        lastObject.Drag();
     }
     public void TouchUp()
     {
@@ -114,7 +101,7 @@ public class GameManager : MonoBehaviour
             return;
         }
 
-        //lastObject.Drop();
+        lastObject.Drop();
         lastObject = null;
     }
 
@@ -130,36 +117,33 @@ public class GameManager : MonoBehaviour
     }
     IEnumerator GameOverRoutine()
     {
-        //활성화 된 모든 동글 가져오기
+        //활성화 된 모든 오브젝트 가져오기
         Object[] Obj = FindObjectsOfType<Object>();
 
-        //모든 동글이의 물리효과 제거
+        //모든 오브젝트의 물리효과 제거
         for (int index = 0; index < Obj.Length; ++index)
         {
             Obj[index].rb2d.simulated = false;
         }
 
-        //모든 동글에 접근해서 하나씩 지우기
+        //모든 오브젝트에 접근해서 하나씩 지우기
         for (int index = 0; index < Obj.Length; ++index)
         {
-            //절대 나올 수 없는 값을 넘긴다.
-            Obj[index].Hide(Vector3.up * 100);
+            Obj[index].GetComponent<Effect>().GetComponent<Animator>().SetTrigger("Destroy");
             yield return new WaitForSeconds(0.1f);
         }
 
         yield return new WaitForSeconds(1f);
 
-        // 최고 점수 갱신
-        int maxScore = Mathf.Max(Score, PlayerPrefs.GetInt("MaxScore"));
-        PlayerPrefs.SetInt("MaxScore", maxScore);
-
         //게임오버 씬으로 이동
+
     }
 
     public void Restart()
     {
         StartCoroutine("ResetCorutine");
     }
+
 
     IEnumerator ResetCorutine()
     {
