@@ -1,12 +1,10 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.SocialPlatforms.Impl;
 using UnityEngine.InputSystem;
 
 public class Object : MonoBehaviour
 {
-    public ParticleSystem effect;
     public Rigidbody2D rb2d;
 
     public bool isDrag = false;
@@ -17,11 +15,15 @@ public class Object : MonoBehaviour
     SpriteRenderer spriteRenderer;
     public GameObject Effect;
 
-    void Start()
+    void Awake()
     {
         rb2d = GetComponent<Rigidbody2D>();
         gameObj = GetComponent<GameObject>();
         spriteRenderer = GetComponent<SpriteRenderer>();
+    }
+
+    void Start()
+    {
         Effect.GetComponent<Animator>().SetTrigger("Bomb");
     }
 
@@ -31,20 +33,20 @@ public class Object : MonoBehaviour
         {
             Vector2 mousePos2D = Mouse.current.position.ReadValue();
 
-            //½ºÅ©¸° ÁÂÇ¥°è¸¦ ¿ùµå ÁÂÇ¥°è·Î º¯È¯
-            Vector3 mousePos = Camera.main.ScreenToWorldPoint(new Vector3(mousePos2D.x, mousePos2D.y, 0.0f));
+            //ìŠ¤í¬ë¦° ì¢Œí‘œê³„ë¥¼ ì›”ë“œ ì¢Œí‘œê³„ë¡œ ë³€í™˜
+            Vector3 mousePos = Camera.main.ScreenToWorldPoint(mousePos2D);
 
             float radius = transform.localScale.x / 2f;
             float leftBorder = -9.0f + radius;
             float rightBorder = 9.0f - radius;
 
-            //¿ŞÂÊÀ» ¹ş¾î³ª¸é
+            //ì™¼ìª½ì„ ë²—ì–´ë‚˜ë©´
             if (mousePos.x < leftBorder)
             {
-                //x °íÁ¤
+                //x ê³ ì •
                 mousePos.x = leftBorder;
             }
-            //¿À¸¥ ÂÊÀ» ¹ş¾î³ª¸é
+            //ì˜¤ë¥¸ ìª½ì„ ë²—ì–´ë‚˜ë©´
             else if (mousePos.x > rightBorder)
             {
                 mousePos.x = rightBorder;

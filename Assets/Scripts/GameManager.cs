@@ -1,41 +1,34 @@
 using System.Collections;
 using System.Collections.Generic;
-using System.Security.Cryptography;
 using UnityEngine;
+using UnityEngine.EventSystems;
 using UnityEngine.SceneManagement;
-using UnityEngine.SocialPlatforms.Impl;
 using UnityEngine.UI;
 
-public class GameManager : MonoBehaviour
+public class GameManager : MonoBehaviour, IPointerDownHandler, IPointerUpHandler
 {
-    public int Count;
-    public int Score;
-    public bool IsOver;
+    private int Count;
+    private int Score;
+    private bool IsOver;
 
-    public Object lastObject;
-    public GameObject[] ObjectPrefab;
-    public GameObject effectPrefab;
-    public Transform ObjectGroup;
+    private Object lastObject;
+    [SerializeField] private GameObject[] ObjectPrefab;
+    [SerializeField] private GameObject effectPrefab;
+    [SerializeField] private Transform ObjectGroup;
 
     [Range(1, 30)]
-    public int PoolSize;
-    public int PoolCursor;
+    [SerializeField] private int PoolSize;
+    [SerializeField] private int PoolCursor;
 
-    public GameObject[] HiddenObj;
+    private GameObject[] HiddenObj;
 
-    //½Ì±ÛÅæ
-    public static GameManager instance;
-    public static GameManager Instance
-    {
-        get
-        {
-            return instance;
-        }
-    }
+    //ì‹±ê¸€í†¤
+    private static GameManager instance;
+    public static GameManager Instance => instance;
 
     private void Awake()
     {
-        Application.targetFrameRate = 60; //ÇÁ·¹ÀÓ 60À¸·Î °íÁ¤
+        Application.targetFrameRate = 60; //í”„ë ˆì„ 60ìœ¼ë¡œ ê³ ì •
     }
 
     private void Start()
@@ -45,14 +38,14 @@ public class GameManager : MonoBehaviour
 
     public void GameStart()
     {
-        Invoke("NextObject", 1.5f);
+        Invoke(nameof(NextObject), 1.5f);
     }
 
     Object MakeObject()
     {
-        int index = Random.Range(0, 3);
+        int index = Random.Range(0, ObjectPrefab.Length);
 
-        //»õ·Î¿î ¿ÀºêÁ§Æ®¸¦ ¿ÀºêÁ§Æ® ±×·ì¿¡ »ó¼ÓÇÏ¿© »ı¼º
+        //ìƒˆë¡œìš´ ì˜¤ë¸Œì íŠ¸ë¥¼ ì˜¤ë¸Œì íŠ¸ ê·¸ë£¹ì— ìƒì†í•˜ì—¬ ìƒì„±
         GameObject instantObject = Instantiate(ObjectPrefab[index], ObjectGroup);
         instantObject.name = "Object" + ++Count;
         Object instantObj = instantObject.GetComponent<Object>();
@@ -69,23 +62,20 @@ public class GameManager : MonoBehaviour
 
         lastObject = MakeObject();
 
-        StartCoroutine("WaitNext");
+        StartCoroutine(WaitNext());
     }
 
-    //ÄÚ·çÆ¾ »ı¼º
+    //ì½”ë£¨í‹´ ìƒì„±
     IEnumerator WaitNext()
     {
-        while (lastObject != null)
-        {
-            yield return null;
-        }
-        //2.5ÃÊ ÈŞ½Ä
+        yield return new WaitWhile(() => lastObject != null);
+        //2.5ì´ˆ íœ´ì‹
         yield return new WaitForSeconds(2.5f);
 
         NextObject();
     }
 
-    public void TouchDown()
+    void IPointerDownHandler.OnPointerDown(PointerEventData data)
     {
         if (lastObject == null)
         {
@@ -94,7 +84,7 @@ public class GameManager : MonoBehaviour
 
         lastObject.Drag();
     }
-    public void TouchUp()
+    void IPointerUpHandler.OnPointerUp(PointerEventData data)
     {
         if (lastObject == null)
         {
@@ -113,35 +103,35 @@ public class GameManager : MonoBehaviour
         }
         IsOver = true;
 
-        StartCoroutine("GameOverRoutine");
+        StartCoroutine(GameOverRoutine());
     }
     IEnumerator GameOverRoutine()
     {
-        //È°¼ºÈ­ µÈ ¸ğµç ¿ÀºêÁ§Æ® °¡Á®¿À±â
-        Object[] Obj = FindObjectsOfType<Object>();
+        //í™œì„±í™” ëœ ëª¨ë“  ì˜¤ë¸Œì íŠ¸ ê°€ì ¸ì˜¤ê¸°
+        Object[] objs = FindObjectsOfType<Object>();
 
-        //¸ğµç ¿ÀºêÁ§Æ®ÀÇ ¹°¸®È¿°ú Á¦°Å
-        for (int index = 0; index < Obj.Length; ++index)
+        //ëª¨ë“  ì˜¤ë¸Œì íŠ¸ì˜ ë¬¼ë¦¬íš¨ê³¼ ì œê±°
+        foreach(var obj in objs)
         {
-            Obj[index].rb2d.simulated = false;
+            obj.rb2d.simulated = false;
         }
 
-        //¸ğµç ¿ÀºêÁ§Æ®¿¡ Á¢±ÙÇØ¼­ ÇÏ³ª¾¿ Áö¿ì±â
-        for (int index = 0; index < Obj.Length; ++index)
+        //ëª¨ë“  ì˜¤ë¸Œì íŠ¸ì— ì ‘ê·¼í•´ì„œ í•˜ë‚˜ì”© ì§€ìš°ê¸°
+        foreach(var obj in objs)
         {
-            Obj[index].GetComponent<Effect>().GetComponent<Animator>().SetTrigger("Destroy");
+            obj.GetComponent<Animator>().SetTrigger("Destroy");
             yield return new WaitForSeconds(0.1f);
         }
 
         yield return new WaitForSeconds(1f);
 
-        //°ÔÀÓ¿À¹ö ¾ÀÀ¸·Î ÀÌµ¿
+        //ê²Œì„ì˜¤ë²„ ì”¬ìœ¼ë¡œ ì´ë™
 
     }
 
     public void Restart()
     {
-        StartCoroutine("ResetCorutine");
+        StartCoroutine(ResetCorutine());
     }
 
 
