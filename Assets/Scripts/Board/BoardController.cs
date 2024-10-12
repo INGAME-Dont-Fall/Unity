@@ -1,68 +1,67 @@
 using UnityEngine;
+using UnityEngine.InputSystem;
 
 namespace DontFall.Board
 {
-    [RequireComponent(typeof(HingeJoint2D), typeof(BoxCollider2D), typeof(SpriteRenderer))]
+    [RequireComponent(typeof(Rigidbody2D))]
     public class BoardController : MonoBehaviour
     {
-        [SerializeField] private float pivot = 0;
-        [SerializeField] private Vector2 clamp = new Vector2(0.1f, 0.9f);
+        [SerializeField] private float width;
 
-        [SerializeField] private Vector2 edge1 = new Vector2(-1, 0), edge2 = new Vector2(1, 0);
-        
-        [SerializeField] private GameObject clampObject;
+        private Vector2 position;
 
-        public float Pivot
+        private bool moving;
+
+        public Vector2 Position => position;
+
+        public float Width => width;
+
+        public bool Moving
         {
-            get => pivot;
+            get => moving;
             set
             {
-                pivot = Mathf.Clamp(value, clamp.x - 0.5f, clamp.y - 0.5f);
-                
-                var joint = GetComponent<HingeJoint2D>();
-                joint.anchor = (edge2 - edge1).magnitude * pivot * Vector2.right;
-                joint.connectedAnchor = Vector2.Lerp(edge1, edge2, pivot + 0.5f);
+                var rigid = GetComponent<Rigidbody2D>();
+
+                if (moving = value)
+                {
+                    rigid.simulated = true;
+                }
+                else
+                {
+                    rigid.simulated = false;
+                    ResetBoard();
+                }
             }
         }
 
-        public Vector2 Edge1 => edge1;
-        public Vector2 Edge2 => edge2;
-        public Vector2 Clamp => clamp;
-
-        public void SetBoard()
+        private void ResetBoard()
         {
-            var renderer = GetComponent<SpriteRenderer>();
-            var collider = GetComponent<BoxCollider2D>();
+            var rigid = GetComponent<Rigidbody2D>();
 
-            transform.position = Vector2.Lerp(edge1, edge2, 0.5f);
-            transform.rotation = Quaternion.AngleAxis(Mathf.Atan2(edge2.y - edge1.y, edge2.x - edge1.x) * Mathf.Rad2Deg, Vector3.forward);
+            rigid.velocity = Vector2.zero;
+            rigid.angularVelocity = 0f;
 
-            renderer.size = collider.size = new Vector2((edge2 - edge1).magnitude, renderer.size.y);
+            transform.position = position;
+            transform.rotation = Quaternion.identity;
+        }
 
-            Pivot = Pivot;
+        private void Awake()
+        {
+            position = transform.position;
+        }
 
-            if (clampObject != null)
+        private void Start()
+        {
+            Moving = false;
+        }
+
+        private void Update()
+        {
+            if (Keyboard.current.spaceKey.wasPressedThisFrame)
             {
-                var clampRenderer = clampObject.GetComponent<SpriteRenderer>();
-
-                Vector2 clampedEdge1 = Vector2.Lerp(edge1, edge2, clamp.x), clampedEdge2 = Vector2.Lerp(edge1, edge2, clamp.y);
-
-                clampObject.transform.position = Vector2.Lerp(clampedEdge1, clampedEdge2, 0.5f);
-                clampObject.transform.localRotation = Quaternion.identity;
-
-                clampRenderer.size = new Vector2((clampedEdge2 - clampedEdge1).magnitude, clampRenderer.size.y);
+                Moving = !Moving;
             }
-        }
-
-        void OnDrawGizmosSelected()
-        {
-            Gizmos.color = Color.red;
-            Gizmos.DrawLine(edge1, edge2);
-            Gizmos.DrawWireSphere(Vector2.Lerp(edge1, edge2, pivot + 0.5f), 0.1f);
-
-            Gizmos.color = Color.green;
-            Gizmos.DrawWireSphere(Vector2.Lerp(edge1, edge2, clamp.x), 0.1f);
-            Gizmos.DrawWireSphere(Vector2.Lerp(edge1, edge2, clamp.y), 0.1f);
         }
     }
 }

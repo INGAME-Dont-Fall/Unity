@@ -1,31 +1,30 @@
 using UnityEngine;
-using UnityEngine.InputSystem;
 using UnityEngine.EventSystems;
 
 namespace DontFall.Board
 {
-    [ExecuteInEditMode]
     public class HandleController : MonoBehaviour, IDragHandler
     {
         [SerializeField] private BoardController board;
+        [SerializeField] private Vector2 offset;
 
-        private void Update()
+        private void Start()
         {
             if (board != null)
             {
-                transform.position = Vector2.Lerp(board.Edge1, board.Edge2, board.Pivot + 0.5f);
+                transform.position = board.Position + offset;
             }
         }
 
         void IDragHandler.OnDrag(PointerEventData pointer)
         {
-            if (board != null)
+            if (board != null && !board.Moving)
             {
                 Vector2 pos = Camera.main.ScreenToWorldPoint(pointer.position);
 
-                var pivotValue = Vector2.Dot(pos - board.Edge1, (board.Edge2 - board.Edge1).normalized) / (board.Edge2 - board.Edge1).magnitude;
+                float pivot = Mathf.Clamp(Vector2.Dot(pos - (board.Position + offset), Vector2.right) / board.Width, -0.4f, 0.4f);
 
-                board.Pivot = pivotValue - 0.5f;
+                transform.position = pivot * board.Width * Vector2.right + board.Position + offset;
             }
         }
     }
