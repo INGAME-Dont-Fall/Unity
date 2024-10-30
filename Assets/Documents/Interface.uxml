@@ -1,0 +1,13 @@
+<ui:UXML xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" xsi="http://www.w3.org/2001/XMLSchema-instance" engine="UnityEngine.UIElements" editor="UnityEditor.UIElements" noNamespaceSchemaLocation="../../UIElementsSchema/UIElements.xsd" editor-extension-mode="False">
+    <Style src="project://database/Assets/Documents/Interface.uss?fileID=7433441132597879392&amp;guid=6a7ae8cd130470966b41433eb9dcaed9&amp;type=3#Interface" />
+    <ui:VisualElement style="position: absolute; left: 21px; top: 18px;">
+        <ui:VisualElement class="df-shadow" style="flex-grow: 1;" />
+        <ui:Label tabindex="-1" text="000000" parse-escape-sequences="true" display-tooltip-when-elided="true" name="Score" class="df-element" style="width: 160px; -unity-text-align: middle-right; padding-bottom: 0; padding-left: 0;" />
+    </ui:VisualElement>
+    <ui:Slider high-value="100" direction="Vertical" name="Zoom" style="height: 183px; position: absolute; top: 79px; left: 21px; width: 30px; align-items: center;" />
+    <ui:Label tabindex="-1" text="00:00" parse-escape-sequences="true" display-tooltip-when-elided="true" enable-rich-text="true" name="Time" style="-unity-font-definition: url(&quot;project://database/Assets/Fonts/Langar-Regular%20SDF.asset?fileID=11400000&amp;guid=fa2cc5f3451fa96979ec8e460828b469&amp;type=2#Langar-Regular SDF&quot;); -unity-font: url(&quot;project://database/Assets/Fonts/Langar-Regular.ttf?fileID=12800000&amp;guid=a5b6d03af311ec016903055c6fe13b16&amp;type=3#Langar-Regular&quot;); font-size: 40px; color: rgb(218, 180, 157); -unity-text-align: middle-center; align-self: center; position: absolute; left: 0; right: 0; top: 11px;" />
+    <ui:VisualElement style="flex-grow: 0; position: absolute; left: 21px; bottom: 21px; justify-content: space-around;">
+        <ui:VisualElement class="df-shadow" />
+        <ui:Button text="PLAY" parse-escape-sequences="true" display-tooltip-when-elided="true" name="Play" class="df-element" style="padding-bottom: 0; width: 102px;" />
+    </ui:VisualElement>
+</ui:UXML>
