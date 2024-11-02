@@ -19,29 +19,29 @@ public class DragUI : MonoBehaviour, IBeginDragHandler, IEndDragHandler, IDragHa
         canvasGroup = gameObject.GetComponentInParent<CanvasGroup>();
     }
 
-    //µå·¡±× ½ÃÀÛ ½Ã È£Ãâ
+    //ë“œë˜ê·¸ ì‹œì‘ ì‹œ í˜¸ì¶œ
     public void OnBeginDrag(PointerEventData eventData)
     {
-        //ºÎ¸ğ ¿ÀºêÁ§Æ®´Â ÀÎº¥Åä¸®ÀÇ ºóÄ­ÀÌ µÊ
+        //ë¶€ëª¨ ì˜¤ë¸Œì íŠ¸ëŠ” ì¸ë²¤í† ë¦¬ì˜ ë¹ˆì¹¸ì´ ë¨
         GameObject go = gameObject.transform.parent.gameObject;
         GameManager.Instance.EmptyInventory.Add(go);
         canvasGroup.blocksRaycasts = false;
 
-        //ÀÌ¹ÌÁö´Â ²ô°í Á¤ÇØÁø ¿ÀºêÁ§Æ®¸¦ »ı¼º
+        //ì´ë¯¸ì§€ëŠ” ë„ê³  ì •í•´ì§„ ì˜¤ë¸Œì íŠ¸ë¥¼ ìƒì„±
         gameObject.GetComponent<Image>().enabled = false;
         currentDraggedObject = Instantiate(GameManager.Instance.GamePrefab[index].gameObj);
         currentDraggedObject.GetComponent<DragObj>().index = index;
     }
 
-    //µå·¡±× Áß °è¼Ó È£Ãâ
+    //ë“œë˜ê·¸ ì¤‘ ê³„ì† í˜¸ì¶œ
     public void OnDrag(PointerEventData eventData)
     {
-        // µå·¡±×ÇÑ ¿ÀºêÁ§Æ®°¡ ¸¶¿ì½º¸¦ µû¶ó ¿òÁ÷ÀÌ°Ô ¼³Á¤
+        // ë“œë˜ê·¸í•œ ì˜¤ë¸Œì íŠ¸ê°€ ë§ˆìš°ìŠ¤ë¥¼ ë”°ë¼ ì›€ì§ì´ê²Œ ì„¤ì •
         Vector2 mousePos = Camera.main.ScreenToWorldPoint(Mouse.current.position.ReadValue());
         currentDraggedObject.transform.position = mousePos;
     }
 
-    //µå·¡±× ³¡³¯ ¶§ È£Ãâ
+    //ë“œë˜ê·¸ ëë‚  ë•Œ í˜¸ì¶œ
     public void OnEndDrag(PointerEventData eventData)
     {
         Destroy(gameObject);

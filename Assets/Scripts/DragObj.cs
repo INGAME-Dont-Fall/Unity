@@ -10,7 +10,7 @@ using UnityEngine.UIElements;
 public class DragObj : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDragHandler
 {
     public int index = 0;
-    private Canvas canvas;  // ¿ÀºêÁ§Æ®¸¦ µå¶øÇÒ UI Äµ¹ö½º
+    private Canvas canvas;  // ì˜¤ë¸Œì íŠ¸ë¥¼ ë“œëí•  UI ìº”ë²„ìŠ¤
     private CanvasGroup canvasGroup;
 
     private void Start()
@@ -19,32 +19,32 @@ public class DragObj : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDragH
         canvasGroup = canvas.GetComponent<CanvasGroup>();
     }
 
-    //µå·¡±× ½ÃÀÛ ½Ã È£Ãâ
+    //ë“œë˜ê·¸ ì‹œì‘ ì‹œ í˜¸ì¶œ
     public void OnBeginDrag(PointerEventData eventData)
     {
         canvasGroup.blocksRaycasts = false;
     }
 
-    // µå·¡±× Áß È£Ãâ
+    // ë“œë˜ê·¸ ì¤‘ í˜¸ì¶œ
     public void OnDrag(PointerEventData eventData)
     {
-        // ¸¶¿ì½º¸¦ µû¶ó¿Àµµ·Ï ¿ÀºêÁ§Æ® À§Ä¡ ¼³Á¤
+        // ë§ˆìš°ìŠ¤ë¥¼ ë”°ë¼ì˜¤ë„ë¡ ì˜¤ë¸Œì íŠ¸ ìœ„ì¹˜ ì„¤ì •
         Vector2 mousePos = Camera.main.ScreenToWorldPoint(Mouse.current.position.ReadValue());
         gameObject.transform.position = new Vector3(mousePos.x, mousePos.y, gameObject.transform.position.z);
     }
 
-    // µå·¡±× Á¾·á ½Ã È£Ãâ
+    // ë“œë˜ê·¸ ì¢…ë£Œ ì‹œ í˜¸ì¶œ
     public void OnEndDrag(PointerEventData eventData)
     {
         foreach (GameObject go in GameManager.Instance.EmptyInventory)
         {
             if (RectTransformUtility.RectangleContainsScreenPoint(go.GetComponent<RectTransform>(), Mouse.current.position.ReadValue(), canvas.worldCamera))
             {
-                // UI ÇÁ¸®ÆÕÀ» »ı¼ºÇÏ°í ÇØ´ç UI¿¡ Á¾¼Ó½ÃÅ´
+                // UI í”„ë¦¬íŒ¹ì„ ìƒì„±í•˜ê³  í•´ë‹¹ UIì— ì¢…ì†ì‹œí‚´
                 GameObject newUIObject = Instantiate(GameManager.Instance.GamePrefab[index].gameUI, go.transform);
                 newUIObject.GetComponent<DragUI>().index = index;
 
-                //Ä­ÀÌ Ã¡À¸´Ï±î »èÁ¦
+                //ì¹¸ì´ ì°¼ìœ¼ë‹ˆê¹Œ ì‚­ì œ
                 //GameManager.Instance.EmptyInventory.Remove(go);
                 Destroy(gameObject);
             }
