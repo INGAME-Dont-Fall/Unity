@@ -45,7 +45,7 @@ public class DragObj : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDragH
                 newUIObject.GetComponent<DragUI>().index = index;
 
                 //Ä­ÀÌ Ã¡À¸´Ï±î »èÁ¦
-                GameManager.Instance.EmptyInventory.Remove(go);
+                //GameManager.Instance.EmptyInventory.Remove(go);
                 Destroy(gameObject);
             }
         }
