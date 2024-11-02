@@ -1,0 +1,44 @@
+<ui:UXML xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" xsi="http://www.w3.org/2001/XMLSchema-instance" engine="UnityEngine.UIElements" editor="UnityEditor.UIElements" noNamespaceSchemaLocation="../../UIElementsSchema/UIElements.xsd" editor-extension-mode="False">
+    <Style src="project://database/Assets/Documents/Interface.uss?fileID=7433441132597879392&amp;guid=6a7ae8cd130470966b41433eb9dcaed9&amp;type=3#Interface" />
+    <ui:VisualElement style="position: absolute; left: 0; top: 0; right: 0; bottom: 0; border-left-color: rgb(218, 180, 157); border-right-color: rgb(218, 180, 157); border-top-color: rgb(218, 180, 157); border-bottom-color: rgb(218, 180, 157); border-top-width: 5px; border-right-width: 5px; border-bottom-width: 5px; border-left-width: 5px;" />
+    <ui:VisualElement style="position: absolute; left: 21px; top: 18px;">
+        <ui:VisualElement class="df-shadow" style="flex-grow: 1;" />
+        <ui:Label tabindex="-1" text="000000" name="Score" class="df-element" style="width: 160px; -unity-text-align: middle-right; padding-bottom: 0; padding-left: 0;" />
+    </ui:VisualElement>
+    <ui:Slider high-value="50" direction="Vertical" name="Zoom" low-value="10" inverted="true" style="height: 183px; position: absolute; top: 79px; left: 21px; width: 30px; align-items: center;" />
+    <ui:Label tabindex="-1" text="00:00" name="Time" style="-unity-font-definition: url(&quot;project://database/Assets/Fonts/Langar-Regular%20SDF.asset?fileID=11400000&amp;guid=fa2cc5f3451fa96979ec8e460828b469&amp;type=2#Langar-Regular SDF&quot;); -unity-font: url(&quot;project://database/Assets/Fonts/Langar-Regular.ttf?fileID=12800000&amp;guid=a5b6d03af311ec016903055c6fe13b16&amp;type=3#Langar-Regular&quot;); font-size: 40px; color: rgb(218, 180, 157); -unity-text-align: middle-center; align-self: center; position: absolute; left: 0; right: 0; top: 11px;" />
+    <ui:VisualElement style="flex-grow: 0; position: absolute; left: 21px; bottom: 21px; justify-content: space-around;">
+        <ui:VisualElement class="df-shadow" />
+        <ui:Button text="PLAY" name="Play" class="df-element" style="padding-bottom: 0; width: 102px;" />
+    </ui:VisualElement>
+    <ui:VisualElement name="Overlay" style="top: 0; right: 0; bottom: 0; position: absolute; flex-direction: row-reverse; align-items: flex-end; translate: 222px 0; transition-property: all, translate; transition-duration: 0s, 0.2s; transition-timing-function: ease, ease-out; transition-delay: 0s, 0s;">
+        <ui:VisualElement class="df-element" style="align-self: stretch; overflow: hidden; transition-property: all; transition-duration: 0s; transition-timing-function: ease; transition-delay: 0s; border-top-width: 9px; border-right-width: 9px; border-bottom-width: 9px; border-left-width: 9px; border-bottom-right-radius: 0; border-top-right-radius: 0; border-bottom-left-radius: 0; border-top-left-radius: 0;">
+            <ui:VisualElement style="justify-content: flex-end; flex-direction: row; margin-bottom: 12px;">
+                <ui:VisualElement style="margin-right: 6px;">
+                    <ui:VisualElement class="df-shadow" style="border-top-left-radius: 5px; border-top-right-radius: 5px; border-bottom-right-radius: 5px; border-bottom-left-radius: 5px; translate: 1px 2px;" />
+                    <ui:Button name="Restart" class="df-element" style="background-image: url(&quot;project://database/Assets/UI%20Toolkit/UnityThemes/UnityDefaultRuntimeTheme.tss?fileID=7433338533053954386&amp;guid=b2c2b837be101bdb18fa6fcf02d57b32&amp;type=3#check@2x&quot;); -unity-background-image-tint-color: rgb(218, 180, 157); width: 22px; height: 22px; -unity-background-scale-mode: scale-to-fit; border-top-left-radius: 5px; border-top-right-radius: 5px; border-bottom-right-radius: 5px; border-bottom-left-radius: 5px;" />
+                </ui:VisualElement>
+                <ui:VisualElement>
+                    <ui:VisualElement class="df-shadow" style="border-top-left-radius: 5px; border-top-right-radius: 5px; border-bottom-right-radius: 5px; border-bottom-left-radius: 5px; translate: 1px 2px;" />
+                    <ui:Button name="Settings" class="df-element" style="background-image: url(&quot;project://database/Assets/UI%20Toolkit/UnityThemes/UnityDefaultRuntimeTheme.tss?fileID=4456449167576933126&amp;guid=b2c2b837be101bdb18fa6fcf02d57b32&amp;type=3#check-dash@2x&quot;); -unity-background-image-tint-color: rgb(218, 180, 157); width: 22px; height: 22px; -unity-background-scale-mode: scale-to-fit; border-top-left-radius: 5px; border-top-right-radius: 5px; border-bottom-right-radius: 5px; border-bottom-left-radius: 5px;" />
+                </ui:VisualElement>
+            </ui:VisualElement>
+            <ui:VisualElement style="flex-direction: row; justify-content: space-around; margin-bottom: 12px;">
+                <ui:VisualElement style="flex-grow: 1; margin-right: 8px;">
+                    <ui:VisualElement class="df-shadow" style="flex-grow: 1; border-top-left-radius: 7px; border-top-right-radius: 7px; border-bottom-right-radius: 7px; border-bottom-left-radius: 7px; translate: 2px 3px;" />
+                    <ui:Label tabindex="-1" text="000000" parse-escape-sequences="true" display-tooltip-when-elided="true" name="Money" class="df-element" style="font-size: 20px; padding-top: 2px; padding-right: 2px; padding-bottom: 2px; padding-left: 2px; border-top-left-radius: 7px; border-top-right-radius: 7px; border-bottom-right-radius: 7px; border-bottom-left-radius: 7px; -unity-text-align: middle-right;" />
+                </ui:VisualElement>
+                <ui:VisualElement style="flex-grow: 2;">
+                    <ui:VisualElement class="df-shadow" style="border-top-left-radius: 7px; border-top-right-radius: 7px; border-bottom-right-radius: 7px; border-bottom-left-radius: 7px; translate: 2px 3px;" />
+                    <ui:Button parse-escape-sequences="true" display-tooltip-when-elided="true" name="Add" class="df-element" style="background-image: url(&quot;project://database/Assets/UI%20Toolkit/UnityThemes/UnityDefaultRuntimeTheme.tss?fileID=2346436936791262179&amp;guid=b2c2b837be101bdb18fa6fcf02d57b32&amp;type=3#console.infoicon&quot;); -unity-background-scale-mode: scale-to-fit; -unity-background-image-tint-color: rgb(218, 180, 157); padding-top: 2px; padding-right: 2px; padding-bottom: 2px; padding-left: 2px; flex-grow: 1; border-top-left-radius: 7px; border-top-right-radius: 7px; border-bottom-right-radius: 7px; border-bottom-left-radius: 7px;" />
+                </ui:VisualElement>
+            </ui:VisualElement>
+            <ui:VisualElement style="flex-grow: 1; width: 200px; background-color: rgb(218, 180, 157); border-top-left-radius: 20px; border-top-right-radius: 20px; border-bottom-right-radius: 20px; border-bottom-left-radius: 20px;" />
+        </ui:VisualElement>
+        <ui:VisualElement style="transition-property: all; transition-duration: 0s; transition-timing-function: ease; transition-delay: 0s; translate: 10px -9px;">
+            <ui:VisualElement class="df-shadow" style="translate: -8px 9px; border-top-left-radius: 5px; border-top-right-radius: 5px; border-bottom-right-radius: 0; border-bottom-left-radius: 5px;" />
+            <ui:Button name="OverlayOpen" class="df-element" style="background-image: url(&quot;project://database/Assets/UI%20Toolkit/UnityThemes/UnityDefaultRuntimeTheme.tss?fileID=-2236324273849735119&amp;guid=b2c2b837be101bdb18fa6fcf02d57b32&amp;type=3#arrow-left@2x&quot;); -unity-background-image-tint-color: rgb(218, 180, 157); -unity-background-scale-mode: scale-to-fit; flex-grow: 1; width: 49px; height: 49px; border-top-width: 0; border-right-width: 0; border-bottom-width: 0; border-left-width: 0; border-top-left-radius: 5px; border-top-right-radius: 0; border-bottom-right-radius: 0; border-bottom-left-radius: 5px;" />
+            <ui:Button name="OverlayClose" class="df-element" style="background-image: url(&quot;project://database/Assets/UI%20Toolkit/UnityThemes/UnityDefaultRuntimeTheme.tss?fileID=-1087164816274819069&amp;guid=b2c2b837be101bdb18fa6fcf02d57b32&amp;type=3#arrow-right@2x&quot;); -unity-background-image-tint-color: rgb(218, 180, 157); -unity-background-scale-mode: scale-to-fit; flex-grow: 1; display: none; visibility: visible; width: 60px; height: 60px; border-top-width: 0; border-right-width: 0; border-bottom-width: 0; border-left-width: 0; border-top-left-radius: 5px; border-top-right-radius: 0; border-bottom-right-radius: 0; border-bottom-left-radius: 5px;" />
+        </ui:VisualElement>
+    </ui:VisualElement>
+</ui:UXML>
