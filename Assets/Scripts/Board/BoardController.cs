@@ -38,7 +38,7 @@ namespace DontFall.Board
         {
             var rigid = GetComponent<Rigidbody2D>();
 
-            rigid.velocity = Vector2.zero;
+            rigid.linearVelocity = Vector2.zero;
             rigid.angularVelocity = 0f;
 
             transform.position = position;
