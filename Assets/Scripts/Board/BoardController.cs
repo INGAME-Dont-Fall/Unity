@@ -1,5 +1,4 @@
 using UnityEngine;
-using UnityEngine.InputSystem;
 
 namespace DontFall.Board
 {
@@ -54,14 +53,6 @@ namespace DontFall.Board
         private void Start()
         {
             Moving = false;
-        }
-
-        private void Update()
-        {
-            if (Keyboard.current.spaceKey.wasPressedThisFrame)
-            {
-                Moving = !Moving;
-            }
         }
     }
 }

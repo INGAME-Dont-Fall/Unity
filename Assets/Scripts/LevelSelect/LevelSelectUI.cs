@@ -3,7 +3,7 @@ using UnityEngine;
 using UnityEngine.UIElements;
 using UnityEngine.SceneManagement;
 
-namespace DontCare.LevelSelect
+namespace DontFall.LevelSelect
 {
     public class LevelSelectUI : MonoBehaviour
     {
@@ -17,7 +17,7 @@ namespace DontCare.LevelSelect
 
             var list = uiDocument.rootVisualElement.Q("LevelList");
 
-            for(int i=0; i<levelList.Count; i++)
+            for (int i = 0; i < levelList.Count; i++)
             {
                 string level = levelList[i];
 
