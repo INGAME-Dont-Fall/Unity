@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using TMPro;
 using UnityEngine.EventSystems;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
@@ -18,10 +19,10 @@ public class GameManager : MonoBehaviour
 {
     private static GameManager instance;
 
-    private int Point; //초기에 주어지는 포인
-    private int Score; //선반 위에 올려진 물체에 매겨진 점수 합산
-    private bool IsOver; //게임 오버 제어
-    private bool ActiveDead;
+    private int point; //초기에 주어지는 포인
+    private int score; //선반 위에 올려진 물체에 매겨진 점수 합산
+    private bool isOver; //게임 오버 제어
+    private bool activeDead;
 
     private Object lastObject;
     [SerializeField] private GameObject objectGroup;
@@ -29,7 +30,11 @@ public class GameManager : MonoBehaviour
     [SerializeField] private Canvas canvas;
     [SerializeField] private GameObject inventory;
     [SerializeField] private GameObject square; //인벤토리 한 칸
-    [SerializeField] int[] InitObj = { 0, 1, 1, 0, 1 };
+    [SerializeField] int[] initObj = { 0, 1, 1, 0, 1 };
+    [SerializeField] private TMP_Text scoreText;
+    [SerializeField] private TMP_Text pointText;
+    [SerializeField] private TMP_Text timer;
+    [SerializeField] private float maxTime = 30.0f;
 
     public static GameManager Instance => instance;
     public List<ObjectInfo> GamePrefab => gamePrefab;
@@ -49,11 +54,11 @@ public class GameManager : MonoBehaviour
 
     public void GameStart()
     {
-        for(int i = 0; i < InitObj.Length; i++) 
+        for(int i = 0; i < initObj.Length; i++) 
         {
             GameObject go = Instantiate(square, inventory.transform);
 
-            int index = InitObj[i];
+            int index = initObj[i];
             Instantiate(gamePrefab[index].gameUI, go.transform);
         }
     }
@@ -65,16 +70,16 @@ public class GameManager : MonoBehaviour
 
 
         //데드존을 활성화하여 닿는지 검사가 가능해짐(트리거 함수는 게임 오브젝트에서)
-        ActiveDead = true;
+        activeDead = true;
     }
 
     public void GameOver()
     {
-        if (IsOver)
+        if (isOver)
         {
             return;
         }
-        IsOver = true;
+        isOver = true;
 
         StartCoroutine(GameOverRoutine());
     }
@@ -95,7 +100,7 @@ public class GameManager : MonoBehaviour
         }
 
         //마지막으로 남은 포인트까지 합산
-        Score += Point;
+        score += point;
         yield return new WaitForSeconds(1f);
 
         //게임오버 씬으로 이동 or 종료창
@@ -112,5 +117,20 @@ public class GameManager : MonoBehaviour
     {
         yield return new WaitForSeconds(1f);
         SceneManager.LoadScene("PlayScnene");
+    }
+
+    public void ScoreUpdate()
+    {
+        scoreText.text = "" + score;
+    }
+
+    public void PointUpdate()
+    {
+        pointText.text = "" + point;
+    }
+
+    public void TimerUpdate()
+    {
+        timer.text = "" + maxTime;
     }
 }
