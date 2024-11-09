@@ -1,7 +1,5 @@
 using System.Collections;
 using System.Collections.Generic;
-using System.Diagnostics;
-using Unity.VisualScripting;
 using UnityEditor;
 using UnityEngine;
 using UnityEngine.EventSystems;
@@ -23,7 +21,7 @@ public class DragUI : MonoBehaviour, IBeginDragHandler, IEndDragHandler, IDragHa
     public void OnBeginDrag(PointerEventData eventData)
     {
         //부모 오브젝트는 인벤토리의 빈칸이 됨
-        GameObject go = gameObject.transform.parent.gameObject;
+        GameObject go = transform.parent.gameObject;
         GameManager.Instance.EmptyInventory.Add(go);
         canvasGroup.blocksRaycasts = false;
 

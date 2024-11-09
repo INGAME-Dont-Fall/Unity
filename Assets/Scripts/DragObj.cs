@@ -30,7 +30,7 @@ public class DragObj : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDragH
     {
         // 마우스를 따라오도록 오브젝트 위치 설정
         Vector2 mousePos = Camera.main.ScreenToWorldPoint(Mouse.current.position.ReadValue());
-        gameObject.transform.position = new Vector3(mousePos.x, mousePos.y, gameObject.transform.position.z);
+        transform.position = new Vector3(mousePos.x, mousePos.y, transform.position.z);
     }
 
     // 드래그 종료 시 호출

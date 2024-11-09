@@ -24,18 +24,17 @@ public class GameManager : MonoBehaviour
     private bool ActiveDead;
 
     private Object lastObject;
-    [SerializeField] private GameObject ObjectGroup;
-    [SerializeField] List<ObjectInfo> gamePrefab;
-    [SerializeField] Canvas canvas;
-    [SerializeField] GameObject Inventory;
-    [SerializeField] GameObject Square; //인벤토리 한 칸
+    [SerializeField] private GameObject objectGroup;
+    [SerializeField] private List<ObjectInfo> gamePrefab;
+    [SerializeField] private Canvas canvas;
+    [SerializeField] private GameObject inventory;
+    [SerializeField] private GameObject square; //인벤토리 한 칸
     [SerializeField] int[] InitObj = { 0, 1, 1, 0, 1 };
 
     public static GameManager Instance => instance;
     public List<ObjectInfo> GamePrefab => gamePrefab;
     public Canvas Canvas => canvas;
     public List<GameObject> EmptyInventory;
-
 
     private void Awake()
     {
@@ -52,7 +51,7 @@ public class GameManager : MonoBehaviour
     {
         for(int i = 0; i < InitObj.Length; i++) 
         {
-            GameObject go = Instantiate(Square, Inventory.transform);
+            GameObject go = Instantiate(square, inventory.transform);
 
             int index = InitObj[i];
             Instantiate(gamePrefab[index].gameUI, go.transform);
@@ -83,7 +82,7 @@ public class GameManager : MonoBehaviour
     IEnumerator GameOverRoutine()
     {
         //활성화 된 모든 오브젝트 가져오기
-        Object[] objs = FindObjectsOfType<Object>();
+        Object[] objs = FindObjectsByType<Object>(FindObjectsSortMode.None);
 
         //모든 오브젝트에 접근해서 하나씩 지우기
         foreach(var obj in objs)
@@ -112,6 +111,6 @@ public class GameManager : MonoBehaviour
     IEnumerator ResetCorutine()
     {
         yield return new WaitForSeconds(1f);
-        SceneManager.LoadScene(0);
+        SceneManager.LoadScene("PlayScnene");
     }
 }
