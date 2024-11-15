@@ -54,7 +54,7 @@ public class GameManager : MonoBehaviour
 
     public void GameStart()
     {
-        for(int i = 0; i < initObj.Length; i++) 
+        for (int i = 0; i < initObj.Length; i++)
         {
             GameObject go = Instantiate(square, inventory.transform);
 
@@ -67,6 +67,11 @@ public class GameManager : MonoBehaviour
     public void GamePlay()
     {
         //모든 오브젝트의 그래비티 스케일 변경
+        var objs = FindObjectsByType<DragObj>(FindObjectsSortMode.None);
+        foreach (var obj in objs)
+        {
+            obj.GetComponent<Rigidbody2D>().gravityScale = 1;
+        }
 
 
         //데드존을 활성화하여 닿는지 검사가 가능해짐(트리거 함수는 게임 오브젝트에서)
@@ -90,10 +95,10 @@ public class GameManager : MonoBehaviour
         Object[] objs = FindObjectsByType<Object>(FindObjectsSortMode.None);
 
         //모든 오브젝트에 접근해서 하나씩 지우기
-        foreach(var obj in objs)
+        foreach (var obj in objs)
         {
             //물체가 가진 고유 포인트 합산
-            
+
             //오브젝트 삭제
             Destroy(obj);
             yield return new WaitForSeconds(0.1f);

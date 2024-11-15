@@ -24,11 +24,11 @@ namespace DontFall.Board
 
                 if (moving = value)
                 {
-                    rigid.simulated = true;
+                    rigid.bodyType = RigidbodyType2D.Dynamic;
                 }
                 else
                 {
-                    rigid.simulated = false;
+                    rigid.bodyType = RigidbodyType2D.Static;
                     ResetBoard();
                 }
             }
