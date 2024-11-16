@@ -1308,21 +1308,22 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 21b53c79d39883c41bb6112af7320735, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  objectGroup: {fileID: 1758393940}
   gamePrefab:
   - gameObj: {fileID: 866595980557623238, guid: 09ee4a6290d29a7439e5761f5d391433, type: 3}
     gameUI: {fileID: 603647412974059273, guid: 358e79e470bcf714aac4d0df98aba74e, type: 3}
   - gameObj: {fileID: 7953823517180353347, guid: 021f5c02aa668d14db7340bb1fb52c8f, type: 3}
     gameUI: {fileID: 9209899209601688899, guid: 7e8b9976a8492dc45ba2ab6146da60a7, type: 3}
+  wallPrefab: []
   canvas: {fileID: 1163508609}
   inventory: {fileID: 1222345484}
   square: {fileID: 1921764817355458679, guid: 61bfb61638c0fba449781659a57690bf, type: 3}
-  initObj: 0000000001000000010000000000000001000000
   scoreText: {fileID: 828905268}
   pointText: {fileID: 1675019477}
   timer: {fileID: 478874112}
-  maxTime: 30
-  EmptyInventory: []
+  maxTime: 5
+  point: 100
+  emptyInventory: []
+  objectGroup: {fileID: 1758393940}
 --- !u!4 &587663286
 Transform:
   m_ObjectHideFlags: 0
@@ -3111,7 +3112,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 0}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 587663285}
+        m_TargetAssemblyTypeName: GameManager, Assembly-CSharp
+        m_MethodName: CreateAssistObj
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!222 &1385677824
 CanvasRenderer:
   m_ObjectHideFlags: 0

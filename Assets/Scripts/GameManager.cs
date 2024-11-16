@@ -69,7 +69,7 @@ public class GameManager : MonoBehaviour
         }
     }
 
-    public void SetStart()
+    private void SetStart()
     {
         IsStart = true;
     }
@@ -81,7 +81,6 @@ public class GameManager : MonoBehaviour
             GameObject go = Instantiate(square, inventory.transform);
 
             int index = initObj[i];
-            Debug.Log("gg");
             Instantiate(gamePrefab[index].gameUI, go.transform);
         }
     }
@@ -102,6 +101,7 @@ public class GameManager : MonoBehaviour
     //게임 시작 버튼 누를 시
     public void GamePlay()
     {
+        SetStart();
         //모든 오브젝트의 그래비티 스케일 변경
         var objs = FindObjectsByType<DragObj>(FindObjectsSortMode.None);
         foreach (var obj in objs)
