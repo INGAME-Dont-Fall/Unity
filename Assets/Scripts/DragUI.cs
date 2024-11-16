@@ -22,12 +22,12 @@ public class DragUI : MonoBehaviour, IBeginDragHandler, IEndDragHandler, IDragHa
     {
         //부모 오브젝트는 인벤토리의 빈칸이 됨
         GameObject go = transform.parent.gameObject;
-        GameManager.Instance.EmptyInventory.Add(go);
+        GameManager.Instance.emptyInventory.Add(go);
         canvasGroup.blocksRaycasts = false;
 
         //이미지는 끄고 정해진 오브젝트를 생성
         gameObject.GetComponent<Image>().enabled = false;
-        currentDraggedObject = Instantiate(GameManager.Instance.GamePrefab[index].gameObj);
+        currentDraggedObject = Instantiate(GameManager.Instance.GamePrefab[index].gameObj, GameManager.Instance.objectGroup.transform);
         currentDraggedObject.GetComponent<DragObj>().index = index;
     }
 
