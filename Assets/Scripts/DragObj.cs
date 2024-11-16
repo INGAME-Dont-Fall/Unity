@@ -37,9 +37,9 @@ public class DragObj : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDragH
     public void OnEndDrag(PointerEventData eventData)
     {
 
-        for(int i = GameManager.Instance.EmptyInventory.Count - 1; i >=0; i--)
+        for(int i = GameManager.Instance.emptyInventory.Count - 1; i >=0; i--)
         {
-            GameObject go = GameManager.Instance.EmptyInventory[i];
+            GameObject go = GameManager.Instance.emptyInventory[i];
             if (RectTransformUtility.RectangleContainsScreenPoint(go.GetComponent<RectTransform>(), Mouse.current.position.ReadValue(), canvas.worldCamera))
             {
                 // UI 프리팹을 생성하고 해당 UI에 종속시킴
@@ -47,7 +47,7 @@ public class DragObj : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDragH
                 newUIObject.GetComponent<DragUI>().index = index;
 
                 //칸이 찼으니까 삭제
-                GameManager.Instance.EmptyInventory.Remove(go);
+                GameManager.Instance.emptyInventory.Remove(go);
                 Destroy(gameObject);
             }
         }
