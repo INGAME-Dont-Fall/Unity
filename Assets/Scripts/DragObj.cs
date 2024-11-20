@@ -22,36 +22,44 @@ public class DragObj : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDragH
     //드래그 시작 시 호출
     public void OnBeginDrag(PointerEventData eventData)
     {
-        canvasGroup.blocksRaycasts = false;
+        if (eventData.button == PointerEventData.InputButton.Left)
+        {
+            canvasGroup.blocksRaycasts = false;
+        }
     }
 
     // 드래그 중 호출
     public void OnDrag(PointerEventData eventData)
     {
-        // 마우스를 따라오도록 오브젝트 위치 설정
-        Vector2 mousePos = Camera.main.ScreenToWorldPoint(Mouse.current.position.ReadValue());
-        transform.position = new Vector3(mousePos.x, mousePos.y, transform.position.z);
+        if (eventData.button == PointerEventData.InputButton.Left)
+        {
+            // 마우스를 따라오도록 오브젝트 위치 설정
+            Vector2 mousePos = Camera.main.ScreenToWorldPoint(Mouse.current.position.ReadValue());
+            transform.position = new Vector3(mousePos.x, mousePos.y, transform.position.z);
+        }
     }
 
     // 드래그 종료 시 호출
     public void OnEndDrag(PointerEventData eventData)
     {
-
-        for(int i = GameManager.Instance.emptyInventory.Count - 1; i >=0; i--)
+        if (eventData.button == PointerEventData.InputButton.Left)
         {
-            GameObject go = GameManager.Instance.emptyInventory[i];
-            if (RectTransformUtility.RectangleContainsScreenPoint(go.GetComponent<RectTransform>(), Mouse.current.position.ReadValue(), canvas.worldCamera))
+            for (int i = GameManager.Instance.emptyInventory.Count - 1; i >= 0; i--)
             {
-                // UI 프리팹을 생성하고 해당 UI에 종속시킴
-                GameObject newUIObject = Instantiate(GameManager.Instance.GamePrefab[index].gameUI, go.transform);
-                newUIObject.GetComponent<DragUI>().index = index;
+                GameObject go = GameManager.Instance.emptyInventory[i];
+                if (RectTransformUtility.RectangleContainsScreenPoint(go.GetComponent<RectTransform>(), Mouse.current.position.ReadValue(), canvas.worldCamera))
+                {
+                    // UI 프리팹을 생성하고 해당 UI에 종속시킴
+                    GameObject newUIObject = Instantiate(GameManager.Instance.GamePrefab[index].gameUI, go.transform);
+                    newUIObject.GetComponent<DragUI>().index = index;
 
-                //칸이 찼으니까 삭제
-                GameManager.Instance.emptyInventory.Remove(go);
-                Destroy(gameObject);
+                    //칸이 찼으니까 삭제
+                    GameManager.Instance.emptyInventory.Remove(go);
+                    Destroy(gameObject);
+                }
             }
-        }
 
-        canvasGroup.blocksRaycasts = true;
+            canvasGroup.blocksRaycasts = true;
+        }
     }
 }
