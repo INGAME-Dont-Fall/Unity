@@ -27,8 +27,17 @@ public class DragUI : MonoBehaviour, IBeginDragHandler, IEndDragHandler, IDragHa
 
         //이미지는 끄고 정해진 오브젝트를 생성
         gameObject.GetComponent<Image>().enabled = false;
-        currentDraggedObject = Instantiate(GameManager.Instance.GamePrefab[index].gameObj, GameManager.Instance.objectGroup.transform);
+        if(gameObject.tag == "Object")
+        {
+            currentDraggedObject = Instantiate(GameManager.Instance.GamePrefab[index].gameObj, GameManager.Instance.objectGroup.transform);
+
+        }
+        else if(gameObject.tag == "Assist")
+        {
+            currentDraggedObject = Instantiate(GameManager.Instance.AssistPrefab[index].gameObj, GameManager.Instance.objectGroup.transform);
+        }
         currentDraggedObject.GetComponent<DragObj>().index = index;
+        currentDraggedObject.GetComponent<DragObj>().isClicked = true;
     }
 
     //드래그 중 계속 호출
@@ -42,6 +51,7 @@ public class DragUI : MonoBehaviour, IBeginDragHandler, IEndDragHandler, IDragHa
     //드래그 끝날 때 호출
     public void OnEndDrag(PointerEventData eventData)
     {
+        currentDraggedObject.GetComponent<DragObj>().isClicked = false;
         Destroy(gameObject);
         canvasGroup.blocksRaycasts = true;
     }

@@ -9,6 +9,7 @@ using UnityEngine.UI;
 using Unity.Mathematics;
 using Unity.VisualScripting;
 using System.Text;
+using UnityEngine.UIElements;
 
 [Serializable]
 public class ObjectInfo
@@ -30,7 +31,7 @@ public class GameManager : MonoBehaviour
 
     private Object lastObject;
     [SerializeField] private List<ObjectInfo> gamePrefab; //게임 오브젝트들
-    [SerializeField] private List<ObjectInfo> wallPrefab; //벽 같은 생성 오브젝트
+    [SerializeField] private List<ObjectInfo> assistPrefab; //벽 같은 생성 오브젝트
     [SerializeField] private Canvas canvas;
     [SerializeField] private GameObject inventory;
     [SerializeField] private GameObject square; //인벤토리 한 칸
@@ -39,9 +40,11 @@ public class GameManager : MonoBehaviour
     [SerializeField] private TMP_Text timer;
     [SerializeField] private float maxTime = 30.00f;
     [SerializeField] private int point; //초기에 주어지는 포인트
+    [SerializeField] private GameObject destroyPrefab;
 
     public static GameManager Instance => instance;
     public List<ObjectInfo> GamePrefab => gamePrefab;
+    public List<ObjectInfo> AssistPrefab => assistPrefab;
     public Canvas Canvas => canvas;
     public List<GameObject> emptyInventory;
     public GameObject objectGroup;
@@ -91,8 +94,8 @@ public class GameManager : MonoBehaviour
         {
             GameObject go = Instantiate(square, inventory.transform);
 
-            int index = UnityEngine.Random.Range(0, gamePrefab.Count);
-            Instantiate(gamePrefab[index].gameUI, go.transform);
+            int index = UnityEngine.Random.Range(0, AssistPrefab.Count);
+            Instantiate(AssistPrefab[index].gameUI, go.transform);
             point -= 10;
             PointUpdate();
         }
@@ -129,14 +132,23 @@ public class GameManager : MonoBehaviour
         //활성화 된 모든 오브젝트 가져오기
         DragObj[] objs = FindObjectsByType<DragObj>(FindObjectsSortMode.None);
 
+        foreach (var obj in objs)
+        {
+            obj.GetComponent<Rigidbody2D>().bodyType = RigidbodyType2D.Static;
+        }
+
         //모든 오브젝트에 접근해서 하나씩 지우기
         foreach (var obj in objs)
         {
             //물체가 가진 고유 포인트 합산
 
             //오브젝트 삭제
+            Vector3 transform = obj.gameObject.transform.position;
+            obj.GetComponent<DragObj>().InputDisable();
             Destroy(obj.gameObject);
-            yield return new WaitForSeconds(0.1f);
+
+            Instantiate(destroyPrefab, transform, Quaternion.identity);
+            yield return new WaitForSeconds(0.5f);
         }
 
         //마지막으로 남은 포인트까지 합산
