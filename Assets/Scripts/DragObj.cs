@@ -68,28 +68,24 @@ public class DragObj : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDragH
         {
             for (int i = GameManager.Instance.emptyInventory.Count - 1; i >= 0; i--)
             {
-                GameObject newUIObject = null;
-                // UI 프리팹을 생성하고 해당 UI에 종속시킴
-                if (gameObject.tag == "Object")
-                {
-                    newUIObject = Instantiate(GameManager.Instance.GamePrefab[index].gameUI, go.transform);
-                }
-                else if(gameObject.tag == "Assist")
-                {
-                    newUIObject = Instantiate(GameManager.Instance.AssistPrefab[index].gameUI, go.transform);
-                }
-
-                if(newUIObject is not null)
-                {
-                    newUIObject.GetComponent<DragUI>().index = index;
-                }
                 GameObject go = GameManager.Instance.emptyInventory[i];
-                
                 if (RectTransformUtility.RectangleContainsScreenPoint(go.GetComponent<RectTransform>(), Mouse.current.position.ReadValue(), canvas.worldCamera))
                 {
+                    GameObject newUIObject = null;
                     // UI 프리팹을 생성하고 해당 UI에 종속시킴
-                    GameObject newUIObject = Instantiate(GameManager.Instance.GamePrefab[index].gameUI, go.transform);
-                    newUIObject.GetComponent<DragUI>().index = index;
+                    if (gameObject.tag == "Object")
+                    {
+                        newUIObject = Instantiate(GameManager.Instance.GamePrefab[index].gameUI, go.transform);
+                    }
+                    else if (gameObject.tag == "Assist")
+                    {
+                        newUIObject = Instantiate(GameManager.Instance.AssistPrefab[index].gameUI, go.transform);
+                    }
+
+                    if (newUIObject is not null)
+                    {
+                        newUIObject.GetComponent<DragUI>().index = index;
+                    }
 
                     //칸이 찼으니까 삭제
                     GameManager.Instance.emptyInventory.Remove(go);

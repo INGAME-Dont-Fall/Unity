@@ -1313,15 +1313,20 @@ MonoBehaviour:
     gameUI: {fileID: 603647412974059273, guid: 358e79e470bcf714aac4d0df98aba74e, type: 3}
   - gameObj: {fileID: 7953823517180353347, guid: 021f5c02aa668d14db7340bb1fb52c8f, type: 3}
     gameUI: {fileID: 9209899209601688899, guid: 7e8b9976a8492dc45ba2ab6146da60a7, type: 3}
-  wallPrefab: []
+  assistPrefab:
+  - gameObj: {fileID: 8822500698095909824, guid: 76a2b48e46b7f0e419af72722d6c8f82, type: 3}
+    gameUI: {fileID: 2964328029312057251, guid: d7f9873e94273fb4a866b3b941b495ab, type: 3}
+  - gameObj: {fileID: 722507415832924195, guid: 2f9cae5827ea53a489659588c3bfea11, type: 3}
+    gameUI: {fileID: 3125365940383132230, guid: 044db00fe96583946bc3e0f26f3aa281, type: 3}
   canvas: {fileID: 1163508609}
   inventory: {fileID: 1222345484}
   square: {fileID: 1921764817355458679, guid: 61bfb61638c0fba449781659a57690bf, type: 3}
   scoreText: {fileID: 828905268}
   pointText: {fileID: 1675019477}
   timer: {fileID: 478874112}
-  maxTime: 5
+  maxTime: 1
   point: 100
+  destroyPrefab: {fileID: 4791227227454387245, guid: 764c783d849bd094ab53fcfbafc34399, type: 3}
   emptyInventory: []
   objectGroup: {fileID: 1758393940}
 --- !u!4 &587663286
