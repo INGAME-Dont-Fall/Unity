@@ -18,15 +18,18 @@ public class ObjectInfo
     public GameObject gameUI;
 }
 
+
 //게임의 시작, 실패, 초기화 관리
 public class GameManager : MonoBehaviour
 {
     private static GameManager instance;
 
     private int score; //선반 위에 올려진 물체에 매겨진 점수 합산
+    private int point; //현재 포인트
     private bool isOver; //게임 오버 제어
     private float currentTime;
-    private bool IsStart; //스타트 시 활성화
+    private bool isStart; //스타트 시 활성화
+    private Transform boardTransform;
     private int[] initObj = { 0, 1, 1 }; //초기 인벤토리 할당 값
 
     private Object lastObject;
@@ -39,8 +42,9 @@ public class GameManager : MonoBehaviour
     [SerializeField] private TMP_Text pointText;
     [SerializeField] private TMP_Text timer;
     [SerializeField] private float maxTime = 30.00f;
-    [SerializeField] private int point; //초기에 주어지는 포인트
+    [SerializeField] private int maxPoint; //초기에 주어지는 포인트
     [SerializeField] private GameObject destroyPrefab;
+    [SerializeField] private GameObject board; //중심 판
 
     public static GameManager Instance => instance;
     public List<ObjectInfo> GamePrefab => gamePrefab;
@@ -52,12 +56,27 @@ public class GameManager : MonoBehaviour
     private void Awake()
     {
         instance = this;
+        boardTransform = board.transform;
     }
 
     private void Start()
     {
+        RoundStart();
+    }
+
+    private void RoundStart()
+    {
+        //인벤토리를 다 비운다.
+        foreach (Transform child in inventory.transform)
+        {
+            Destroy(child.gameObject);
+        }
+        board.transform.position = boardTransform.position;
+        board.transform.rotation = boardTransform.rotation;
         GameInit();
-        IsStart = false;
+        isStart = false;
+        isOver = false;
+        point = maxPoint;
         ScoreUpdate();
         PointUpdate();
         currentTime = maxTime;
@@ -66,7 +85,7 @@ public class GameManager : MonoBehaviour
 
     private void Update()
     {
-        if(IsStart)
+        if(isStart && !isOver)
         {
             TimerDecrease();
         }
@@ -74,7 +93,7 @@ public class GameManager : MonoBehaviour
 
     private void SetStart()
     {
-        IsStart = true;
+        isStart = true;
     }
 
     public void GameInit()
@@ -124,10 +143,15 @@ public class GameManager : MonoBehaviour
         }
         isOver = true;
 
-        StartCoroutine(GameOverRoutine());
+        StartCoroutine(GameOverRoutine(false));
     }
 
-    IEnumerator GameOverRoutine()
+    private void nextRound()
+    {
+        
+    }
+
+    IEnumerator GameOverRoutine(bool clear)
     {
         //활성화 된 모든 오브젝트 가져오기
         DragObj[] objs = FindObjectsByType<DragObj>(FindObjectsSortMode.None);
@@ -136,6 +160,7 @@ public class GameManager : MonoBehaviour
         {
             obj.GetComponent<Rigidbody2D>().bodyType = RigidbodyType2D.Static;
         }
+        board.GetComponent<Rigidbody2D>().bodyType = RigidbodyType2D.Static;
 
         //모든 오브젝트에 접근해서 하나씩 지우기
         foreach (var obj in objs)
@@ -156,19 +181,37 @@ public class GameManager : MonoBehaviour
         ScoreUpdate();
         yield return new WaitForSeconds(1f);
 
-        //게임오버 씬으로 이동 or 종료창
+        if(clear) //다음 라운드 진행
+        {
+            nextRound();
+            RoundStart();
+        }
+        else //게임오버 씬으로 이동 or 종료창
+        {
+            SceneManager.LoadScene("GameManager");
+        }
     }
 
     //초기화 버튼 이벤트
     public void Restart()
     {
-        StartCoroutine(ResetCorutine());
-    }
+        foreach (Transform obj in objectGroup.transform)
+        {
+            obj.GetComponent<DragObj>().InputDisable();
+            Destroy(obj.gameObject);
+        }
 
-    IEnumerator ResetCorutine()
-    {
-        yield return new WaitForSeconds(1f);
-        SceneManager.LoadScene("PlayScnene");
+        //인벤토리를 다 비운다.
+        foreach (Transform child in inventory.transform)
+        {
+            Destroy(child.gameObject);
+        }
+
+        //다시 인벤토리를 초기 상태로 채워 넣음
+        GameInit();
+
+        point = maxPoint;
+        PointUpdate();
     }
 
     public void ScoreUpdate()
@@ -231,8 +274,8 @@ public class GameManager : MonoBehaviour
         {
             currentTime = 0.00f;
             TimerUpdate();
-            IsStart = false;
-            GameOver();
+            isStart = false;
+            StartCoroutine(GameOverRoutine(true));
         }
     }
 }
