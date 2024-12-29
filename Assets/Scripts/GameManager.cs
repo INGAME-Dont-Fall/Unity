@@ -3,38 +3,37 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
-using UnityEngine.EventSystems;
 using UnityEngine.SceneManagement;
-using UnityEngine.UI;
-using Unity.Mathematics;
-using Unity.VisualScripting;
 using System.Text;
-using UnityEngine.UIElements;
+using System.Linq;
+
 
 [Serializable]
-public class ObjectInfo
+public class ObjectList
 {
-    public GameObject gameObj;
-    public GameObject gameUI;
+    public Size size;
+    public List<ObjectData> objectList;
 }
-
 
 //게임의 시작, 실패, 초기화 관리
 public class GameManager : MonoBehaviour
 {
     private static GameManager instance;
 
-    private int score; //선반 위에 올려진 물체에 매겨진 점수 합산
+    private int currentRound = 1;
+    private int totalScore; //전체 스코어
+    private int score; //현재 라운드에 선반 위에 올려진 물체에 매겨진 점수 합산
     private int point; //현재 포인트
     private bool isOver; //게임 오버 제어
     private float currentTime;
     private bool isStart; //스타트 시 활성화
     private Transform boardTransform;
-    private int[] initObj = { 0, 1, 1 }; //초기 인벤토리 할당 값
+    private List<GameObject> curObjectsList;
 
-    private Object lastObject;
-    [SerializeField] private List<ObjectInfo> gamePrefab; //게임 오브젝트들
-    [SerializeField] private List<ObjectInfo> assistPrefab; //벽 같은 생성 오브젝트
+    [SerializeField] private List<RoundData> roundSO;
+    [SerializeField] private ObjectList[] objects;
+    [SerializeField] private int objectCount;
+
     [SerializeField] private Canvas canvas;
     [SerializeField] private GameObject inventory;
     [SerializeField] private GameObject square; //인벤토리 한 칸
@@ -45,18 +44,22 @@ public class GameManager : MonoBehaviour
     [SerializeField] private int maxPoint; //초기에 주어지는 포인트
     [SerializeField] private GameObject destroyPrefab;
     [SerializeField] private GameObject board; //중심 판
+    [SerializeField] private int targetScore;
 
     public static GameManager Instance => instance;
-    public List<ObjectInfo> GamePrefab => gamePrefab;
-    public List<ObjectInfo> AssistPrefab => assistPrefab;
+
+    public ObjectList[] Objects => objects;
+
     public Canvas Canvas => canvas;
     public List<GameObject> emptyInventory;
     public GameObject objectGroup;
 
     private void Awake()
     {
+        curObjectsList = new List<GameObject>();
         instance = this;
         boardTransform = board.transform;
+        ObjectInit();
     }
 
     private void Start()
@@ -66,6 +69,8 @@ public class GameManager : MonoBehaviour
 
     private void RoundStart()
     {
+        curObjectsList.Clear();
+
         //인벤토리를 다 비운다.
         foreach (Transform child in inventory.transform)
         {
@@ -73,10 +78,10 @@ public class GameManager : MonoBehaviour
         }
         board.transform.position = boardTransform.position;
         board.transform.rotation = boardTransform.rotation;
-        GameInit();
+        CreateObj();
         isStart = false;
         isOver = false;
-        point = maxPoint;
+        point = maxPoint + (currentRound-1) * 20;
         ScoreUpdate();
         PointUpdate();
         currentTime = maxTime;
@@ -85,7 +90,7 @@ public class GameManager : MonoBehaviour
 
     private void Update()
     {
-        if(isStart && !isOver)
+        if (isStart && !isOver)
         {
             TimerDecrease();
         }
@@ -96,43 +101,135 @@ public class GameManager : MonoBehaviour
         isStart = true;
     }
 
-    public void GameInit()
+    private void ObjectInit()
     {
-        for (int i = 0; i < initObj.Length; i++)
+        for (int i = 0; i < objects.Length; i++) 
         {
-            GameObject go = Instantiate(square, inventory.transform);
+            for (int j = 0; j < objects[i].objectList.Count; j++)
+            {
+                ObjectData data = objects[i].objectList[j];
 
-            int index = initObj[i];
-            Instantiate(gamePrefab[index].gameUI, go.transform);
+                data.go.GetComponent<DragObj>().index = data.index;
+                data.ui.GetComponent<DragUI>().index = data.index;
+
+                data.go.GetComponent<DragObj>().size = data.size;
+                data.ui.GetComponent<DragUI>().size = data.size;
+
+                data.go.GetComponent<Rigidbody2D>().mass = data.mass;
+            }
         }
     }
 
-    public void CreateAssistObj()
+    /// <summary>
+    /// 게임 초기화 시 원 상태로 복구하는 함수
+    /// </summary>
+    public void GameInit()
     {
-        if(point > 0)
+        //인벤토리를 다 비운다.
+        foreach (Transform child in inventory.transform)
+        {
+            Destroy(child.gameObject);
+        }
+        board.transform.position = boardTransform.position;
+        board.transform.rotation = boardTransform.rotation;
+        for (int i = 0; i < curObjectsList.Count; i++)
         {
             GameObject go = Instantiate(square, inventory.transform);
 
-            int index = UnityEngine.Random.Range(0, AssistPrefab.Count);
-            Instantiate(AssistPrefab[index].gameUI, go.transform);
+            Instantiate(curObjectsList[i], go.transform);
+        }
+        isStart = false;
+        isOver = false;
+        ScoreUpdate();
+        PointUpdate();
+        currentTime = maxTime;
+        TimerUpdate();
+    }
+
+    /// <summary>
+    /// 인벤토리에 플레이어에게 도움을 주는 물체를 생성하는 함수
+    /// </summary>
+    public void CreateAssistObj()
+    {
+        if (point > 0)
+        {
+            GameObject go = Instantiate(square, inventory.transform);
+
+            int index = UnityEngine.Random.Range(0, objects[(int)Size.Assist].objectList.Count);
+            curObjectsList.Add(objects[(int)Size.Assist].objectList[index].ui);
+            Instantiate(objects[(int)Size.Assist].objectList[index].ui, go.transform);
             point -= 10;
             PointUpdate();
         }
+    }
+
+    /// <summary>
+    /// 인벤토리에 물체를 생성하는 함수
+    /// </summary>
+    public void CreateObj()
+    {
+        RoundData curData;
+        int small = 0;
+        int medium = 0;
+        int high = 0;
+        int special = 0;
+
+        if (currentRound <= 10) //Low
+        {
+            curData = roundSO[0];
+            small -= (currentRound-1);
+            medium += (currentRound - 1);
+        }
+        else if (currentRound <= 15) //Medium
+        {
+            curData = roundSO[1];
+        }
+        else //High
+        {
+            curData = roundSO[2];
+        }
+
+        small += curData.lowProbability;
+        medium += curData.mediumProbability + small;
+        high += curData.highProbability + medium;
+        special += curData.specialProbability + high;
+
+        for (int i = 0; i < objectCount; i++)
+        {
+            int random = UnityEngine.Random.Range(0, 100);
+            List<ObjectData> curObj = null;
+
+            if (random < small)
+            {
+                curObj = objects[(int)Size.Small].objectList.ToList();
+            }
+            else if (random < medium)
+            {
+                curObj = objects[(int)Size.Medium].objectList.ToList();
+            }
+            else if (random < high)
+            {
+                curObj = objects[(int)Size.Large].objectList.ToList();
+            }
+            else if (random < special)
+            {
+                curObj = objects[(int)Size.Special].objectList.ToList();
+            }
+
+            GameObject go = Instantiate(square, inventory.transform);
+
+            int index = UnityEngine.Random.Range(0, curObj.Count);
+
+            curObjectsList.Add(curObj[index].ui);
+            Instantiate(curObj[index].ui, go.transform);
+        }
+
     }
 
     //게임 시작 버튼 누를 시
     public void GamePlay()
     {
         SetStart();
-        //모든 오브젝트의 그래비티 스케일 변경
-        var objs = FindObjectsByType<DragObj>(FindObjectsSortMode.None);
-        foreach (var obj in objs)
-        {
-            obj.GetComponent<Rigidbody2D>().gravityScale = 1;
-        }
-
-
-        //데드존을 활성화하여 닿는지 검사가 가능해짐(트리거 함수는 게임 오브젝트에서)
     }
 
     public void GameOver()
@@ -148,7 +245,7 @@ public class GameManager : MonoBehaviour
 
     private void nextRound()
     {
-        
+
     }
 
     IEnumerator GameOverRoutine(bool clear)
@@ -166,7 +263,7 @@ public class GameManager : MonoBehaviour
         foreach (var obj in objs)
         {
             //물체가 가진 고유 포인트 합산
-
+            score += ((int)obj.GetComponent<Rigidbody2D>().mass * 10 + currentRound * 100);
             //오브젝트 삭제
             Vector3 transform = obj.gameObject.transform.position;
             obj.GetComponent<DragObj>().InputDisable();
@@ -177,12 +274,17 @@ public class GameManager : MonoBehaviour
         }
 
         //마지막으로 남은 포인트까지 합산
-        score += point;
+        score += (point * currentRound * 10);
+        totalScore += score;
         ScoreUpdate();
         yield return new WaitForSeconds(1f);
 
-        if(clear) //다음 라운드 진행
+        clear = clear && score > targetScore;
+        if (clear) //다음 라운드 진행
         {
+            Debug.Log("클리어");
+            score = 0;
+            currentRound++;
             nextRound();
             RoundStart();
         }
@@ -201,22 +303,13 @@ public class GameManager : MonoBehaviour
             Destroy(obj.gameObject);
         }
 
-        //인벤토리를 다 비운다.
-        foreach (Transform child in inventory.transform)
-        {
-            Destroy(child.gameObject);
-        }
-
         //다시 인벤토리를 초기 상태로 채워 넣음
         GameInit();
-
-        point = maxPoint;
-        PointUpdate();
     }
 
     public void ScoreUpdate()
     {
-        String textScore = "" + score;
+        String textScore = "" + totalScore;
 
         int Length = textScore.Length;
         for (int i = Math.Max(6, Length); i > Length; --i)
@@ -243,7 +336,7 @@ public class GameManager : MonoBehaviour
     public void TimerUpdate()
     {
         String textTime = currentTime.ToString("F2");
-        if(textTime.Length - 3 > 0)
+        if (textTime.Length - 3 > 0)
         {
             StringBuilder sb = new StringBuilder(textTime);
             int index = textTime.Length - 3;
@@ -251,7 +344,7 @@ public class GameManager : MonoBehaviour
 
             textTime = sb.ToString();  // 수정된 문자열을 다시 할당
 
-            if(textTime.Length == 4)
+            if (textTime.Length == 4)
             {
                 textTime = "0" + textTime;
             }
@@ -265,7 +358,7 @@ public class GameManager : MonoBehaviour
 
     public void TimerDecrease()
     {
-        if(currentTime > 0.0f)
+        if (currentTime > 0.0f)
         {
             currentTime -= Time.deltaTime;
             TimerUpdate();

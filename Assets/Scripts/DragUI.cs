@@ -8,6 +8,7 @@ using UnityEngine.UI;
 
 public class DragUI : MonoBehaviour, IBeginDragHandler, IEndDragHandler, IDragHandler
 {
+    public Size size;
     public int index = 0;
     private CanvasGroup canvasGroup;
     private GameObject currentDraggedObject;
@@ -28,15 +29,8 @@ public class DragUI : MonoBehaviour, IBeginDragHandler, IEndDragHandler, IDragHa
             canvasGroup.blocksRaycasts = false;
             //이미지는 끄고 정해진 오브젝트를 생성
             gameObject.GetComponent<Image>().enabled = false;
-            if(gameObject.tag == "Object")
-            {
-                currentDraggedObject = Instantiate(GameManager.Instance.GamePrefab[index].gameObj, GameManager.Instance.objectGroup.transform);
+            currentDraggedObject = Instantiate(GameManager.Instance.Objects[(int)size].objectList[index].go, GameManager.Instance.objectGroup.transform);
 
-            }
-            else if(gameObject.tag == "Assist")
-            {
-                currentDraggedObject = Instantiate(GameManager.Instance.AssistPrefab[index].gameObj, GameManager.Instance.objectGroup.transform);
-            }
             currentDraggedObject.GetComponent<DragObj>().index = index;
             currentDraggedObject.GetComponent<DragObj>().isClicked = true;
         }
@@ -60,6 +54,7 @@ public class DragUI : MonoBehaviour, IBeginDragHandler, IEndDragHandler, IDragHa
         if (eventData.button == PointerEventData.InputButton.Left)
         {
             currentDraggedObject.GetComponent<DragObj>().isClicked = false;
+            currentDraggedObject.GetComponent<Rigidbody2D>().gravityScale = 1.0f;
             Destroy(gameObject);
             canvasGroup.blocksRaycasts = true;
         }

@@ -1,0 +1,19 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a20d6eb58f932cf499440f63197759b4, type: 3}
+  m_Name: Square
+  m_EditorClassIdentifier: 
+  size: 4
+  index: 0
+  mass: 1
+  go: {fileID: 8822500698095909824, guid: 76a2b48e46b7f0e419af72722d6c8f82, type: 3}
+  ui: {fileID: 2964328029312057251, guid: d7f9873e94273fb4a866b3b941b495ab, type: 3}

@@ -10,16 +10,19 @@ using UnityEngine.UIElements;
 
 public class DragObj : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDragHandler, IPointerDownHandler, IPointerUpHandler
 {
-    private PlayerInput inputActions;
+    public Size size;
     public int index = 0;
     private Canvas canvas;  // 오브젝트를 드랍할 UI 캔버스
+    private PlayerInput inputActions;
     private CanvasGroup canvasGroup;
+    private Rigidbody2D rb2D;
 
     public bool isClicked;
     private void Awake()
     {
         inputActions = new PlayerInput();
         inputActions.PlayerActions.Enable();
+        rb2D = GetComponent<Rigidbody2D>();
     }
 
     public void InputDisable()
@@ -48,6 +51,8 @@ public class DragObj : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDragH
         {
             canvasGroup.blocksRaycasts = false;
         }
+        rb2D.gravityScale = 0;
+        rb2D.linearVelocity = Vector2.zero;
     }
 
     // 드래그 중 호출
@@ -72,15 +77,9 @@ public class DragObj : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDragH
                 if (RectTransformUtility.RectangleContainsScreenPoint(go.GetComponent<RectTransform>(), Mouse.current.position.ReadValue(), canvas.worldCamera))
                 {
                     GameObject newUIObject = null;
+
                     // UI 프리팹을 생성하고 해당 UI에 종속시킴
-                    if (gameObject.tag == "Object")
-                    {
-                        newUIObject = Instantiate(GameManager.Instance.GamePrefab[index].gameUI, go.transform);
-                    }
-                    else if (gameObject.tag == "Assist")
-                    {
-                        newUIObject = Instantiate(GameManager.Instance.AssistPrefab[index].gameUI, go.transform);
-                    }
+                    newUIObject = Instantiate(GameManager.Instance.Objects[(int)size].objectList[index].ui, go.transform);
 
                     if (newUIObject is not null)
                     {
@@ -92,6 +91,8 @@ public class DragObj : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDragH
                     Destroy(gameObject);
                 }
             }
+
+            rb2D.gravityScale = 1;
 
             canvasGroup.blocksRaycasts = true;
         }

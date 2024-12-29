@@ -1399,16 +1399,28 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 21b53c79d39883c41bb6112af7320735, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  gamePrefab:
-  - gameObj: {fileID: 866595980557623238, guid: 09ee4a6290d29a7439e5761f5d391433, type: 3}
-    gameUI: {fileID: 603647412974059273, guid: 358e79e470bcf714aac4d0df98aba74e, type: 3}
-  - gameObj: {fileID: 7953823517180353347, guid: 021f5c02aa668d14db7340bb1fb52c8f, type: 3}
-    gameUI: {fileID: 9209899209601688899, guid: 7e8b9976a8492dc45ba2ab6146da60a7, type: 3}
-  assistPrefab:
-  - gameObj: {fileID: 8822500698095909824, guid: 76a2b48e46b7f0e419af72722d6c8f82, type: 3}
-    gameUI: {fileID: 2964328029312057251, guid: d7f9873e94273fb4a866b3b941b495ab, type: 3}
-  - gameObj: {fileID: 722507415832924195, guid: 2f9cae5827ea53a489659588c3bfea11, type: 3}
-    gameUI: {fileID: 3125365940383132230, guid: 044db00fe96583946bc3e0f26f3aa281, type: 3}
+  roundSO:
+  - {fileID: 11400000, guid: 5d3d6cd03e6311f47ab5b362bc8217bf, type: 2}
+  - {fileID: 11400000, guid: 0a668d80340e4a343b728382bf45875c, type: 2}
+  - {fileID: 11400000, guid: 520b5086aade142408384ba9c3d3e2ca, type: 2}
+  objects:
+  - size: 0
+    objectList:
+    - {fileID: 11400000, guid: 9f67975ef67559b42b4b0c7fd769baaa, type: 2}
+  - size: 1
+    objectList:
+    - {fileID: 11400000, guid: 5edb0340050806d4791d00b4501bc77f, type: 2}
+  - size: 2
+    objectList:
+    - {fileID: 11400000, guid: 5edb0340050806d4791d00b4501bc77f, type: 2}
+  - size: 3
+    objectList:
+    - {fileID: 11400000, guid: 5edb0340050806d4791d00b4501bc77f, type: 2}
+  - size: 4
+    objectList:
+    - {fileID: 11400000, guid: b5fe9118afbe9f34787e2af84b3a0596, type: 2}
+    - {fileID: 11400000, guid: 914e736948778754aad40117cfda244a, type: 2}
+  objectCount: 10
   canvas: {fileID: 1163508609}
   inventory: {fileID: 1222345484}
   square: {fileID: 1921764817355458679, guid: 61bfb61638c0fba449781659a57690bf, type: 3}
@@ -1419,6 +1431,7 @@ MonoBehaviour:
   maxPoint: 100
   destroyPrefab: {fileID: 4791227227454387245, guid: 764c783d849bd094ab53fcfbafc34399, type: 3}
   board: {fileID: 1849435147}
+  targetScore: 2000
   emptyInventory: []
   objectGroup: {fileID: 1758393940}
 --- !u!4 &587663286
@@ -4589,7 +4602,7 @@ Rigidbody2D:
   m_UseAutoMass: 0
   m_Mass: 1
   m_LinearDamping: 0
-  m_AngularDamping: 0.05
+  m_AngularDamping: 3
   m_GravityScale: 1
   m_Material: {fileID: 0}
   m_IncludeLayers:
