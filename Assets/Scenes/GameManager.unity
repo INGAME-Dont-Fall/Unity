@@ -1421,13 +1421,14 @@ MonoBehaviour:
     - {fileID: 11400000, guid: b5fe9118afbe9f34787e2af84b3a0596, type: 2}
     - {fileID: 11400000, guid: 914e736948778754aad40117cfda244a, type: 2}
   objectCount: 10
+  scoreData: {fileID: 11400000, guid: 3501d4c82185f184da1e63863d7a2882, type: 2}
   canvas: {fileID: 1163508609}
   inventory: {fileID: 1222345484}
   square: {fileID: 1921764817355458679, guid: 61bfb61638c0fba449781659a57690bf, type: 3}
   scoreText: {fileID: 828905268}
   pointText: {fileID: 1675019477}
   timer: {fileID: 478874112}
-  maxTime: 1
+  maxTime: 5
   maxPoint: 100
   destroyPrefab: {fileID: 4791227227454387245, guid: 764c783d849bd094ab53fcfbafc34399, type: 3}
   board: {fileID: 1849435147}

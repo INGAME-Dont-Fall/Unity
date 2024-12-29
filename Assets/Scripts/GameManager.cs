@@ -34,6 +34,7 @@ public class GameManager : MonoBehaviour
     [SerializeField] private ObjectList[] objects;
     [SerializeField] private int objectCount;
 
+    [SerializeField] private ScoreSO scoreData;
     [SerializeField] private Canvas canvas;
     [SerializeField] private GameObject inventory;
     [SerializeField] private GameObject square; //인벤토리 한 칸
@@ -290,7 +291,8 @@ public class GameManager : MonoBehaviour
         }
         else //게임오버 씬으로 이동 or 종료창
         {
-            SceneManager.LoadScene("GameManager");
+            scoreData.score = score;
+            SceneManager.LoadScene("GameOverScene");
         }
     }
 
