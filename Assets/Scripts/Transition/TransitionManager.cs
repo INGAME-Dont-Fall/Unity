@@ -26,6 +26,11 @@ namespace DontFall.Transition
             {
                 StartTransition(true, () => { });
             }
+            else
+            {
+                transitionMaterial.SetFloat("_Inverse", 0);
+                transitionMaterial.SetFloat("_Progress", 0);
+            }
         }
 
         private void Update()
