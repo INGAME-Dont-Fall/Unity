@@ -1,5 +1,6 @@
 using System;
 using UnityEngine;
+using UnityEngine.Rendering;
 
 namespace DontFall.Transition
 {
@@ -59,15 +60,10 @@ namespace DontFall.Transition
 
         public void StartTransition(bool inverted, bool reverse, Action callback)
         {
-            switch (transitionType)
-            {
-                case TransitionType.Linear:
-                    transitionMaterial.EnableKeyword("_TYPE_LINEAR");
-                    break;
-                case TransitionType.Circular:
-                    transitionMaterial.EnableKeyword("_TYPE_CIRCULAR");
-                    break;
-            }
+            LocalKeyword linearKeyword = new(transitionMaterial.shader, "_TYPE_LINEAR");
+            LocalKeyword circularKeyword = new(transitionMaterial.shader, "_TYPE_CIRCULAR");
+            transitionMaterial.SetKeyword(linearKeyword, transitionType == TransitionType.Linear);
+            transitionMaterial.SetKeyword(circularKeyword, transitionType == TransitionType.Circular);
 
             transitionMaterial.SetFloat("_LinearAngle", transitionAngle);
             transitionMaterial.SetVector("_CircularCenter", transitionCenter);
