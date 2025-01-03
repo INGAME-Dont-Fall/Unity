@@ -1,0 +1,12 @@
+<engine:UXML xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:engine="UnityEngine.UIElements" xmlns:editor="UnityEditor.UIElements" noNamespaceSchemaLocation="../../../../UIElementsSchema/UIElements.xsd" editor-extension-mode="True">
+    <engine:EnumField label="Type" type="DontFall.Transition.TransitionManager+TransitionType, Assembly-CSharp" name="TransitionType" binding-path="transitionType" />
+    <engine:VisualElement name="Linear">
+        <engine:FloatField label="Angle" value="0" name="Angle" binding-path="transitionAngle" />
+    </engine:VisualElement>
+    <engine:VisualElement name="Circular">
+        <engine:Vector2Field label="Center" name="Center" binding-path="transitionCenter" />
+    </engine:VisualElement>
+    <engine:FloatField label="Duration" value="42.2" name="Duration" binding-path="transitionDuration" />
+    <editor:CurveField label="Curve" value="{0,0,0,0,0,0,Free,Free,False,None};{5,8,0,0,0,0,Free,Free,False,None};{10,4,0,0,0,0,Free,Free,False,None}+(ClampForever,ClampForever)" name="Curve" binding-path="transitionCurve" />
+    <engine:Toggle label="RunOnStart" name="RunOnStart" binding-path="runOnStart" />
+</engine:UXML>

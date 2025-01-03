@@ -266,9 +266,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   transitionMaterial: {fileID: 2100000, guid: 42f0c5d896d484252b1db36ee9c09294, type: 2}
+  transitionType: 0
+  transitionAngle: 0
+  transitionCenter: {x: 0, y: 0}
   transitionDuration: 0.5
-  transitionColor: {r: 0.85490197, g: 0.7058824, b: 0.6156863, a: 0}
-  transitionAngle: 0.5235988
   transitionCurve:
     serializedVersion: 2
     m_Curve:
@@ -431,6 +432,14 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 283621415260953272, guid: 09ee4a6290d29a7439e5761f5d391433, type: 3}
+      propertyPath: m_SortingLayer
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 283621415260953272, guid: 09ee4a6290d29a7439e5761f5d391433, type: 3}
+      propertyPath: m_SortingLayerID
+      value: -1824083349
+      objectReference: {fileID: 0}
     - target: {fileID: 866595980557623238, guid: 09ee4a6290d29a7439e5761f5d391433, type: 3}
       propertyPath: m_Name
       value: BasketBall (2)
@@ -493,6 +502,14 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 283621415260953272, guid: 09ee4a6290d29a7439e5761f5d391433, type: 3}
+      propertyPath: m_SortingLayer
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 283621415260953272, guid: 09ee4a6290d29a7439e5761f5d391433, type: 3}
+      propertyPath: m_SortingLayerID
+      value: -1824083349
+      objectReference: {fileID: 0}
     - target: {fileID: 866595980557623238, guid: 09ee4a6290d29a7439e5761f5d391433, type: 3}
       propertyPath: m_Name
       value: BasketBall (4)
@@ -717,6 +734,14 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 283621415260953272, guid: 09ee4a6290d29a7439e5761f5d391433, type: 3}
+      propertyPath: m_SortingLayer
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 283621415260953272, guid: 09ee4a6290d29a7439e5761f5d391433, type: 3}
+      propertyPath: m_SortingLayerID
+      value: -1824083349
+      objectReference: {fileID: 0}
     - target: {fileID: 866595980557623238, guid: 09ee4a6290d29a7439e5761f5d391433, type: 3}
       propertyPath: m_Name
       value: BasketBall (5)
@@ -779,6 +804,14 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 283621415260953272, guid: 09ee4a6290d29a7439e5761f5d391433, type: 3}
+      propertyPath: m_SortingLayer
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 283621415260953272, guid: 09ee4a6290d29a7439e5761f5d391433, type: 3}
+      propertyPath: m_SortingLayerID
+      value: -1824083349
+      objectReference: {fileID: 0}
     - target: {fileID: 866595980557623238, guid: 09ee4a6290d29a7439e5761f5d391433, type: 3}
       propertyPath: m_Name
       value: BasketBall (3)
@@ -841,6 +874,14 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 283621415260953272, guid: 09ee4a6290d29a7439e5761f5d391433, type: 3}
+      propertyPath: m_SortingLayer
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 283621415260953272, guid: 09ee4a6290d29a7439e5761f5d391433, type: 3}
+      propertyPath: m_SortingLayerID
+      value: -1824083349
+      objectReference: {fileID: 0}
     - target: {fileID: 866595980557623238, guid: 09ee4a6290d29a7439e5761f5d391433, type: 3}
       propertyPath: m_Name
       value: BasketBall (1)
@@ -903,6 +944,14 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 283621415260953272, guid: 09ee4a6290d29a7439e5761f5d391433, type: 3}
+      propertyPath: m_SortingLayer
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 283621415260953272, guid: 09ee4a6290d29a7439e5761f5d391433, type: 3}
+      propertyPath: m_SortingLayerID
+      value: -1824083349
+      objectReference: {fileID: 0}
     - target: {fileID: 866595980557623238, guid: 09ee4a6290d29a7439e5761f5d391433, type: 3}
       propertyPath: m_Name
       value: BasketBall
@@ -1931,7 +1980,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Dont Fall
+  m_text: Don't Fall
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: fa2cc5f3451fa96979ec8e460828b469, type: 2}
   m_sharedMaterial: {fileID: 1528583194358219964, guid: fa2cc5f3451fa96979ec8e460828b469, type: 2}
@@ -1958,7 +2007,7 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 203.65
+  m_fontSize: 193.85
   m_fontSizeBase: 36
   m_fontWeight: 400
   m_enableAutoSizing: 1

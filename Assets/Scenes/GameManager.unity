@@ -2710,9 +2710,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   transitionMaterial: {fileID: 2100000, guid: 42f0c5d896d484252b1db36ee9c09294, type: 2}
-  transitionDuration: 0.5
-  transitionColor: {r: 0.85490197, g: 0.7058824, b: 0.6156863, a: 1}
+  transitionType: 0
   transitionAngle: 0.7853982
+  transitionCenter: {x: 0.5, y: 0.5}
+  transitionDuration: 0.5
   transitionCurve:
     serializedVersion: 2
     m_Curve:

@@ -5,10 +5,17 @@ namespace DontFall.Transition
 {
     public class TransitionManager : MonoBehaviour
     {
+        public enum TransitionType
+        {
+            Linear,
+            Circular,
+        }
+
         [SerializeField] private Material transitionMaterial;
-        [SerializeField] private float transitionDuration;
-        [SerializeField] private Color transitionColor;
+        [SerializeField] private TransitionType transitionType;
         [SerializeField] private float transitionAngle;
+        [SerializeField] private Vector2 transitionCenter;
+        [SerializeField] private float transitionDuration;
         [SerializeField] private AnimationCurve transitionCurve;
         [SerializeField] private bool runOnStart;
 
@@ -24,11 +31,12 @@ namespace DontFall.Transition
         {
             if (runOnStart)
             {
-                StartTransition(true, () => { });
+                StartTransition(true, false, () => { });
             }
             else
             {
-                transitionMaterial.SetFloat("_Inverse", 0);
+                transitionMaterial.SetFloat("_Invert", 0);
+                transitionMaterial.SetFloat("_Reverse", 0);
                 transitionMaterial.SetFloat("_Progress", 0);
             }
         }
@@ -49,12 +57,25 @@ namespace DontFall.Transition
             }
         }
 
-        public void StartTransition(bool inverted, Action callback)
+        public void StartTransition(bool inverted, bool reverse, Action callback)
         {
-            transitionMaterial.SetColor("_BlockColor", transitionColor);
-            transitionMaterial.SetFloat("_Angle", transitionAngle);
-            transitionMaterial.SetFloat("_Inverse", inverted ? 1 : 0);
+            switch (transitionType)
+            {
+                case TransitionType.Linear:
+                    transitionMaterial.EnableKeyword("_TYPE_LINEAR");
+                    break;
+                case TransitionType.Circular:
+                    transitionMaterial.EnableKeyword("_TYPE_CIRCULAR");
+                    break;
+            }
+
+            transitionMaterial.SetFloat("_LinearAngle", transitionAngle);
+            transitionMaterial.SetVector("_CircularCenter", transitionCenter);
+
+            transitionMaterial.SetFloat("_Invert", inverted ? 1 : 0);
+            transitionMaterial.SetFloat("_Reverse", reverse ? 1 : 0);
             transitionMaterial.SetFloat("_Progress", transitionCurve.Evaluate(0));
+
             progress = 0;
             this.callback = callback;
         }
