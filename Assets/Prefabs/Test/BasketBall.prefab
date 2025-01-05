@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 2047222937057465964}
   - component: {fileID: 6757577480753605296}
   - component: {fileID: 4021994806882069143}
+  - component: {fileID: -2627118079310404204}
   m_Layer: 0
   m_Name: BasketBall
   m_TagString: Object
@@ -168,3 +169,15 @@ MonoBehaviour:
   size: 0
   index: 0
   isClicked: 0
+--- !u!114 &-2627118079310404204
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 866595980557623238}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2e8e984cc95e4a54fa7ba5799e789cf1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
