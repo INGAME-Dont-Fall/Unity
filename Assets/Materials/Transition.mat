@@ -12,7 +12,7 @@ Material:
   m_Parent: {fileID: 0}
   m_ModifiedSerializedProperties: 0
   m_ValidKeywords:
-  - _TYPE_LINEAR
+  - _TYPE_CIRCULAR
   m_InvalidKeywords:
   - _TYPE_Circular
   - _Type_Circular

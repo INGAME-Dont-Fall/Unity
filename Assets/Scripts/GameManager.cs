@@ -41,6 +41,7 @@ public class GameManager : MonoBehaviour
     [SerializeField] private GameObject square; //인벤토리 한 칸
     [SerializeField] private TMP_Text scoreText;
     [SerializeField] private TMP_Text pointText;
+    [SerializeField] private TMP_Text totalAndRooundscoreText;
     [SerializeField] private TMP_Text timer;
     [SerializeField] private float maxTime = 30.00f;
     [SerializeField] private int maxPoint; //초기에 주어지는 포인트
@@ -321,7 +322,15 @@ public class GameManager : MonoBehaviour
             textScore = "0" + textScore;
         }
 
+        String textTotalScore = "" + totalScore.ToString();
+        Length = textTotalScore.Length;
+        for (int i = Math.Max(6, Length); i > Length; --i)
+        {
+            textTotalScore = "0" + textTotalScore;
+        }
+
         scoreText.text = textScore;
+        totalAndRooundscoreText.text = textScore + "/" + textTotalScore;
     }
 
     public void PointUpdate()
