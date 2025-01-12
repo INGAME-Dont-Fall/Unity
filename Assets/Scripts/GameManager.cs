@@ -30,6 +30,7 @@ public class GameManager : MonoBehaviour
     private Transform boardTransform;
     private List<GameObject> curObjectsList;
 
+    [SerializeField] GameObject DeadLine;
     [SerializeField] private List<RoundData> roundSO;
     [SerializeField] private ObjectList[] objects;
     [SerializeField] private int objectCount;
@@ -70,7 +71,7 @@ public class GameManager : MonoBehaviour
     private void RoundStart()
     {
         curObjectsList.Clear();
-
+        DeadLine.GetComponent<BoxCollider2D>().isTrigger = false;
         //인벤토리를 다 비운다.
         foreach (Transform child in inventory.transform)
         {
@@ -99,6 +100,7 @@ public class GameManager : MonoBehaviour
     private void SetStart()
     {
         isStart = true;
+        DeadLine.GetComponent<BoxCollider2D>().isTrigger = true;
     }
 
     private void ObjectInit()
