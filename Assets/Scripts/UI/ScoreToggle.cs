@@ -101,7 +101,7 @@ namespace DontFall.UI
                     if (inputBuffer > 0)
                     {
                         animationPosition = 0;
-                        inputBuffer--;
+                        inputBuffer = 0;
                     }
                 }
 
