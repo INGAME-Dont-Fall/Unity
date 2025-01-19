@@ -1,0 +1,20 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a20d6eb58f932cf499440f63197759b4, type: 3}
+  m_Name: 03.Sofa
+  m_EditorClassIdentifier: 
+  Size: 2
+  Index: 3
+  Mass: 50
+  difficultyLevel: 35
+  go: {fileID: 737065795250210703, guid: 5d719c8b97d94dd4a8f4eb90c6fa6940, type: 3}
+  ui: {fileID: 5375880711960281774, guid: 792b19b4b6273dd488d2e6c29e7382ad, type: 3}

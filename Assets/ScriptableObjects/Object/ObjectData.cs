@@ -13,9 +13,10 @@ public enum Size
 [CreateAssetMenu(fileName = "ObjectData", menuName = "Scriptable Objects/ObjectData")]
 public class ObjectData : ScriptableObject
 {
-    public Size size;
-    public int index;
-    public float mass;
+    public Size Size;
+    public int Index;
+    public float Mass;
+    public int difficultyLevel;
     public GameObject go;
     public GameObject ui;
 }

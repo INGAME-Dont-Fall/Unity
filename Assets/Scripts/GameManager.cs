@@ -41,7 +41,7 @@ public class GameManager : MonoBehaviour
     [SerializeField] private GameObject square; //인벤토리 한 칸
     [SerializeField] private TMP_Text scoreText;
     [SerializeField] private TMP_Text pointText;
-    [SerializeField] private TMP_Text totalAndRooundscoreText;
+    [SerializeField] private TMP_Text totalAndRoundscoreText;
     [SerializeField] private TMP_Text timer;
     [SerializeField] private float maxTime = 30.00f;
     [SerializeField] private int maxPoint; //초기에 주어지는 포인트
@@ -72,6 +72,7 @@ public class GameManager : MonoBehaviour
 
     private void RoundStart()
     {
+        maxPoint = 50 + (currentRound - 1) * 20;
         curObjectsList.Clear();
         DeadLine.GetComponent<BoxCollider2D>().isTrigger = false;
         //인벤토리를 다 비운다.
@@ -84,7 +85,7 @@ public class GameManager : MonoBehaviour
         CreateObj();
         isStart = false;
         isOver = false;
-        point = maxPoint + (currentRound-1) * 20;
+        point = maxPoint;
         ScoreUpdate();
         PointUpdate();
         currentTime = maxTime;
@@ -113,13 +114,14 @@ public class GameManager : MonoBehaviour
             {
                 ObjectData data = objects[i].objectList[j];
 
-                data.go.GetComponent<DragObj>().index = data.index;
-                data.ui.GetComponent<DragUI>().index = data.index;
+                data.go.GetComponent<DragObj>().index = data.Index;
+                data.ui.GetComponent<DragUI>().index = data.Index;
 
-                data.go.GetComponent<DragObj>().size = data.size;
-                data.ui.GetComponent<DragUI>().size = data.size;
+                data.go.GetComponent<DragObj>().size = data.Size;
+                data.ui.GetComponent<DragUI>().size = data.Size;
 
-                data.go.GetComponent<Rigidbody2D>().mass = data.mass;
+                data.go.GetComponent<Rigidbody2D>().mass = data.Mass;
+                data.go.GetComponent<DragObj>().DifficultyLevel = data.difficultyLevel;
             }
         }
     }
@@ -181,7 +183,7 @@ public class GameManager : MonoBehaviour
         if (currentRound <= 10) //Low
         {
             curData = roundSO[0];
-            small -= (currentRound-1);
+            small -= (currentRound - 1);
             medium += (currentRound - 1);
         }
         else if (currentRound <= 15) //Medium
@@ -197,6 +199,13 @@ public class GameManager : MonoBehaviour
         medium += curData.mediumProbability + small;
         high += curData.highProbability + medium;
         special += curData.specialProbability + high;
+
+        int smallTargetScore = Mathf.RoundToInt((maxPoint / 10) * (small / 100));
+        int mediumTargetScore = Mathf.RoundToInt((maxPoint / 10) * (medium / 100));
+        int highTargetScore = Mathf.RoundToInt((maxPoint / 10) * (high / 100));
+        int specialTargetScore = Mathf.RoundToInt((maxPoint / 10) * (special / 100));
+
+        targetScore = currentRound * (smallTargetScore + 10 * 5 * mediumTargetScore + 30 * 15 * highTargetScore);
 
         for (int i = 0; i < objectCount; i++)
         {
@@ -267,7 +276,7 @@ public class GameManager : MonoBehaviour
         foreach (var obj in objs)
         {
             //물체가 가진 고유 포인트 합산
-            score += ((int)obj.GetComponent<Rigidbody2D>().mass * 10 + currentRound * 100);
+            score += ((int)obj.GetComponent<Rigidbody2D>().mass * obj.GetComponent<DragObj>().DifficultyLevel * currentRound);
             //오브젝트 삭제
             Vector3 transform = obj.gameObject.transform.position;
             obj.GetComponent<DragObj>().InputDisable();
@@ -314,57 +323,29 @@ public class GameManager : MonoBehaviour
 
     public void ScoreUpdate()
     {
-        String textScore = "" + totalScore;
+        string textTotalScore =  string.Format("{0:D6}", totalScore);
+        string textScore = string.Format("{0:D6}", score);
+        string textTargetScore = string.Format("{0:D6}", targetScore);
 
-        int Length = textScore.Length;
-        for (int i = Math.Max(6, Length); i > Length; --i)
-        {
-            textScore = "0" + textScore;
-        }
-
-        String textTotalScore = "" + totalScore.ToString();
-        Length = textTotalScore.Length;
-        for (int i = Math.Max(6, Length); i > Length; --i)
-        {
-            textTotalScore = "0" + textTotalScore;
-        }
-
-        scoreText.text = textScore;
-        totalAndRooundscoreText.text = textScore + "/" + textTotalScore;
+        scoreText.text = textTotalScore;
+        totalAndRoundscoreText.text = textScore + "/" + textTargetScore;
     }
 
     public void PointUpdate()
     {
-        String textPoint = "" + point;
-
-        int Length = textPoint.Length;
-        for (int i = Math.Max(6, Length); i > Length; --i)
-        {
-            textPoint = "0" + textPoint;
-        }
+        string textPoint = string.Format("{0:D6}", point);
 
         pointText.text = textPoint;
     }
 
     public void TimerUpdate()
     {
-        String textTime = currentTime.ToString("F2");
-        if (textTime.Length - 3 > 0)
-        {
-            StringBuilder sb = new StringBuilder(textTime);
-            int index = textTime.Length - 3;
-            sb[index] = ':';  // 해당 인덱스를 수정
+        string textTime = currentTime.ToString("F2");
+        string[] parts = textTime.Split('.');
+        int integerPart = Int32.Parse(parts[0]);
+        int decimalPart = Int32.Parse(parts[1]);
 
-            textTime = sb.ToString();  // 수정된 문자열을 다시 할당
-
-            if (textTime.Length == 4)
-            {
-                textTime = "0" + textTime;
-            }
-
-            //아니 인덱스 접근이 안되는게 이게 언어입니까?
-        }
-
+        textTime = string.Format("{0:D2}:{1:D2}", integerPart, decimalPart);
 
         timer.text = textTime;
     }

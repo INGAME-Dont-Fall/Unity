@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEditor;
 using UnityEngine;
 using UnityEngine.EventSystems;
@@ -12,10 +13,12 @@ public class DragUI : MonoBehaviour, IBeginDragHandler, IEndDragHandler, IDragHa
     public int index = 0;
     private CanvasGroup canvasGroup;
     private GameObject currentDraggedObject;
+    private Canvas canvas;  // 오브젝트를 드랍할 UI 캔버스
 
     private void Awake()
     {
-        canvasGroup = gameObject.GetComponentInParent<CanvasGroup>();
+        canvas = GameManager.Instance.Canvas;
+        canvasGroup = canvas.GetComponent<CanvasGroup>();
     }
 
     //드래그 시작 시 호출
@@ -31,6 +34,7 @@ public class DragUI : MonoBehaviour, IBeginDragHandler, IEndDragHandler, IDragHa
             gameObject.GetComponent<Image>().enabled = false;
             currentDraggedObject = Instantiate(GameManager.Instance.Objects[(int)size].objectList[index].go, GameManager.Instance.objectGroup.transform);
 
+            currentDraggedObject.GetComponent<Collider2D>().isTrigger = true;
             currentDraggedObject.GetComponent<DragObj>().index = index;
             currentDraggedObject.GetComponent<DragObj>().isClicked = true;
         }
@@ -53,10 +57,34 @@ public class DragUI : MonoBehaviour, IBeginDragHandler, IEndDragHandler, IDragHa
     {
         if (eventData.button == PointerEventData.InputButton.Left)
         {
+            currentDraggedObject.GetComponent<DragObj>().InputDisable();
+            currentDraggedObject.GetComponent<Collider2D>().isTrigger = false;
+            for (int i = GameManager.Instance.emptyInventory.Count - 1; i >= 0; i--)
+            {
+                GameObject go = GameManager.Instance.emptyInventory[i];
+                if (RectTransformUtility.RectangleContainsScreenPoint(go.GetComponent<RectTransform>(), Mouse.current.position.ReadValue(), canvas.worldCamera))
+                {
+                    GameObject newUIObject = null;
+
+                    // UI 프리팹을 생성하고 해당 UI에 종속시킴
+                    newUIObject = Instantiate(GameManager.Instance.Objects[(int)size].objectList[index].ui, go.transform);
+
+                    if (newUIObject is not null)
+                    {
+                        newUIObject.GetComponent<DragUI>().index = index;
+                    }
+
+                    //칸이 찼으니까 삭제
+                    GameManager.Instance.emptyInventory.Remove(go);
+                    Destroy(currentDraggedObject);
+                }
+            }
+
             currentDraggedObject.GetComponent<DragObj>().isClicked = false;
             currentDraggedObject.GetComponent<Rigidbody2D>().gravityScale = 1.0f;
-            Destroy(gameObject);
+
             canvasGroup.blocksRaycasts = true;
+            Destroy(gameObject);
         }
     }
 }
