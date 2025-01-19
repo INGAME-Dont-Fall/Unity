@@ -70,9 +70,6 @@ namespace DontFall.UI
 
             score.localPosition = rectTransform.rect.center;
             point.localPosition = rectTransform.rect.center + stackOffset;
-
-            Point = (20, 500);
-            Score = 40;
         }
 
         private void Update()

@@ -6,7 +6,9 @@ using TMPro;
 using UnityEngine.SceneManagement;
 using System.Text;
 using System.Linq;
-
+using DontFall.UI;
+using DontFall.Transition;
+using DontFall.Board;
 
 [Serializable]
 public class ObjectList
@@ -21,7 +23,7 @@ public class GameManager : MonoBehaviour
     private static GameManager instance;
 
     private int currentRound = 1;
-    private int totalScore; //전체 스코어
+    private int totalScore = 0; //전체 스코어
     private int score; //현재 라운드에 선반 위에 올려진 물체에 매겨진 점수 합산
     private int point; //현재 포인트
     private bool isOver; //게임 오버 제어
@@ -39,14 +41,14 @@ public class GameManager : MonoBehaviour
     [SerializeField] private Canvas canvas;
     [SerializeField] private GameObject inventory;
     [SerializeField] private GameObject square; //인벤토리 한 칸
-    [SerializeField] private TMP_Text scoreText;
-    [SerializeField] private TMP_Text pointText;
-    [SerializeField] private TMP_Text totalAndRoundscoreText;
+    [SerializeField] private ScoreToggle scoreToggle;
+    [SerializeField] private TransitionManager transitionManager;
+    [SerializeField] private BoardController boardController;
     [SerializeField] private TMP_Text timer;
+    [SerializeField] private TMP_Text pointText;
     [SerializeField] private float maxTime = 30.00f;
     [SerializeField] private int maxPoint; //초기에 주어지는 포인트
     [SerializeField] private GameObject destroyPrefab;
-    [SerializeField] private GameObject board; //중심 판
     [SerializeField] private int targetScore;
 
     public static GameManager Instance => instance;
@@ -61,7 +63,6 @@ public class GameManager : MonoBehaviour
     {
         curObjectsList = new List<GameObject>();
         instance = this;
-        boardTransform = board.transform;
         ObjectInit();
     }
 
@@ -72,17 +73,16 @@ public class GameManager : MonoBehaviour
 
     private void RoundStart()
     {
+        boardController.Moving = false;
         maxPoint = 50 + (currentRound - 1) * 20;
         curObjectsList.Clear();
         DeadLine.GetComponent<BoxCollider2D>().isTrigger = false;
+
         //인벤토리를 다 비운다.
         foreach (Transform child in inventory.transform)
         {
             Destroy(child.gameObject);
         }
-        board.transform.position = boardTransform.position;
-        board.transform.rotation = boardTransform.rotation;
-        CreateObj();
         isStart = false;
         isOver = false;
         point = maxPoint;
@@ -103,12 +103,13 @@ public class GameManager : MonoBehaviour
     private void SetStart()
     {
         isStart = true;
+        boardController.Moving = true;
         DeadLine.GetComponent<BoxCollider2D>().isTrigger = true;
     }
 
     private void ObjectInit()
     {
-        for (int i = 0; i < objects.Length; i++) 
+        for (int i = 0; i < objects.Length; i++)
         {
             for (int j = 0; j < objects[i].objectList.Count; j++)
             {
@@ -136,8 +137,6 @@ public class GameManager : MonoBehaviour
         {
             Destroy(child.gameObject);
         }
-        board.transform.position = boardTransform.position;
-        board.transform.rotation = boardTransform.rotation;
         for (int i = 0; i < curObjectsList.Count; i++)
         {
             GameObject go = Instantiate(square, inventory.transform);
@@ -153,27 +152,19 @@ public class GameManager : MonoBehaviour
     }
 
     /// <summary>
-    /// 인벤토리에 플레이어에게 도움을 주는 물체를 생성하는 함수
-    /// </summary>
-    public void CreateAssistObj()
-    {
-        if (point > 0)
-        {
-            GameObject go = Instantiate(square, inventory.transform);
-
-            int index = UnityEngine.Random.Range(0, objects[(int)Size.Assist].objectList.Count);
-            curObjectsList.Add(objects[(int)Size.Assist].objectList[index].ui);
-            Instantiate(objects[(int)Size.Assist].objectList[index].ui, go.transform);
-            point -= 10;
-            PointUpdate();
-        }
-    }
-
-    /// <summary>
     /// 인벤토리에 물체를 생성하는 함수
     /// </summary>
     public void CreateObj()
     {
+        if(point <= 0)
+        {
+            point = 0;
+            return;
+        }
+        point -= 10;
+
+        PointUpdate();
+
         RoundData curData;
         int small = 0;
         int medium = 0;
@@ -200,42 +191,39 @@ public class GameManager : MonoBehaviour
         high += curData.highProbability + medium;
         special += curData.specialProbability + high;
 
+        Debug.Log(small);
         int smallTargetScore = Mathf.RoundToInt((maxPoint / 10) * (small / 100));
         int mediumTargetScore = Mathf.RoundToInt((maxPoint / 10) * (medium / 100));
         int highTargetScore = Mathf.RoundToInt((maxPoint / 10) * (high / 100));
         int specialTargetScore = Mathf.RoundToInt((maxPoint / 10) * (special / 100));
 
-        targetScore = currentRound * (smallTargetScore + 10 * 5 * mediumTargetScore + 30 * 15 * highTargetScore);
+        //targetScore = currentRound * (smallTargetScore + 10 * 5 * mediumTargetScore + 30 * 15 * highTargetScore);
+        int random = UnityEngine.Random.Range(0, 100);
+        List<ObjectData> curObj = null;
 
-        for (int i = 0; i < objectCount; i++)
+        if (random < small)
         {
-            int random = UnityEngine.Random.Range(0, 100);
-            List<ObjectData> curObj = null;
-
-            if (random < small)
-            {
-                curObj = objects[(int)Size.Small].objectList.ToList();
-            }
-            else if (random < medium)
-            {
-                curObj = objects[(int)Size.Medium].objectList.ToList();
-            }
-            else if (random < high)
-            {
-                curObj = objects[(int)Size.Large].objectList.ToList();
-            }
-            else if (random < special)
-            {
-                curObj = objects[(int)Size.Special].objectList.ToList();
-            }
-
-            GameObject go = Instantiate(square, inventory.transform);
-
-            int index = UnityEngine.Random.Range(0, curObj.Count);
-
-            curObjectsList.Add(curObj[index].ui);
-            Instantiate(curObj[index].ui, go.transform);
+            curObj = objects[(int)Size.Small].objectList.ToList();
         }
+        else if (random < medium)
+        {
+            curObj = objects[(int)Size.Medium].objectList.ToList();
+        }
+        else if (random < high)
+        {
+            curObj = objects[(int)Size.Large].objectList.ToList();
+        }
+        else if (random < special)
+        {
+            curObj = objects[(int)Size.Special].objectList.ToList();
+        }
+
+        GameObject go = Instantiate(square, inventory.transform);
+
+        int index = UnityEngine.Random.Range(0, curObj.Count);
+
+        curObjectsList.Add(curObj[index].ui);
+        Instantiate(curObj[index].ui, go.transform);
 
     }
 
@@ -256,10 +244,6 @@ public class GameManager : MonoBehaviour
         StartCoroutine(GameOverRoutine(false));
     }
 
-    private void nextRound()
-    {
-
-    }
 
     IEnumerator GameOverRoutine(bool clear)
     {
@@ -270,7 +254,6 @@ public class GameManager : MonoBehaviour
         {
             obj.GetComponent<Rigidbody2D>().bodyType = RigidbodyType2D.Static;
         }
-        board.GetComponent<Rigidbody2D>().bodyType = RigidbodyType2D.Static;
 
         //모든 오브젝트에 접근해서 하나씩 지우기
         foreach (var obj in objs)
@@ -288,23 +271,30 @@ public class GameManager : MonoBehaviour
 
         //마지막으로 남은 포인트까지 합산
         score += (point * currentRound * 10);
-        totalScore += score;
+   
         ScoreUpdate();
         yield return new WaitForSeconds(1f);
 
         clear = clear && score > targetScore;
         if (clear) //다음 라운드 진행
         {
-            Debug.Log("클리어");
-            score = 0;
-            currentRound++;
-            nextRound();
-            RoundStart();
+            transitionManager.StartTransition(true, true, () => {
+                Debug.Log("클리어");
+                GameManager.Instance.emptyInventory.Clear();
+                totalScore += score;
+                score = 0;
+                currentRound++;
+                RoundStart();
+                transitionManager.StartTransition(false, true, () => { });
+            });
         }
         else //게임오버 씬으로 이동 or 종료창
         {
-            scoreData.score = score;
-            SceneManager.LoadScene("GameOverScene");
+            transitionManager.StartTransition(true, true, () => {
+                scoreData.totalScore = totalScore;
+                scoreData.roundScore = score;
+                SceneManager.LoadScene("GameOverScene");
+            });
         }
     }
 
@@ -323,12 +313,8 @@ public class GameManager : MonoBehaviour
 
     public void ScoreUpdate()
     {
-        string textTotalScore =  string.Format("{0:D6}", totalScore);
-        string textScore = string.Format("{0:D6}", score);
-        string textTargetScore = string.Format("{0:D6}", targetScore);
-
-        scoreText.text = textTotalScore;
-        totalAndRoundscoreText.text = textScore + "/" + textTargetScore;
+        scoreToggle.Score = totalScore;
+        scoreToggle.Point = (score, targetScore);
     }
 
     public void PointUpdate()

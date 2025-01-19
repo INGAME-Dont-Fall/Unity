@@ -1625,15 +1625,15 @@ MonoBehaviour:
   canvas: {fileID: 1163508609}
   inventory: {fileID: 1222345484}
   square: {fileID: 1921764817355458679, guid: 61bfb61638c0fba449781659a57690bf, type: 3}
-  scoreText: {fileID: 828905268}
-  pointText: {fileID: 1675019477}
-  totalAndRooundscoreText: {fileID: 227268100}
+  scoreToggle: {fileID: 1252464585}
+  transitionManager: {fileID: 1170620445}
+  boardController: {fileID: 1849435148}
   timer: {fileID: 478874112}
+  pointText: {fileID: 1675019477}
   maxTime: 1
   maxPoint: 100
   destroyPrefab: {fileID: 4791227227454387245, guid: 764c783d849bd094ab53fcfbafc34399, type: 3}
-  board: {fileID: 1849435147}
-  targetScore: 2000
+  targetScore: 5
   emptyInventory: []
   objectGroup: {fileID: 1758393940}
 --- !u!4 &587663286
@@ -3719,7 +3719,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 587663285}
         m_TargetAssemblyTypeName: GameManager, Assembly-CSharp
-        m_MethodName: CreateAssistObj
+        m_MethodName: CreateObj
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -3996,7 +3996,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 1.0562434, y: 1.8793631}
+  m_AnchoredPosition: {x: 1.0562439, y: 1.879364}
   m_SizeDelta: {x: -30, y: -30}
   m_Pivot: {x: 0.46479192, y: 0.43735453}
 --- !u!114 &1523272349

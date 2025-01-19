@@ -1600,7 +1600,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 1.0562439, y: 1.879365}
+  m_AnchoredPosition: {x: 1.0562439, y: 1.879364}
   m_SizeDelta: {x: -29.999998, y: -29.999998}
   m_Pivot: {x: 0.46479192, y: 0.43735453}
 --- !u!114 &1113180482
@@ -2537,8 +2537,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b4320c22d2e3dfe428635067b5f2125a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  score: {fileID: 364093910}
-  maxScore: {fileID: 192102599}
+  textTotalScore: {fileID: 192102599}
+  textRoundScore: {fileID: 364093910}
   scoreData: {fileID: 11400000, guid: 3501d4c82185f184da1e63863d7a2882, type: 2}
 --- !u!1 &2004097103
 GameObject:
