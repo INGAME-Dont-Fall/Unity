@@ -1,0 +1,20 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a20d6eb58f932cf499440f63197759b4, type: 3}
+  m_Name: 15.SmallBook
+  m_EditorClassIdentifier: 
+  Size: 0
+  Index: 15
+  Mass: 5
+  difficultyLevel: 1
+  go: {fileID: 5658615849826913002, guid: 9d4dc87999863f24dbbb5f61de2c3494, type: 3}
+  ui: {fileID: 2471858936583717094, guid: 768dcbc4cfd7c0048bfe588f27298ff8, type: 3}

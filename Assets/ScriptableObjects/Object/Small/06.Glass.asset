@@ -1,0 +1,20 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a20d6eb58f932cf499440f63197759b4, type: 3}
+  m_Name: 06.Glass
+  m_EditorClassIdentifier: 
+  Size: 0
+  Index: 6
+  Mass: 3
+  difficultyLevel: 1
+  go: {fileID: 5612979493162497308, guid: e1fa93cea6da48b479b3b252ab224364, type: 3}
+  ui: {fileID: 1923843854769083760, guid: d05d6bb40beedc743bb3eaf264c67f55, type: 3}
