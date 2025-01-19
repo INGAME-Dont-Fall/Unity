@@ -2540,6 +2540,7 @@ MonoBehaviour:
   textTotalScore: {fileID: 192102599}
   textRoundScore: {fileID: 364093910}
   scoreData: {fileID: 11400000, guid: 3501d4c82185f184da1e63863d7a2882, type: 2}
+  transitionManager: {fileID: 1699471485}
 --- !u!1 &2004097103
 GameObject:
   m_ObjectHideFlags: 0
@@ -2698,7 +2699,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 0}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1847917903}
+        m_TargetAssemblyTypeName: ScoreUI, Assembly-CSharp
+        m_MethodName: LoadPlayScene
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!1 &2053972374
 GameObject:
   m_ObjectHideFlags: 0
