@@ -21,8 +21,6 @@ namespace DontFall
                 var dest = camera.ScreenToWorldPoint(pos);
                 transform.position = dest;
             }
-
-            zoomSlider.value += zoomMultiplier * -Mouse.current.scroll.ReadValue().y;
         }
     }
 }

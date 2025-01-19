@@ -20,6 +20,8 @@ namespace DontFall.Transition
         [SerializeField] private AnimationCurve transitionCurve;
         [SerializeField] private bool runOnStart;
 
+        private LocalKeyword linearKeyword, circularKeyword;
+
         private float progress;
         private Action callback;
 
@@ -30,6 +32,9 @@ namespace DontFall.Transition
 
         private void Start()
         {
+            linearKeyword = new(transitionMaterial.shader, "_TYPE_LINEAR");
+            circularKeyword = new(transitionMaterial.shader, "_TYPE_CIRCULAR");
+
             if (runOnStart)
             {
                 StartTransition(true, false, () => { });
@@ -60,10 +65,17 @@ namespace DontFall.Transition
 
         public void StartTransition(bool inverted, bool reverse, Action callback)
         {
-            LocalKeyword linearKeyword = new(transitionMaterial.shader, "_TYPE_LINEAR");
-            LocalKeyword circularKeyword = new(transitionMaterial.shader, "_TYPE_CIRCULAR");
-            transitionMaterial.SetKeyword(linearKeyword, transitionType == TransitionType.Linear);
-            transitionMaterial.SetKeyword(circularKeyword, transitionType == TransitionType.Circular);
+            switch (transitionType)
+            {
+                case TransitionType.Linear:
+                    transitionMaterial.EnableKeyword(linearKeyword);
+                    transitionMaterial.DisableKeyword(circularKeyword);
+                    break;
+                case TransitionType.Circular:
+                    transitionMaterial.EnableKeyword(circularKeyword);
+                    transitionMaterial.DisableKeyword(linearKeyword);
+                    break;
+            }
 
             transitionMaterial.SetFloat("_LinearAngle", transitionAngle);
             transitionMaterial.SetVector("_CircularCenter", transitionCenter);
