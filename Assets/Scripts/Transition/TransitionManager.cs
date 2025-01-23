@@ -18,6 +18,7 @@ namespace DontFall.Transition
         [SerializeField] private Vector2 transitionCenter;
         [SerializeField] private float transitionDuration;
         [SerializeField] private AnimationCurve transitionCurve;
+        [SerializeField] private AudioSource audioSource;
         [SerializeField] private bool runOnStart;
 
         private LocalKeyword linearKeyword, circularKeyword;
@@ -86,6 +87,9 @@ namespace DontFall.Transition
 
             progress = 0;
             this.callback = callback;
+
+            if (audioSource)
+                audioSource.Play();
         }
     }
 }

@@ -8,5 +8,6 @@
     </engine:VisualElement>
     <engine:FloatField label="Duration" value="42.2" name="Duration" binding-path="transitionDuration" />
     <editor:CurveField label="Curve" value="{0,0,0,0,0,0,Free,Free,False,None};{5,8,0,0,0,0,Free,Free,False,None};{10,4,0,0,0,0,Free,Free,False,None}+(ClampForever,ClampForever)" name="Curve" binding-path="transitionCurve" />
+    <editor:ObjectField label="Audio Source" binding-path="audioSource" type="UnityEngine.AudioSource, UnityEngine.AudioModule" />
     <engine:Toggle label="RunOnStart" name="RunOnStart" binding-path="runOnStart" />
 </engine:UXML>

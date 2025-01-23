@@ -51,6 +51,10 @@ public class GameManager : MonoBehaviour
     [SerializeField] private GameObject destroyPrefab;
     [SerializeField] private int targetScore;
 
+    [SerializeField] private DontFall.PlaySound playSound;
+    [SerializeField] private AudioClip popSound;
+    [SerializeField] private AudioClip dropSound;
+
     public static GameManager Instance => instance;
 
     public ObjectList[] Objects => objects;
@@ -223,7 +227,9 @@ public class GameManager : MonoBehaviour
         int index = UnityEngine.Random.Range(0, curObj.Count);
 
         curObjectsList.Add(curObj[index].ui);
-        Instantiate(curObj[index].ui, go.transform);
+        var ui = Instantiate(curObj[index].ui, go.transform).GetComponent<DragUI>();
+        ui.playSound = playSound;
+        ui.dropSound = dropSound;
 
     }
 
@@ -264,6 +270,7 @@ public class GameManager : MonoBehaviour
             Vector3 transform = obj.gameObject.transform.position;
             obj.GetComponent<DragObj>().InputDisable();
             Destroy(obj.gameObject);
+            playSound.Play(popSound);
 
             Instantiate(destroyPrefab, transform, Quaternion.identity);
             yield return new WaitForSeconds(0.5f);

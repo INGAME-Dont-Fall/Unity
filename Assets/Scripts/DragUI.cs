@@ -11,6 +11,10 @@ public class DragUI : MonoBehaviour, IBeginDragHandler, IEndDragHandler, IDragHa
 {
     public Size size;
     public int index = 0;
+
+    public DontFall.PlaySound playSound;
+    public AudioClip dropSound;
+
     private CanvasGroup canvasGroup;
     private GameObject currentDraggedObject;
     private Canvas canvas;  // 오브젝트를 드랍할 UI 캔버스
@@ -55,6 +59,8 @@ public class DragUI : MonoBehaviour, IBeginDragHandler, IEndDragHandler, IDragHa
     //드래그 끝날 때 호출
     public void OnEndDrag(PointerEventData eventData)
     {
+        bool returning = false;
+
         if (eventData.button == PointerEventData.InputButton.Left)
         {
             currentDraggedObject.GetComponent<DragObj>().InputDisable();
@@ -71,17 +77,25 @@ public class DragUI : MonoBehaviour, IBeginDragHandler, IEndDragHandler, IDragHa
 
                     if (newUIObject is not null)
                     {
-                        newUIObject.GetComponent<DragUI>().index = index;
+                        var ui = newUIObject.GetComponent<DragUI>();
+                        ui.index = index;
+                        ui.playSound = playSound;
+                        ui.dropSound = dropSound;
                     }
 
                     //칸이 찼으니까 삭제
                     GameManager.Instance.emptyInventory.Remove(go);
                     Destroy(currentDraggedObject);
+
+                    returning = true;
                 }
             }
 
             currentDraggedObject.GetComponent<DragObj>().isClicked = false;
             currentDraggedObject.GetComponent<Rigidbody2D>().gravityScale = 1.0f;
+
+            if (!returning)
+                playSound.Play(dropSound);
 
             canvasGroup.blocksRaycasts = true;
             Destroy(gameObject);
