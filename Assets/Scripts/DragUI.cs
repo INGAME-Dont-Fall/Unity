@@ -91,6 +91,7 @@ public class DragUI : MonoBehaviour, IBeginDragHandler, IEndDragHandler, IDragHa
                 }
             }
 
+            currentDraggedObject.GetComponent<SpriteRenderer>().sortingLayerName = "Object";
             currentDraggedObject.GetComponent<DragObj>().isClicked = false;
             currentDraggedObject.GetComponent<Rigidbody2D>().gravityScale = 1.0f;
 

@@ -11,10 +11,10 @@ GameObject:
   - component: {fileID: 4761743122023399335}
   - component: {fileID: 3975212720099382094}
   - component: {fileID: 2467289052978061749}
-  - component: {fileID: 3882492834995935145}
   - component: {fileID: -6680009759519942479}
+  - component: {fileID: 4154688845166336559}
   m_Layer: 0
-  m_Name: Umbrage
+  m_Name: Erase
   m_TagString: Object
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -30,8 +30,8 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 8.517471, y: -4.7438755, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
+  m_LocalScale: {x: 0.5, y: 0.5, z: 0.5}
+  m_ConstrainProportionsScale: 1
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -79,12 +79,12 @@ SpriteRenderer:
   m_SortingLayerID: -1511592661
   m_SortingLayer: 3
   m_SortingOrder: 1
-  m_Sprite: {fileID: 4145529207774348561, guid: 9b82f7b218443964aad74dad5ee4fb8d, type: 3}
+  m_Sprite: {fileID: 8071872589951248713, guid: 2bb7e789f27abab4181244ef991902b2, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
-  m_Size: {x: 1.39, y: 0.79}
+  m_Size: {x: 3.8600001, y: 2.16}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
@@ -117,7 +117,23 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 1
   m_Constraints: 0
---- !u!60 &3882492834995935145
+--- !u!114 &-6680009759519942479
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3311031943809448362}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 13e745f9a64dfd8479d18adca30d2ba8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  size: 0
+  index: 16
+  DifficultyLevel: 1
+  isClicked: 0
+--- !u!60 &4154688845166336559
 PolygonCollider2D:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -155,49 +171,17 @@ PolygonCollider2D:
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 1.39, y: 0.79}
-    newSize: {x: 1.39, y: 0.79}
+    oldSize: {x: 1.4200001, y: 2.08}
+    newSize: {x: 3.8600001, y: 2.16}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
     adaptiveTiling: 0
   m_AutoTiling: 0
   m_Points:
     m_Paths:
-    - - {x: 0.415, y: -0.024999999}
-      - {x: 0.525, y: 0.195}
-      - {x: 0.675, y: 0.185}
-      - {x: 0.695, y: 0.21499999}
-      - {x: 0.695, y: 0.295}
-      - {x: 0.675, y: 0.315}
-      - {x: 0.49223042, y: 0.311471}
-      - {x: 0.265, y: 0.39499998}
-      - {x: -0.095, y: 0.39499998}
-      - {x: -0.225, y: 0.36499998}
-      - {x: -0.36499998, y: 0.275}
-      - {x: -0.45499998, y: 0.195}
-      - {x: -0.59052366, y: -0.0058571044}
-      - {x: -0.676905, y: -0.1886192}
-      - {x: -0.695, y: -0.315}
-      - {x: -0.62157154, y: -0.32966706}
-      - {x: -0.43709573, y: -0.38414288}
-      - {x: -0.005, y: -0.39499998}
-      - {x: 0.145, y: -0.315}
-      - {x: 0.21499999, y: -0.275}
-      - {x: 0.355, y: -0.114999995}
+    - - {x: -0.7118747, y: 1.0450001}
+      - {x: -0.7118747, y: -1.0409374}
+      - {x: 0.7178128, y: -1.0409374}
+      - {x: 0.7178128, y: 0.8926563}
+      - {x: 0.565469, y: 1.0450001}
   m_UseDelaunayMesh: 0
---- !u!114 &-6680009759519942479
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3311031943809448362}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 13e745f9a64dfd8479d18adca30d2ba8, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  size: 0
-  index: 18
-  DifficultyLevel: 1
-  isClicked: 0

@@ -11,8 +11,8 @@ GameObject:
   - component: {fileID: 4347691236830660548}
   - component: {fileID: 7091317975834962119}
   - component: {fileID: 2807863043746499442}
-  - component: {fileID: 7878053248771670221}
   - component: {fileID: 4363028604713313566}
+  - component: {fileID: 5855117030126637053}
   m_Layer: 0
   m_Name: Tumbler
   m_TagString: Object
@@ -30,8 +30,8 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 11.491954, y: -4.3756847, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
+  m_LocalScale: {x: 0.6, y: 0.6, z: 0.6}
+  m_ConstrainProportionsScale: 1
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -79,12 +79,12 @@ SpriteRenderer:
   m_SortingLayerID: -1511592661
   m_SortingLayer: 3
   m_SortingOrder: 1
-  m_Sprite: {fileID: -9197369676078203202, guid: e330a98e2d7ccc64189ceda00e044179, type: 3}
+  m_Sprite: {fileID: -6908821692224883079, guid: 2bb7e789f27abab4181244ef991902b2, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
-  m_Size: {x: 1.28, y: 3.37}
+  m_Size: {x: 2.37, y: 6.2099996}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
@@ -117,7 +117,23 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 1
   m_Constraints: 0
---- !u!60 &7878053248771670221
+--- !u!114 &4363028604713313566
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6396748125317426623}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 13e745f9a64dfd8479d18adca30d2ba8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  size: 0
+  index: 16
+  DifficultyLevel: 1
+  isClicked: 0
+--- !u!60 &5855117030126637053
 PolygonCollider2D:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -155,47 +171,44 @@ PolygonCollider2D:
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 1.28, y: 3.37}
-    newSize: {x: 1.28, y: 3.37}
+    oldSize: {x: 2.37, y: 6.2099996}
+    newSize: {x: 2.37, y: 6.2099996}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
     adaptiveTiling: 0
   m_AutoTiling: 0
   m_Points:
     m_Paths:
-    - - {x: 0.45, y: -0.92499995}
-      - {x: 0.61, y: -0.675}
-      - {x: 0.64, y: -0.60499996}
-      - {x: 0.62019634, y: 1.1364174}
-      - {x: 0.5620533, y: 1.1875664}
-      - {x: 0.59999996, y: 1.645}
-      - {x: 0.56, y: 1.685}
-      - {x: 0.37, y: 1.685}
-      - {x: 0.22, y: 1.275}
-      - {x: -0.53999996, y: 1.265}
-      - {x: -0.64, y: 1.1949999}
-      - {x: -0.61076987, y: -0.63551307}
-      - {x: -0.42, y: -0.945}
-      - {x: -0.42, y: -1.5749999}
-      - {x: -0.39999998, y: -1.635}
-      - {x: -0.34, y: -1.685}
-      - {x: 0.37, y: -1.685}
-      - {x: 0.42, y: -1.635}
-      - {x: 0.42999998, y: -1.605}
+    - - {x: 0.79304695, y: -1.6836716}
+      - {x: 0.8282032, y: -1.6719528}
+      - {x: 1.1563282, y: -1.1446091}
+      - {x: 1.1797657, y: -1.0860153}
+      - {x: 1.1797657, y: 2.0311723}
+      - {x: 1.1914845, y: 2.0311723}
+      - {x: 1.1914845, y: 2.1014848}
+      - {x: 1.1094532, y: 2.2889848}
+      - {x: 0.9453907, y: 2.3358598}
+      - {x: 1.0977345, y: 2.9921098}
+      - {x: 1.0157032, y: 3.0975785}
+      - {x: 0.95710945, y: 3.121016}
+      - {x: 0.7344532, y: 3.121016}
+      - {x: 0.6875782, y: 3.0975785}
+      - {x: 0.62898445, y: 2.886641}
+      - {x: 0.48835945, y: 2.277266}
+      - {x: -0.98820305, y: 2.277266}
+      - {x: -1.0702343, y: 2.2421098}
+      - {x: -1.1405468, y: 2.1717973}
+      - {x: -1.1874218, y: 2.0663285}
+      - {x: -1.1874218, y: -1.0157028}
+      - {x: -1.1639843, y: -1.1094528}
+      - {x: -0.7655468, y: -1.7188278}
+      - {x: -0.75382805, y: -1.9297653}
+      - {x: -0.7421093, y: -2.9141402}
+      - {x: -0.7186718, y: -2.972734}
+      - {x: -0.6483593, y: -3.0547652}
+      - {x: -0.56632805, y: -3.0899215}
+      - {x: 0.60554695, y: -3.0899215}
+      - {x: 0.6875782, y: -3.0547652}
+      - {x: 0.7578907, y: -2.9844527}
+      - {x: 0.79304695, y: -2.9024215}
   m_UseDelaunayMesh: 0
---- !u!114 &4363028604713313566
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6396748125317426623}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 13e745f9a64dfd8479d18adca30d2ba8, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  size: 0
-  index: 17
-  DifficultyLevel: 1
-  isClicked: 0

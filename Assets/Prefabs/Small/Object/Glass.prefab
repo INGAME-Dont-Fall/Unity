@@ -30,8 +30,8 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 3.02, y: -0.63, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
+  m_LocalScale: {x: 1.2, y: 1.2, z: 1.2}
+  m_ConstrainProportionsScale: 1
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -136,19 +136,21 @@ PolygonCollider2D:
   m_AutoTiling: 0
   m_Points:
     m_Paths:
-    - - {x: 0.21, y: -0.07}
-      - {x: 0.37, y: 0.14999999}
-      - {x: 0.38, y: 0.74}
+    - - {x: 0.18982, y: -0.041748054}
+      - {x: 0.28624868, y: 0.029842138}
+      - {x: 0.34578383, y: 0.14596398}
+      - {x: 0.35982, y: 0.75210804}
       - {x: -0.34, y: 0.74}
       - {x: -0.35, y: 0.17}
-      - {x: -0.31, y: 0.02}
-      - {x: -0.099999994, y: -0.099999994}
+      - {x: -0.26964003, y: 0.028071959}
+      - {x: -0.07982001, y: -0.091928035}
+      - {x: -0.08089137, y: -0.45255828}
       - {x: -0.14999999, y: -0.48}
       - {x: -0.42999998, y: -0.66999996}
       - {x: -0.42999998, y: -0.74}
       - {x: 0.42999998, y: -0.74}
       - {x: 0.42999998, y: -0.65999997}
-      - {x: 0.38, y: -0.58}
+      - {x: 0.32753193, y: -0.60825187}
       - {x: 0.07, y: -0.44}
       - {x: 0.08, y: -0.089999996}
   m_UseDelaunayMesh: 0
@@ -192,6 +194,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   size: 0
-  index: 6
+  index: 5
   DifficultyLevel: 1
   isClicked: 0

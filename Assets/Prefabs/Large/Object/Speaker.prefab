@@ -176,6 +176,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   size: 2
-  index: 4
+  index: 3
   DifficultyLevel: 10
   isClicked: 0

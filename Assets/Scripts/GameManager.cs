@@ -119,8 +119,8 @@ public class GameManager : MonoBehaviour
             {
                 ObjectData data = objects[i].objectList[j];
 
-                data.go.GetComponent<DragObj>().index = data.Index;
-                data.ui.GetComponent<DragUI>().index = data.Index;
+                data.go.GetComponent<DragObj>().index = j;
+                data.ui.GetComponent<DragUI>().index = j;
 
                 data.go.GetComponent<DragObj>().size = data.Size;
                 data.ui.GetComponent<DragUI>().size = data.Size;
@@ -277,7 +277,7 @@ public class GameManager : MonoBehaviour
         }
 
         //마지막으로 남은 포인트까지 합산
-        score += (point * currentRound * 10);
+        score += (point * currentRound);
    
         ScoreUpdate();
         yield return new WaitForSeconds(1f);
