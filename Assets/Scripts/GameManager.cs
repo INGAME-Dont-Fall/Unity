@@ -63,6 +63,9 @@ public class GameManager : MonoBehaviour
     public List<GameObject> emptyInventory;
     public GameObject objectGroup;
 
+    public event Action GameStart;
+    public event Action GameEnd;
+
     private void Awake()
     {
         curObjectsList = new List<GameObject>();
@@ -109,6 +112,8 @@ public class GameManager : MonoBehaviour
         isStart = true;
         boardController.Moving = true;
         DeadLine.GetComponent<BoxCollider2D>().isTrigger = true;
+
+        GameStart?.Invoke();
     }
 
     private void ObjectInit()
@@ -253,6 +258,8 @@ public class GameManager : MonoBehaviour
 
     IEnumerator GameOverRoutine(bool clear)
     {
+        GameEnd?.Invoke();
+
         //활성화 된 모든 오브젝트 가져오기
         DragObj[] objs = FindObjectsByType<DragObj>(FindObjectsSortMode.None);
 
