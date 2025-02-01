@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 1193561991055834063}
   - component: {fileID: 3343352759982766095}
   - component: {fileID: 4715668454348908366}
+  - component: {fileID: 4906381844219601367}
   m_Layer: 0
   m_Name: Slime
   m_TagString: Object
@@ -139,11 +140,11 @@ Rigidbody2D:
   m_Simulated: 1
   m_UseFullKinematicContacts: 0
   m_UseAutoMass: 0
-  m_Mass: 1
+  m_Mass: 20
   m_LinearDamping: 0
   m_AngularDamping: 0.05
   m_GravityScale: 0
-  m_Material: {fileID: 6200000, guid: bfecf54df033c47f2aeecb774bda5c01, type: 2}
+  m_Material: {fileID: 0}
   m_IncludeLayers:
     serializedVersion: 2
     m_Bits: 0
@@ -168,5 +169,17 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   size: 3
   index: 11
-  DifficultyLevel: 1
+  DifficultyLevel: 30
   isClicked: 0
+--- !u!114 &4906381844219601367
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3495883976828880401}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4ab71e46d096b3ddcb2d922d3227fe27, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

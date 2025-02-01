@@ -141,7 +141,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   size: 3
   index: 0
-  DifficultyLevel: 5
+  DifficultyLevel: 50
   isClicked: 0
 --- !u!50 &3305619971391642277
 Rigidbody2D:
@@ -155,7 +155,7 @@ Rigidbody2D:
   m_Simulated: 1
   m_UseFullKinematicContacts: 0
   m_UseAutoMass: 0
-  m_Mass: 10
+  m_Mass: 20
   m_LinearDamping: 0
   m_AngularDamping: 0.05
   m_GravityScale: 0

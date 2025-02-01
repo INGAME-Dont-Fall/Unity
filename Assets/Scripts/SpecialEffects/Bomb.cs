@@ -32,8 +32,6 @@ namespace DontFall.Objects
 
         private void Explode()
         {
-            Debug.Log("Explode");
-
             foreach (Collider2D obj in Physics2D.OverlapCircleAll(transform.position, effectRadius))
             {
                 if (obj.transform != transform && obj.CompareTag("Object"))

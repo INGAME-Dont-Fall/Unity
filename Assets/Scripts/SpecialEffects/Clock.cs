@@ -7,7 +7,17 @@ namespace DontFall.Objects
         [SerializeField] private Vector2 timeRange;
         [SerializeField] private float shakeSize;
 
+        [SerializeField] private bool debugStart;
+
         private bool isShaking;
+
+        private void Start()
+        {
+            if (debugStart)
+            {
+                ItemDrop();
+            }
+        }
 
         private void FixedUpdate()
         {
