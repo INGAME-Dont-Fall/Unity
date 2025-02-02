@@ -66,7 +66,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: ec3df43f5262b2f48937f6ee12790ab4, type: 3}
+  m_Sprite: {fileID: -3098208000435230372, guid: 923bc092b64964b4a9d293d86b214f3f, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -90,3 +90,5 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   size: 2
   index: 0
+  playSound: {fileID: 0}
+  dropSound: {fileID: 0}

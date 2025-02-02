@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: HighRoundData
   m_EditorClassIdentifier: 
   level: 2
-  lowProbability: 70
+  lowProbability: 73
   mediumProbability: 20
-  highProbability: 8
+  highProbability: 5
   specialProbability: 2

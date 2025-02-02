@@ -205,7 +205,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: BigBowl
+      name: Bowl
       rect:
         serializedVersion: 2
         x: 292
@@ -626,8 +626,8 @@ TextureImporter:
       name: SmallBook
       rect:
         serializedVersion: 2
-        x: 2019
-        y: 50
+        x: 2033
+        y: 47
         width: 108
         height: 391
       alignment: 0
@@ -640,6 +640,28 @@ TextureImporter:
       bones: []
       spriteID: 644c269ae528b7648a9dcb6633044f5c
       internalID: -970410005
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Dish
+      rect:
+        serializedVersion: 2
+        x: 367
+        y: 23
+        width: 511
+        height: 94
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: db06713609a5bf044bd3772d4844b44e
+      internalID: -315803191
       vertices: []
       indices: 
       edges: []
@@ -658,11 +680,12 @@ TextureImporter:
     spriteCustomMetadata:
       entries: []
     nameFileIdTable:
-      BigBowl: -8137447665880152903
+      Bowl: -8137447665880152903
       CandleStick: -5371318653674897483
       Capsule: -3458485672070046594
       Cup: -7139336379900549185
       Dice: 5933888808541255665
+      Dish: -315803191
       Erase: 8071872589951248713
       Glass: -551148414953072415
       Glasses: 4702181154503239630

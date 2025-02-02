@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Size: 0
   Index: 1
-  Mass: 2
-  difficultyLevel: 1
-  go: {fileID: 6107880402292008252, guid: 9687d24650b7e534bb6230884af068f1, type: 3}
-  ui: {fileID: 1476516228781483065, guid: 3e86c94a41badeb4086ca29c39d71eb2, type: 3}
+  Mass: 3
+  difficultyLevel: 2
+  go: {fileID: 5581715886546020950, guid: dd0f4069891c6d446a56b3263355db66, type: 3}
+  ui: {fileID: 2232987584931199929, guid: 654b0b031f2a89f4baddbcf65e66b7a6, type: 3}

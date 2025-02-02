@@ -9,6 +9,7 @@ using System.Linq;
 using DontFall.UI;
 using DontFall.Transition;
 using DontFall.Board;
+using static UnityEngine.Rendering.DebugUI;
 
 [Serializable]
 public class ObjectList
@@ -22,6 +23,11 @@ public class GameManager : MonoBehaviour
 {
     private static GameManager instance;
 
+    private int small = 0;
+    private int medium = 0;
+    private int high = 0;
+    private int special = 0;
+    private int targetScore; //해당 라운드 타겟 스코어
     private int currentRound = 1;
     private int totalScore = 0; //전체 스코어
     private int score; //현재 라운드에 선반 위에 올려진 물체에 매겨진 점수 합산
@@ -49,7 +55,6 @@ public class GameManager : MonoBehaviour
     [SerializeField] private float maxTime = 30.00f;
     [SerializeField] private int maxPoint; //초기에 주어지는 포인트
     [SerializeField] private GameObject destroyPrefab;
-    [SerializeField] private int targetScore;
 
     [SerializeField] private DontFall.PlaySound playSound;
     [SerializeField] private AudioClip popSound;
@@ -90,10 +95,59 @@ public class GameManager : MonoBehaviour
         isStart = false;
         isOver = false;
         point = maxPoint;
+        SetRoundProbability();
         ScoreUpdate();
         PointUpdate();
         currentTime = maxTime;
         TimerUpdate();
+
+
+    }
+
+    private void SetRoundProbability()
+    {
+        int adjustmentValue;
+        RoundData curData;
+
+        if (currentRound < 10) //Low 1~9
+        {
+            curData = roundSO[0];
+            adjustmentValue = currentRound - 1;
+            small = curData.lowProbability - adjustmentValue;
+            medium = curData.mediumProbability + adjustmentValue;
+            high = curData.highProbability;
+            special = curData.specialProbability;
+        }
+        else if (currentRound < 15) //Medium 10~14
+        {
+            curData = roundSO[1];
+            adjustmentValue = currentRound - 10;
+            small = curData.lowProbability - adjustmentValue;
+            medium = curData.mediumProbability;
+            high += curData.highProbability + adjustmentValue;
+            special += curData.specialProbability;
+        }
+        else //High 15 ~
+        {
+            curData = roundSO[2];
+            adjustmentValue = (currentRound - 15) / 5;
+            small = curData.lowProbability - (adjustmentValue * 4);
+            medium = curData.mediumProbability;
+            high += curData.highProbability + (adjustmentValue * 3);
+            special += curData.specialProbability + adjustmentValue;
+        }
+
+        float draws = maxPoint / 10.0f;
+        float smallTargetScore = small / 100.0f * draws;
+        float mediumTargetScore = medium / 100.0f * draws * 50.0f;
+        float highTargetScore = high / 100.0f * draws * 450.0f;
+        float specialTargetScore = special / 100.0f * draws;
+
+        targetScore = currentRound * Mathf.FloorToInt(smallTargetScore + mediumTargetScore + highTargetScore);
+
+        medium += small;
+        high += medium;
+        special += high;
     }
 
     private void Update()
@@ -169,39 +223,6 @@ public class GameManager : MonoBehaviour
 
         PointUpdate();
 
-        RoundData curData;
-        int small = 0;
-        int medium = 0;
-        int high = 0;
-        int special = 0;
-
-        if (currentRound <= 10) //Low
-        {
-            curData = roundSO[0];
-            small -= (currentRound - 1);
-            medium += (currentRound - 1);
-        }
-        else if (currentRound <= 15) //Medium
-        {
-            curData = roundSO[1];
-        }
-        else //High
-        {
-            curData = roundSO[2];
-        }
-
-        small += curData.lowProbability;
-        medium += curData.mediumProbability + small;
-        high += curData.highProbability + medium;
-        special += curData.specialProbability + high;
-
-        Debug.Log(small);
-        int smallTargetScore = Mathf.RoundToInt((maxPoint / 10) * (small / 100));
-        int mediumTargetScore = Mathf.RoundToInt((maxPoint / 10) * (medium / 100));
-        int highTargetScore = Mathf.RoundToInt((maxPoint / 10) * (high / 100));
-        int specialTargetScore = Mathf.RoundToInt((maxPoint / 10) * (special / 100));
-
-        //targetScore = currentRound * (smallTargetScore + 10 * 5 * mediumTargetScore + 30 * 15 * highTargetScore);
         int random = UnityEngine.Random.Range(0, 100);
         List<ObjectData> curObj = null;
 
@@ -236,6 +257,7 @@ public class GameManager : MonoBehaviour
     //게임 시작 버튼 누를 시
     public void GamePlay()
     {
+
         SetStart();
     }
 

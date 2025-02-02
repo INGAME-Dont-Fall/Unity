@@ -1581,7 +1581,7 @@ MonoBehaviour:
   objects:
   - size: 0
     objectList:
-    - {fileID: 11400000, guid: 9f67975ef67559b42b4b0c7fd769baaa, type: 2}
+    - {fileID: 11400000, guid: 912ee30c01707bc4dac05382e018cdd0, type: 2}
     - {fileID: 11400000, guid: 8f280deec16d2b84695ead1c76c155b1, type: 2}
     - {fileID: 11400000, guid: 612be6304fae3b04981733130f5bac2d, type: 2}
     - {fileID: 11400000, guid: cbcfc57cf14a9a44cb09e30225687525, type: 2}
@@ -1599,6 +1599,7 @@ MonoBehaviour:
     - {fileID: 11400000, guid: 28b973e484c1e4c47a76f97e3c7cada4, type: 2}
     - {fileID: 11400000, guid: 18788230843ac4d4796029364b57986c, type: 2}
     - {fileID: 11400000, guid: 9517b2b2ea5e5354f8e19620672f40e1, type: 2}
+    - {fileID: 11400000, guid: b71a61c53573d9b43bbc8da5962f39b2, type: 2}
   - size: 1
     objectList:
     - {fileID: 11400000, guid: 5edb0340050806d4791d00b4501bc77f, type: 2}
@@ -1612,13 +1613,18 @@ MonoBehaviour:
     - {fileID: 11400000, guid: eaa449b029792704b93bb7efe2df9fff, type: 2}
     - {fileID: 11400000, guid: bf10b3b5dc4e5634d830f3153e3940d1, type: 2}
     - {fileID: 11400000, guid: 14a629565904efe42af228c49196e1b6, type: 2}
+    - {fileID: 11400000, guid: ac8156ef53d78fa46a587d13d06c3d71, type: 2}
     - {fileID: 11400000, guid: 37e7a74e961218047bae0e231201d7ac, type: 2}
+    - {fileID: 11400000, guid: 544f78eda99f5654b8b58111937cbad5, type: 2}
   - size: 3
-    objectList: []
-  - size: 4
     objectList:
-    - {fileID: 11400000, guid: b5fe9118afbe9f34787e2af84b3a0596, type: 2}
-    - {fileID: 11400000, guid: 914e736948778754aad40117cfda244a, type: 2}
+    - {fileID: 11400000, guid: 53d6cc3effb3b1145b46fb22a037e770, type: 2}
+    - {fileID: 11400000, guid: 917620f66b5426b4e8d35dbeb2ac9a30, type: 2}
+    - {fileID: 11400000, guid: 1d31abf07b1b96e4b80cdbe0e93d9795, type: 2}
+    - {fileID: 11400000, guid: cd7e9869f9f51444db87564dae9c17be, type: 2}
+    - {fileID: 11400000, guid: b46eb8fd974081747b02c43af4b0a5c3, type: 2}
+  - size: 4
+    objectList: []
   objectCount: 10
   scoreData: {fileID: 11400000, guid: 3501d4c82185f184da1e63863d7a2882, type: 2}
   canvas: {fileID: 1163508609}
@@ -1632,7 +1638,6 @@ MonoBehaviour:
   maxTime: 3
   maxPoint: 100
   destroyPrefab: {fileID: 4791227227454387245, guid: 764c783d849bd094ab53fcfbafc34399, type: 3}
-  targetScore: 5
   playSound: {fileID: 1137475561}
   popSound: {fileID: 8300000, guid: bc42d51929043a99eab8470c2d460030, type: 3}
   dropSound: {fileID: 8300000, guid: 6964d2fbfc5f20d5197d6732fe1f30b5, type: 3}
