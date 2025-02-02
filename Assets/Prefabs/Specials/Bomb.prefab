@@ -184,4 +184,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   effectDelay: 3
   effectRadius: 10
-  effectPower: 20
+  effectPower: 10

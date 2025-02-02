@@ -5,41 +5,44 @@ namespace DontFall.Objects
     public class Clock : MonoBehaviour
     {
         [SerializeField] private Vector2 timeRange;
+        [SerializeField] private float shakeInterval;
         [SerializeField] private float shakeSize;
 
         [SerializeField] private bool debugStart;
 
-        private bool isShaking;
-
         private void Start()
         {
+            GameManager.Instance.GameEnd += StopShaking;
+
             if (debugStart)
             {
                 ItemDrop();
             }
         }
 
-        private void FixedUpdate()
+        private void OnDestroy()
         {
-            if (isShaking)
-            {
-                var rigidbody = GetComponent<Rigidbody2D>();
-
-                var shakeDirection = Random.insideUnitCircle;
-
-                rigidbody.MovePosition((Vector2)transform.position + shakeSize * shakeDirection);
-            }
+            GameManager.Instance.GameEnd -= StopShaking;
         }
 
         private void ItemDrop()
         {
             float time = Random.Range(timeRange.x, timeRange.y);
-            Invoke(nameof(StartShaking), time);
+            InvokeRepeating(nameof(Shake), time, shakeInterval);
         }
 
-        private void StartShaking()
+        private void Shake()
         {
-            isShaking = true;
+            var rigidbody = GetComponent<Rigidbody2D>();
+
+            var shakeDirection = Random.insideUnitCircle;
+
+            rigidbody.MovePosition((Vector2)transform.position + shakeSize * shakeDirection);
+        }
+
+        private void StopShaking()
+        {
+            CancelInvoke();
         }
 
         private void OnDrawGizmosSelected()
