@@ -1635,7 +1635,7 @@ MonoBehaviour:
   boardController: {fileID: 1849435148}
   timer: {fileID: 478874112}
   pointText: {fileID: 1675019477}
-  maxTime: 3
+  maxTime: 5
   maxPoint: 100
   destroyPrefab: {fileID: 4791227227454387245, guid: 764c783d849bd094ab53fcfbafc34399, type: 3}
   playSound: {fileID: 1137475561}
