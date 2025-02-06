@@ -104,7 +104,7 @@ TextureImporter:
   lightmap: 0
   compressionQuality: 50
   spriteMode: 2
-  spriteExtrude: 1
+  spriteExtrude: 0
   spriteMeshType: 1
   alignment: 0
   spritePivot: {x: 0.5, y: 0.5}
@@ -186,12 +186,12 @@ TextureImporter:
       name: Screw
       rect:
         serializedVersion: 2
-        x: 27
-        y: 974
-        width: 250
-        height: 198
+        x: 26
+        y: 973
+        width: 251
+        height: 199
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -210,10 +210,10 @@ TextureImporter:
         serializedVersion: 2
         x: 292
         y: 992
-        width: 384
+        width: 385
         height: 180
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -230,12 +230,12 @@ TextureImporter:
       name: Cup
       rect:
         serializedVersion: 2
-        x: 722
-        y: 619
-        width: 291
-        height: 553
+        x: 721
+        y: 618
+        width: 292
+        height: 554
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -257,7 +257,7 @@ TextureImporter:
         width: 242
         height: 242
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -275,11 +275,11 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 1325
-        y: 825
+        y: 824
         width: 132
-        height: 342
+        height: 343
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -301,7 +301,7 @@ TextureImporter:
         width: 315
         height: 314
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -321,9 +321,9 @@ TextureImporter:
         x: 2092
         y: 533
         width: 237
-        height: 621
+        height: 622
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -343,9 +343,9 @@ TextureImporter:
         x: 31
         y: 605
         width: 260
-        height: 336
+        height: 337
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -364,10 +364,10 @@ TextureImporter:
         serializedVersion: 2
         x: 378
         y: 701
-        width: 203
-        height: 226
+        width: 204
+        height: 227
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -385,11 +385,11 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 1078
-        y: 598
-        width: 123
+        y: 597
+        width: 124
         height: 259
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -406,12 +406,12 @@ TextureImporter:
       name: Slime
       rect:
         serializedVersion: 2
-        x: 1355
+        x: 1354
         y: 683
-        width: 473
+        width: 475
         height: 99
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -428,12 +428,12 @@ TextureImporter:
       name: Hanger
       rect:
         serializedVersion: 2
-        x: 20
-        y: 333
-        width: 363
-        height: 238
+        x: 18
+        y: 332
+        width: 365
+        height: 239
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -450,12 +450,12 @@ TextureImporter:
       name: Erase
       rect:
         serializedVersion: 2
-        x: 421
+        x: 420
         y: 442
-        width: 142
+        width: 143
         height: 208
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -474,10 +474,10 @@ TextureImporter:
         serializedVersion: 2
         x: 643
         y: 428
-        width: 496
-        height: 159
+        width: 495
+        height: 160
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -494,12 +494,12 @@ TextureImporter:
       name: Glass
       rect:
         serializedVersion: 2
-        x: 1281
+        x: 1280
         y: 275
-        width: 203
+        width: 204
         height: 345
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -521,7 +521,7 @@ TextureImporter:
         width: 338
         height: 338
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -543,7 +543,7 @@ TextureImporter:
         width: 341
         height: 138
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -560,12 +560,12 @@ TextureImporter:
       name: Leaf
       rect:
         serializedVersion: 2
-        x: 443
-        y: 155
-        width: 386
-        height: 216
+        x: 442
+        y: 154
+        width: 387
+        height: 217
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -584,10 +584,10 @@ TextureImporter:
         serializedVersion: 2
         x: 878
         y: 158
-        width: 233
-        height: 95
+        width: 234
+        height: 96
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -604,12 +604,12 @@ TextureImporter:
       name: Pencil
       rect:
         serializedVersion: 2
-        x: 1200
+        x: 1199
         y: 134
-        width: 696
-        height: 64
+        width: 698
+        height: 65
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -626,12 +626,12 @@ TextureImporter:
       name: SmallBook
       rect:
         serializedVersion: 2
-        x: 2033
-        y: 47
-        width: 108
-        height: 391
+        x: 2047
+        y: 67
+        width: 83
+        height: 357
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -649,9 +649,9 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 367
-        y: 23
-        width: 511
-        height: 94
+        y: 36
+        width: 514
+        height: 72
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}

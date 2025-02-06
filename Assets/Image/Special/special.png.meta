@@ -168,12 +168,12 @@ TextureImporter:
       name: Bomb_0
       rect:
         serializedVersion: 2
-        x: 10
-        y: 1701
-        width: 294
-        height: 294
+        x: 11
+        y: 1702
+        width: 292
+        height: 292
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -190,12 +190,12 @@ TextureImporter:
       name: Bomb_1
       rect:
         serializedVersion: 2
-        x: 311
-        y: 1641
-        width: 357
-        height: 359
+        x: 312
+        y: 1642
+        width: 355
+        height: 357
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -212,12 +212,12 @@ TextureImporter:
       name: Bomb_2
       rect:
         serializedVersion: 2
-        x: 676
-        y: 1648
-        width: 351
-        height: 352
+        x: 680
+        y: 1590
+        width: 407
+        height: 408
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -234,12 +234,12 @@ TextureImporter:
       name: Lock_0
       rect:
         serializedVersion: 2
-        x: 1387
-        y: 1631
-        width: 266
-        height: 358
+        x: 1388
+        y: 1632
+        width: 264
+        height: 356
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -256,12 +256,12 @@ TextureImporter:
       name: Lock_1
       rect:
         serializedVersion: 2
-        x: 1677
-        y: 1460
-        width: 314
-        height: 525
+        x: 1705
+        y: 1538
+        width: 265
+        height: 444
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -278,12 +278,12 @@ TextureImporter:
       name: Clock_0
       rect:
         serializedVersion: 2
-        x: 11
-        y: 1216
-        width: 382
-        height: 397
+        x: 18
+        y: 1113
+        width: 380
+        height: 395
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -300,12 +300,12 @@ TextureImporter:
       name: Clock_1
       rect:
         serializedVersion: 2
-        x: 412
-        y: 1239
-        width: 335
-        height: 362
+        x: 524
+        y: 1086
+        width: 394
+        height: 425
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -322,12 +322,12 @@ TextureImporter:
       name: Clock_2
       rect:
         serializedVersion: 2
-        x: 778
-        y: 1186
-        width: 396
-        height: 425
+        x: 1013
+        y: 1093
+        width: 394
+        height: 423
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -344,12 +344,12 @@ TextureImporter:
       name: Safe_0
       rect:
         serializedVersion: 2
-        x: 1201
-        y: 1016
-        width: 421
-        height: 345
+        x: 1542
+        y: 605
+        width: 419
+        height: 343
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -366,12 +366,12 @@ TextureImporter:
       name: Safe_1
       rect:
         serializedVersion: 2
-        x: 1640
-        y: 1007
-        width: 351
-        height: 350
+        x: 1641
+        y: 1008
+        width: 349
+        height: 348
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -388,12 +388,12 @@ TextureImporter:
       name: Plant_0
       rect:
         serializedVersion: 2
-        x: 43
-        y: 569
-        width: 297
-        height: 398
+        x: 28
+        y: 102
+        width: 295
+        height: 396
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -410,12 +410,12 @@ TextureImporter:
       name: Plant_1
       rect:
         serializedVersion: 2
-        x: 355
-        y: 559
-        width: 449
-        height: 515
+        x: 340
+        y: 92
+        width: 447
+        height: 513
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -432,12 +432,12 @@ TextureImporter:
       name: Plant_3
       rect:
         serializedVersion: 2
-        x: 829
-        y: 568
-        width: 253
-        height: 436
+        x: 812
+        y: 90
+        width: 415
+        height: 716
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -454,12 +454,12 @@ TextureImporter:
       name: Box
       rect:
         serializedVersion: 2
-        x: 1305
-        y: 547
-        width: 621
-        height: 203
+        x: 1340
+        y: 202
+        width: 619
+        height: 201
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
