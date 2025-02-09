@@ -7,12 +7,18 @@ public class Lock : MonoBehaviour, IDropHandler, IBeginDragHandler
 
     public void OnDrop(PointerEventData eventData)
     {
-        Debug.Log("Pointer Down");
+        if (eventData.button == PointerEventData.InputButton.Left)
+        {
+            Debug.Log("Pointer Down");
+        }
     }
 
     public void OnBeginDrag(PointerEventData eventData)
     {
-        throw new System.NotImplementedException();
+        if (eventData.button == PointerEventData.InputButton.Left)
+        {
+            Debug.Log("Pointer Down");
+        }
     }
 
     //private void OnTriggerEnter2D(Collider2D collision)
