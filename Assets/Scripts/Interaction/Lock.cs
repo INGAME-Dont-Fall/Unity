@@ -15,6 +15,7 @@ public class Lock : MonoBehaviour, IDropHandler, IBeginDragHandler
 
     public void OnBeginDrag(PointerEventData eventData)
     {
+        Debug.Log("Pointer Down");
         if (eventData.button == PointerEventData.InputButton.Left)
         {
             Debug.Log("Pointer Down");
