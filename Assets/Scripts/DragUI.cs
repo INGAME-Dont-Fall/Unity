@@ -63,43 +63,47 @@ public class DragUI : MonoBehaviour, IBeginDragHandler, IEndDragHandler, IDragHa
 
         if (eventData.button == PointerEventData.InputButton.Left)
         {
-            currentDraggedObject.GetComponent<DragObj>().InputDisable();
-            currentDraggedObject.GetComponent<Collider2D>().isTrigger = false;
-            for (int i = GameManager.Instance.emptyInventory.Count - 1; i >= 0; i--)
+            if(!object.ReferenceEquals(currentDraggedObject, null))
             {
-                GameObject go = GameManager.Instance.emptyInventory[i];
-                if (RectTransformUtility.RectangleContainsScreenPoint(go.GetComponent<RectTransform>(), Mouse.current.position.ReadValue(), canvas.worldCamera))
+                currentDraggedObject.GetComponent<DragObj>().InputDisable();
+                currentDraggedObject.GetComponent<Collider2D>().isTrigger = false;
+
+                for (int i = GameManager.Instance.emptyInventory.Count - 1; i >= 0; i--)
                 {
-                    GameObject newUIObject = null;
-
-                    // UI 프리팹을 생성하고 해당 UI에 종속시킴
-                    newUIObject = Instantiate(GameManager.Instance.Objects[(int)size].objectList[index].ui, go.transform);
-
-                    if (newUIObject is not null)
+                    GameObject go = GameManager.Instance.emptyInventory[i];
+                    if (RectTransformUtility.RectangleContainsScreenPoint(go.GetComponent<RectTransform>(), Mouse.current.position.ReadValue(), canvas.worldCamera))
                     {
-                        var ui = newUIObject.GetComponent<DragUI>();
-                        ui.index = index;
-                        ui.playSound = playSound;
-                        ui.dropSound = dropSound;
+                        GameObject newUIObject = null;
+
+                        // UI 프리팹을 생성하고 해당 UI에 종속시킴
+                        newUIObject = Instantiate(GameManager.Instance.Objects[(int)size].objectList[index].ui, go.transform);
+
+                        if (newUIObject is not null)
+                        {
+                            var ui = newUIObject.GetComponent<DragUI>();
+                            ui.index = index;
+                            ui.playSound = playSound;
+                            ui.dropSound = dropSound;
+                        }
+
+                        //칸이 찼으니까 삭제
+                        GameManager.Instance.emptyInventory.Remove(go);
+                        Destroy(currentDraggedObject);
+
+                        returning = true;
                     }
-
-                    //칸이 찼으니까 삭제
-                    GameManager.Instance.emptyInventory.Remove(go);
-                    Destroy(currentDraggedObject);
-
-                    returning = true;
                 }
+
+                currentDraggedObject.GetComponent<SpriteRenderer>().sortingLayerName = "Object";
+                currentDraggedObject.GetComponent<DragObj>().isClicked = false;
+                currentDraggedObject.GetComponent<Rigidbody2D>().gravityScale = 1.0f;
+
+                if (!returning)
+                    playSound.Play(dropSound);
+
+                canvasGroup.blocksRaycasts = true;
+                Destroy(gameObject);
             }
-
-            currentDraggedObject.GetComponent<SpriteRenderer>().sortingLayerName = "Object";
-            currentDraggedObject.GetComponent<DragObj>().isClicked = false;
-            currentDraggedObject.GetComponent<Rigidbody2D>().gravityScale = 1.0f;
-
-            if (!returning)
-                playSound.Play(dropSound);
-
-            canvasGroup.blocksRaycasts = true;
-            Destroy(gameObject);
         }
     }
 }

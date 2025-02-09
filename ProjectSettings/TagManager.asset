@@ -7,6 +7,7 @@ TagManager:
   - Wall
   - Object
   - Assist
+  - Key
   layers:
   - Default
   - TransparentFX

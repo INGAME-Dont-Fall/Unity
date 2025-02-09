@@ -185,6 +185,15 @@ public class GameManager : MonoBehaviour
         }
     }
 
+    //특정 오브젝트 추가
+    public void AddObject(ObjectData data)
+    {
+        GameObject go = Instantiate(square, inventory.transform);
+        curObjectsList.Add(data.ui);
+        var ui = Instantiate(data.ui, go.transform).GetComponent<DragUI>();
+    }
+
+
     /// <summary>
     /// 게임 초기화 시 원 상태로 복구하는 함수
     /// </summary>
