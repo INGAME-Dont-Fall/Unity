@@ -12,9 +12,10 @@ GameObject:
   - component: {fileID: 6667087751907218990}
   - component: {fileID: 9198340017141220883}
   - component: {fileID: 5951982796594422858}
-  - component: {fileID: 5463745193924480569}
+  - component: {fileID: 5916685985324430010}
+  - component: {fileID: 4652734786938548958}
   m_Layer: 0
-  m_Name: Slippers
+  m_Name: Lock
   m_TagString: Object
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -29,8 +30,8 @@ Transform:
   m_GameObject: {fileID: 736268287971015822}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1.4999999, y: 1.4999999, z: 1.4999999}
+  m_LocalPosition: {x: 8.844347, y: -2.8098178, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 1
   m_Children: []
   m_Father: {fileID: 0}
@@ -79,7 +80,7 @@ SpriteRenderer:
   m_SortingLayerID: -1511592661
   m_SortingLayer: 3
   m_SortingOrder: 1
-  m_Sprite: {fileID: 8076179678826058186, guid: 317c796a2b29a914092811e5840fe35a, type: 3}
+  m_Sprite: {fileID: -8239283131832328906, guid: 9f9b13f055c2eda4c98a5c8f5e074be7, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -102,8 +103,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 13e745f9a64dfd8479d18adca30d2ba8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  size: 1
-  index: 5
+  size: 3
+  index: 0
   DifficultyLevel: 1
   isClicked: 0
 --- !u!50 &5951982796594422858
@@ -118,7 +119,7 @@ Rigidbody2D:
   m_Simulated: 1
   m_UseFullKinematicContacts: 0
   m_UseAutoMass: 0
-  m_Mass: 6
+  m_Mass: 2
   m_LinearDamping: 0
   m_AngularDamping: 0.05
   m_GravityScale: 0
@@ -133,7 +134,7 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 1
   m_Constraints: 0
---- !u!60 &5463745193924480569
+--- !u!60 &5916685985324430010
 PolygonCollider2D:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -171,7 +172,7 @@ PolygonCollider2D:
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 4.46, y: 1.35}
+    oldSize: {x: 2.66, y: 3.58}
     newSize: {x: 4.46, y: 1.35}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
@@ -179,16 +180,57 @@ PolygonCollider2D:
   m_AutoTiling: 0
   m_Points:
     m_Paths:
-    - - {x: 0.2973842, y: -0.10092314}
-      - {x: 0.29646084, y: 0.5564611}
-      - {x: 0.16092242, y: 0.68107635}
-      - {x: -1.203845, y: 0.70292217}
-      - {x: -1.7249213, y: -0.11369211}
-      - {x: -1.8199999, y: -0.08}
-      - {x: -2.1958447, y: -0.09907685}
-      - {x: -2.2067676, y: -0.69199926}
-      - {x: 2.0893836, y: -0.71384555}
-      - {x: 2.2067676, y: -0.61738396}
-      - {x: 2.2395358, y: -0.23015319}
-      - {x: 2.120306, y: -0.08276896}
+    - - {x: 1.2099999, y: 1.04}
+      - {x: 1.11, y: 1.1999999}
+      - {x: 0.83, y: 1.53}
+      - {x: 0.56, y: 1.6899999}
+      - {x: 0.39, y: 1.74}
+      - {x: 0.31, y: 1.76}
+      - {x: 0.16, y: 1.79}
+      - {x: -0.22, y: 1.79}
+      - {x: -0.53999996, y: 1.6999999}
+      - {x: -0.82, y: 1.54}
+      - {x: -0.97999996, y: 1.42}
+      - {x: -1.1, y: 1.29}
+      - {x: -1.1999999, y: 1.13}
+      - {x: -1.3, y: 0.93}
+      - {x: -1.3299999, y: 0.78}
+      - {x: -1.3299999, y: -1.73}
+      - {x: -1.27, y: -1.79}
+      - {x: 1.26, y: -1.79}
+      - {x: 1.3299999, y: -1.7199999}
+      - {x: 1.3299999, y: 0.68}
+      - {x: 1.3199999, y: 0.78}
+    - - {x: -0.82, y: 0.55}
+      - {x: -0.77, y: 0.76}
+      - {x: -0.69, y: 0.89}
+      - {x: -0.64, y: 0.96999997}
+      - {x: -0.51, y: 1.1}
+      - {x: -0.42, y: 1.16}
+      - {x: -0.29, y: 1.22}
+      - {x: -0.14, y: 1.26}
+      - {x: 0.03, y: 1.28}
+      - {x: 0.04, y: 1.27}
+      - {x: 0.24, y: 1.23}
+      - {x: 0.48, y: 1.11}
+      - {x: 0.59999996, y: 0.98999995}
+      - {x: 0.66999996, y: 0.88}
+      - {x: 0.72999996, y: 0.77}
+      - {x: 0.74, y: 0.71999997}
+      - {x: 0.78, y: 0.58}
+      - {x: 0.78999996, y: 0.53999996}
+      - {x: -0.83, y: 0.53999996}
   m_UseDelaunayMesh: 0
+--- !u!114 &4652734786938548958
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 736268287971015822}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: dac4b4219facfd2468d233611ad2768e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  unLock: {fileID: 11400000, guid: c46693ae32d690846a63cc7a81e0f17e, type: 2}
