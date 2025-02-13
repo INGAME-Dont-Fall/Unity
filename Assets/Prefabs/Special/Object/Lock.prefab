@@ -103,8 +103,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 13e745f9a64dfd8479d18adca30d2ba8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  size: 1
-  index: 5
+  size: 3
+  index: 0
   DifficultyLevel: 1
   isClicked: 0
 --- !u!50 &5951982796594422858
@@ -119,7 +119,7 @@ Rigidbody2D:
   m_Simulated: 1
   m_UseFullKinematicContacts: 0
   m_UseAutoMass: 0
-  m_Mass: 6
+  m_Mass: 2
   m_LinearDamping: 0
   m_AngularDamping: 0.05
   m_GravityScale: 0
@@ -233,4 +233,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dac4b4219facfd2468d233611ad2768e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  unLock: {fileID: 0}
+  unLock: {fileID: 11400000, guid: c46693ae32d690846a63cc7a81e0f17e, type: 2}

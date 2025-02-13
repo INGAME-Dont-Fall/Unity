@@ -8,6 +8,8 @@ TagManager:
   - Object
   - Assist
   - Key
+  - Plant
+  - WateringCan
   layers:
   - Default
   - TransparentFX

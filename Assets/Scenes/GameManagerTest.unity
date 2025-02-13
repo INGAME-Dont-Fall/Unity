@@ -1627,15 +1627,17 @@ MonoBehaviour:
   canvas: {fileID: 1163508609}
   inventory: {fileID: 1222345484}
   square: {fileID: 1921764817355458679, guid: 61bfb61638c0fba449781659a57690bf, type: 3}
-  scoreText: {fileID: 828905268}
-  pointText: {fileID: 1675019477}
-  totalAndRoundscoreText: {fileID: 227268100}
+  scoreToggle: {fileID: 0}
+  transitionManager: {fileID: 0}
+  boardController: {fileID: 0}
   timer: {fileID: 478874112}
+  pointText: {fileID: 1675019477}
   maxTime: 1
   maxPoint: 100
   destroyPrefab: {fileID: 4791227227454387245, guid: 764c783d849bd094ab53fcfbafc34399, type: 3}
-  board: {fileID: 1849435147}
-  targetScore: 2000
+  playSound: {fileID: 0}
+  popSound: {fileID: 0}
+  dropSound: {fileID: 0}
   emptyInventory: []
   objectGroup: {fileID: 1758393940}
 --- !u!4 &587663286
@@ -3016,6 +3018,7 @@ MonoBehaviour:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+  audioSource: {fileID: 0}
   runOnStart: 1
 --- !u!4 &1170620446
 Transform:
@@ -3309,10 +3312,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b7402102aabec684b8c42ef6181b784d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  items:
-  - {fileID: 451724475}
-  - {fileID: 1068816613}
-  initialIndex: 0
+  score: {fileID: 0}
+  point: {fileID: 0}
+  animationDuration: 0
+  flipDistance: {x: 0, y: 0}
+  stackOffset: {x: 0, y: 0}
 --- !u!1 &1322147168
 GameObject:
   m_ObjectHideFlags: 0

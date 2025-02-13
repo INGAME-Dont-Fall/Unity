@@ -4,12 +4,10 @@ using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
 using UnityEngine.SceneManagement;
-using System.Text;
 using System.Linq;
 using DontFall.UI;
 using DontFall.Transition;
 using DontFall.Board;
-using static UnityEngine.Rendering.DebugUI;
 
 [Serializable]
 public class ObjectList
@@ -36,7 +34,7 @@ public class GameManager : MonoBehaviour
     private float currentTime;
     private bool isStart; //스타트 시 활성화
     private Transform boardTransform;
-    private List<GameObject> curObjectsList;
+    private List<ObjectData> curObjectsList;
 
     [SerializeField] GameObject DeadLine;
     [SerializeField] private List<RoundData> roundSO;
@@ -45,6 +43,7 @@ public class GameManager : MonoBehaviour
 
     [SerializeField] private ScoreSO scoreData;
     [SerializeField] private Canvas canvas;
+    [SerializeField] private CanvasGroup canvasGroup;
     [SerializeField] private GameObject inventory;
     [SerializeField] private GameObject square; //인벤토리 한 칸
     [SerializeField] private ScoreToggle scoreToggle;
@@ -67,10 +66,12 @@ public class GameManager : MonoBehaviour
     public Canvas Canvas => canvas;
     public List<GameObject> emptyInventory;
     public GameObject objectGroup;
+    public CanvasGroup CanvasGroup => canvasGroup;
 
     private void Awake()
     {
-        curObjectsList = new List<GameObject>();
+        canvasGroup = canvas.GetComponent<CanvasGroup>();
+        curObjectsList = new List<ObjectData>();
         instance = this;
         ObjectInit();
     }
@@ -189,8 +190,15 @@ public class GameManager : MonoBehaviour
     public void AddObject(ObjectData data)
     {
         GameObject go = Instantiate(square, inventory.transform);
-        curObjectsList.Add(data.ui);
+        curObjectsList.Add(data);
         var ui = Instantiate(data.ui, go.transform).GetComponent<DragUI>();
+        ui.playSound = playSound;
+        ui.dropSound = dropSound;
+    }
+
+    public void RemoveObject()
+    {
+
     }
 
 
@@ -204,12 +212,16 @@ public class GameManager : MonoBehaviour
         {
             Destroy(child.gameObject);
         }
+
         for (int i = 0; i < curObjectsList.Count; i++)
         {
             GameObject go = Instantiate(square, inventory.transform);
 
-            Instantiate(curObjectsList[i], go.transform);
+            var ui = Instantiate(curObjectsList[i].ui, go.transform).GetComponent<DragUI>();
+            ui.playSound = playSound;
+            ui.dropSound = dropSound;
         }
+
         isStart = false;
         isOver = false;
         ScoreUpdate();
@@ -256,7 +268,7 @@ public class GameManager : MonoBehaviour
 
         int index = UnityEngine.Random.Range(0, curObj.Count);
 
-        curObjectsList.Add(curObj[index].ui);
+        curObjectsList.Add(curObj[index]);
         var ui = Instantiate(curObj[index].ui, go.transform).GetComponent<DragUI>();
         ui.playSound = playSound;
         ui.dropSound = dropSound;
