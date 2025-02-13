@@ -8,19 +8,10 @@ public class ScoreUI : MonoBehaviour
     [SerializeField] private TMP_Text textTotalScore;
     [SerializeField] private TMP_Text textRoundScore;
     [SerializeField] private ScoreSO scoreData;
-    [SerializeField] TransitionManager transitionManager;
 
     void Start()
     {
-        textTotalScore.text = "" + scoreData.totalScore;
-        textRoundScore.text = "" + scoreData.roundScore;
-    }
-
-    public void LoadPlayScene()
-    {
-        transitionManager.StartTransition(true, true, ()=>
-        {
-            SceneManager.LoadScene("PlayScene");
-        });
+        textTotalScore.text = string.Format("{0:D6}", scoreData.totalScore);
+        textRoundScore.text = string.Format("{0:D6}", scoreData.roundScore);
     }
 }

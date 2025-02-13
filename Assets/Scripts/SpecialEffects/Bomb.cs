@@ -40,7 +40,12 @@ namespace DontFall.Objects
                 }
             }
 
-            Destroy(gameObject);
+            GetComponent<AudioSource>().Play();
+
+            // Destroy(gameObject);
+            GetComponent<SpriteRenderer>().enabled = false;
+            GetComponent<Collider2D>().enabled = false;
+            GetComponent<Rigidbody2D>().simulated = false;
         }
 
         private void OnDrawGizmosSelected()

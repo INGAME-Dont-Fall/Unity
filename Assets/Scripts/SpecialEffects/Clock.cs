@@ -10,6 +10,13 @@ namespace DontFall.Objects
 
         [SerializeField] private bool debugStart;
 
+        private bool isFirstShake;
+
+        private void Awake()
+        {
+            isFirstShake = true;
+        }
+
         private void Start()
         {
             GameManager.Instance.GameEnd += StopShaking;
@@ -38,11 +45,19 @@ namespace DontFall.Objects
             var shakeDirection = Random.insideUnitCircle;
 
             rigidbody.MovePosition((Vector2)transform.position + shakeSize * shakeDirection);
+
+            if (isFirstShake)
+            {
+                GetComponent<AudioSource>().Play();
+
+                isFirstShake = false;
+            }
         }
 
         private void StopShaking()
         {
             CancelInvoke();
+            GetComponent<AudioSource>().Stop();
         }
 
         private void OnDrawGizmosSelected()
