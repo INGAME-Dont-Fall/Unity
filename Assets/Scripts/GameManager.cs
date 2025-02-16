@@ -371,7 +371,7 @@ public class GameManager : MonoBehaviour
     public void ScoreUpdate()
     {
         scoreToggle.Score = totalScore;
-        scoreToggle.Point = (score, targetScore);
+        scoreToggle.Point = score;
     }
 
     public void PointUpdate()

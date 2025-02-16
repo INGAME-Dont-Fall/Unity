@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 9198340017141220883}
   - component: {fileID: 5951982796594422858}
   - component: {fileID: 697866804246295647}
+  - component: {fileID: 7806812579700272512}
   m_Layer: 0
   m_Name: WateringCan
   m_TagString: WateringCan
@@ -171,7 +172,7 @@ PolygonCollider2D:
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 6.91, y: 4.47}
+    oldSize: {x: 6.8999996, y: 4.48}
     newSize: {x: 4.46, y: 1.35}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
@@ -305,3 +306,15 @@ PolygonCollider2D:
       - {x: 1.3121095, y: 0.9756253}
       - {x: -0.6097655, y: 0.9756253}
   m_UseDelaunayMesh: 0
+--- !u!114 &7806812579700272512
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 736268287971015822}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e0e307ebad3ed5f42b079a3e99c1115d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

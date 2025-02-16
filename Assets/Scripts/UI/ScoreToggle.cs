@@ -42,18 +42,15 @@ namespace DontFall.UI
             }
         }
 
-        public (int point, int quota) Point
+        public int Point
         {
             get
             {
-                string pointText = PointText;
-                int point = int.Parse(pointText);
-                int quota = int.Parse(pointText.Substring(pointText.IndexOf('/') + 1));
-                return (point, quota);
+                return int.Parse(PointText);
             }
             set
             {
-                PointText = string.Format("{0:D6} / {1:D6}", value.point, value.quota);
+                PointText = string.Format("{0:D6}", value);
             }
         }
 
