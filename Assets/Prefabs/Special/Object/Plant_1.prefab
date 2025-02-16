@@ -16,7 +16,7 @@ GameObject:
   - component: {fileID: -568767397676884354}
   m_Layer: 0
   m_Name: Plant_1
-  m_TagString: Object
+  m_TagString: Plant
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -172,7 +172,7 @@ PolygonCollider2D:
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 2.97, y: 3.98}
+    oldSize: {x: 2.95, y: 3.96}
     newSize: {x: 4.46, y: 1.35}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
