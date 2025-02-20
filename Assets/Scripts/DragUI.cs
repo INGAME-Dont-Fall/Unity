@@ -14,13 +14,17 @@ public class DragUI : MonoBehaviour, IBeginDragHandler, IEndDragHandler, IDragHa
 
     public DontFall.PlaySound playSound;
     public AudioClip dropSound;
-
+    
+    private GameObject inventory;
     private CanvasGroup canvasGroup;
     private GameObject currentDraggedObject;
     private Canvas canvas;  // 오브젝트를 드랍할 UI 캔버스
+    private Vector3 defaultPosition;
 
     private void Awake()
     {
+        inventory = GameManager.Instance.InventoryArea;
+        defaultPosition = gameObject.transform.localPosition;
         canvas = GameManager.Instance.Canvas;
         canvasGroup = canvas.GetComponent<CanvasGroup>();
     }
@@ -30,10 +34,8 @@ public class DragUI : MonoBehaviour, IBeginDragHandler, IEndDragHandler, IDragHa
     {
         if (eventData.button == PointerEventData.InputButton.Left)
         {
-            //부모 오브젝트는 인벤토리의 빈칸이 됨
-            GameObject go = transform.parent.gameObject;
-            GameManager.Instance.emptyInventory.Add(go);
             canvasGroup.blocksRaycasts = false;
+
             //이미지는 끄고 정해진 오브젝트를 생성
             gameObject.GetComponent<Image>().enabled = false;
             currentDraggedObject = Instantiate(GameManager.Instance.Objects[(int)size].objectList[index].go, GameManager.Instance.objectGroup.transform);
@@ -61,8 +63,6 @@ public class DragUI : MonoBehaviour, IBeginDragHandler, IEndDragHandler, IDragHa
     //드래그 끝날 때 호출
     public void OnEndDrag(PointerEventData eventData)
     {
-        bool returning = false;
-
         if (eventData.button == PointerEventData.InputButton.Left)
         {
             if (currentDraggedObject != null)
@@ -70,48 +70,29 @@ public class DragUI : MonoBehaviour, IBeginDragHandler, IEndDragHandler, IDragHa
                 currentDraggedObject.GetComponent<DragObj>().InputDisable();
                 currentDraggedObject.GetComponent<Collider2D>().isTrigger = false;
 
-                for (int i = GameManager.Instance.emptyInventory.Count - 1; i >= 0; i--)
+                //다시 집어 넣기
+                if (RectTransformUtility.RectangleContainsScreenPoint(inventory.GetComponent<RectTransform>(), Mouse.current.position.ReadValue(), canvas.worldCamera))
                 {
-                    GameObject go = GameManager.Instance.emptyInventory[i];
+                    gameObject.transform.localPosition = defaultPosition;
+                    gameObject.GetComponent<Image>().enabled = true;
+                    Destroy(currentDraggedObject);
 
-                    if (go != null)
-                    {
-                        if (RectTransformUtility.RectangleContainsScreenPoint(go.GetComponent<RectTransform>(), Mouse.current.position.ReadValue(), canvas.worldCamera))
-                        {
-                            GameObject newUIObject = null;
-
-                            // UI 프리팹을 생성하고 해당 UI에 종속시킴
-                            newUIObject = Instantiate(GameManager.Instance.Objects[(int)size].objectList[index].ui, go.transform);
-
-                            if (newUIObject is not null)
-                            {
-                                var ui = newUIObject.GetComponent<DragUI>();
-                                ui.index = index;
-                                ui.playSound = playSound;
-                                ui.dropSound = dropSound;
-                            }
-
-                            //칸이 찼으니까 삭제
-                            GameManager.Instance.emptyInventory.Remove(go);
-                            Destroy(currentDraggedObject);
-
-                            returning = true;
-                        }
-                    }
-                }
-
-                currentDraggedObject.GetComponent<SpriteRenderer>().sortingLayerName = "Object";
-                currentDraggedObject.GetComponent<DragObj>().isClicked = false;
-                currentDraggedObject.GetComponent<Rigidbody2D>().gravityScale = 1.0f;
-                currentDraggedObject.transform.SendMessage("ItemDrop", SendMessageOptions.DontRequireReceiver);
-
-                if (!returning)
-                {
                     playSound.Play(dropSound);
-                }
 
-                canvasGroup.blocksRaycasts = true;
-                Destroy(gameObject);
+                    canvasGroup.blocksRaycasts = true;
+                }
+                else
+                {
+                    currentDraggedObject.GetComponent<SpriteRenderer>().sortingLayerName = "Object";
+                    currentDraggedObject.GetComponent<DragObj>().isClicked = false;
+                    currentDraggedObject.GetComponent<Rigidbody2D>().gravityScale = 1.0f;
+                    GameManager.Instance.IncreaseItemsCount();
+                    currentDraggedObject.transform.SendMessage("ItemDrop", SendMessageOptions.DontRequireReceiver);
+
+                    canvasGroup.blocksRaycasts = true;
+
+                    Destroy(transform.parent.gameObject);
+                }
             }
         }
     }

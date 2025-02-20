@@ -4,6 +4,7 @@ namespace DontFall.UI
 {
     public class OverlayController : MonoBehaviour
     {
+        [SerializeField] private RectTransform openButtonTransform;
         [SerializeField] private bool initiallyShowing;
         [SerializeField] private AnimationCurve interpolationCurve;
         [SerializeField] private float interpolationSpeed;
@@ -12,12 +13,23 @@ namespace DontFall.UI
         private Vector2 previous;
         private Vector2 target;
         private float animationTimer;
+        private Quaternion defaultRotation;
+
+        public bool Showing => showing;
 
         private void Awake()
         {
+            defaultRotation = openButtonTransform.rotation;
             showing = initiallyShowing;
             previous = target = (transform as RectTransform).pivot;
             animationTimer = 1;
+        }
+
+        private void OnEnable()
+        {
+            showing = initiallyShowing;
+            target = new Vector2(0.0f, 0.5f);
+            openButtonTransform.rotation = defaultRotation;
         }
 
         private void Update()
@@ -48,6 +60,12 @@ namespace DontFall.UI
                 target.x = 0;
             }
             animationTimer = 0;
+            ClickButton();
+        }
+
+        public void ClickButton()
+        {
+            openButtonTransform.Rotate(0, 0, 180);
         }
     }
 }

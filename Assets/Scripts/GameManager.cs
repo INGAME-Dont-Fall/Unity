@@ -8,6 +8,7 @@ using System.Linq;
 using DontFall.UI;
 using DontFall.Transition;
 using DontFall.Board;
+using UnityEngine.UI;
 
 [Serializable]
 public class ObjectList
@@ -20,12 +21,13 @@ public class ObjectList
 public class GameManager : MonoBehaviour
 {
     private static GameManager instance;
-
+    
+    private int itemsCount;
+    private int targetItemsCount;
     private int small = 0;
     private int medium = 0;
     private int high = 0;
     private int special = 0;
-    private int targetScore; //해당 라운드 타겟 스코어
     private int currentRound = 1;
     private int totalScore = 0; //전체 스코어
     private int score; //현재 라운드에 선반 위에 올려진 물체에 매겨진 점수 합산
@@ -35,16 +37,20 @@ public class GameManager : MonoBehaviour
     private bool isStart; //스타트 시 활성화
     private Transform boardTransform;
     private List<ObjectData> curObjectsList;
+    private OverlayController overlayController;
 
     [SerializeField] GameObject DeadLine;
     [SerializeField] private List<RoundData> roundSO;
     [SerializeField] private ObjectList[] objects;
     [SerializeField] private int objectCount;
 
+    [SerializeField] private GameObject startButton;
     [SerializeField] private ScoreSO scoreData;
+    [SerializeField] private GameObject itmes;
     [SerializeField] private Canvas canvas;
     [SerializeField] private CanvasGroup canvasGroup;
     [SerializeField] private GameObject inventory;
+    [SerializeField] private GameObject inventoryArea;
     [SerializeField] private GameObject square; //인벤토리 한 칸
     [SerializeField] private ScoreToggle scoreToggle;
     [SerializeField] private TransitionManager transitionManager;
@@ -64,15 +70,16 @@ public class GameManager : MonoBehaviour
     public ObjectList[] Objects => objects;
 
     public Canvas Canvas => canvas;
-    public List<GameObject> emptyInventory;
     public GameObject objectGroup;
     public CanvasGroup CanvasGroup => canvasGroup;
+    public GameObject InventoryArea => inventoryArea;
 
     public event Action GameStart;
     public event Action GameEnd;
 
     private void Awake()
     {
+        overlayController = InventoryArea.GetComponent<OverlayController>();
         canvasGroup = canvas.GetComponent<CanvasGroup>();
         curObjectsList = new List<ObjectData>();
         instance = this;
@@ -86,8 +93,12 @@ public class GameManager : MonoBehaviour
 
     private void RoundStart()
     {
+        targetItemsCount = (currentRound - 1) % 5 + 3;
+        startButton.SetActive(false);
+        itemsCount = 0;
+        inventoryArea.SetActive(true);
         boardController.Moving = false;
-        maxPoint = 50 + (currentRound - 1) * 20;
+        maxPoint = 30 + (currentRound - 1) * 5;
         curObjectsList.Clear();
         DeadLine.GetComponent<BoxCollider2D>().isTrigger = false;
 
@@ -104,8 +115,6 @@ public class GameManager : MonoBehaviour
         PointUpdate();
         currentTime = maxTime;
         TimerUpdate();
-
-
     }
 
     private void SetRoundProbability()
@@ -141,14 +150,6 @@ public class GameManager : MonoBehaviour
             special += curData.specialProbability + adjustmentValue;
         }
 
-        float draws = maxPoint / 10.0f;
-        float smallTargetScore = small / 100.0f * draws;
-        float mediumTargetScore = medium / 100.0f * draws * 50.0f;
-        float highTargetScore = high / 100.0f * draws * 450.0f;
-        float specialTargetScore = special / 100.0f * draws;
-
-        targetScore = currentRound * Mathf.FloorToInt(smallTargetScore + mediumTargetScore + highTargetScore);
-
         medium += small;
         high += medium;
         special += high;
@@ -164,6 +165,8 @@ public class GameManager : MonoBehaviour
 
     private void SetStart()
     {
+        inventoryArea.SetActive(false);
+
         isStart = true;
         boardController.Moving = true;
         DeadLine.GetComponent<BoxCollider2D>().isTrigger = true;
@@ -199,6 +202,24 @@ public class GameManager : MonoBehaviour
         var ui = Instantiate(data.ui, go.transform).GetComponent<DragUI>();
         ui.playSound = playSound;
         ui.dropSound = dropSound;
+    }
+
+    public void DecreaseItemsCount()
+    {
+        itemsCount--;
+        if(itemsCount < targetItemsCount)
+        {
+            startButton.SetActive(false);
+        }
+    }
+
+    public void IncreaseItemsCount()
+    {
+        itemsCount++;
+        if (itemsCount >= targetItemsCount)
+        {
+            startButton.SetActive(true);
+        }
     }
 
     public void RemoveObject()
@@ -332,12 +353,10 @@ public class GameManager : MonoBehaviour
         ScoreUpdate();
         yield return new WaitForSeconds(1f);
 
-        clear = clear && score > targetScore;
         if (clear) //다음 라운드 진행
         {
             transitionManager.StartTransition(true, true, () => {
                 Debug.Log("클리어");
-                GameManager.Instance.emptyInventory.Clear();
                 totalScore += score;
                 score = 0;
                 currentRound++;
@@ -358,8 +377,20 @@ public class GameManager : MonoBehaviour
     //초기화 버튼 이벤트
     public void Restart()
     {
+        if(objectGroup.transform.childCount == 0)
+        {
+            return;
+        }
+        if (point <= 0)
+        {
+            point = 0;
+            return;
+        }
+        point -= 5;
+
         foreach (Transform obj in objectGroup.transform)
         {
+            DecreaseItemsCount();
             obj.GetComponent<DragObj>().InputDisable();
             Destroy(obj.gameObject);
         }

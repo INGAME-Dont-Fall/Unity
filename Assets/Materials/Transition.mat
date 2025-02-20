@@ -63,10 +63,10 @@ Material:
     - _Angle: 0.7853982
     - _EnableExternalAlpha: 0
     - _Inverse: 1
-    - _Invert: 1
+    - _Invert: 0
     - _LinearAngle: 0.7853982
-    - _Progress: 0.01143018
-    - _Reverse: 0
+    - _Progress: 1
+    - _Reverse: 1
     - _TYPE: 0
     - _ZWrite: 0
     m_Colors:

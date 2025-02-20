@@ -18,6 +18,7 @@ public class Key : MonoBehaviour
                 if(overlapped.CompareTag("Lock"))
                 {
                     overlapped.gameObject.GetComponent<Lock>().GetKey();
+                    GameManager.Instance.DecreaseItemsCount();
                     Destroy(gameObject);
                 }
             }

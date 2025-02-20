@@ -175,6 +175,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9bf5fe0d9ede524a2ae75bbe85db22bf, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  openButtonTransform: {fileID: 2039029808}
   initiallyShowing: 0
   interpolationCurve:
     serializedVersion: 2
@@ -1626,10 +1627,13 @@ MonoBehaviour:
   - size: 4
     objectList: []
   objectCount: 10
+  startButton: {fileID: 1884993716}
   scoreData: {fileID: 11400000, guid: 3501d4c82185f184da1e63863d7a2882, type: 2}
+  itmes: {fileID: 0}
   canvas: {fileID: 1163508609}
   canvasGroup: {fileID: 0}
   inventory: {fileID: 1222345484}
+  inventoryArea: {fileID: 39976641}
   square: {fileID: 1921764817355458679, guid: 61bfb61638c0fba449781659a57690bf, type: 3}
   scoreToggle: {fileID: 1252464585}
   transitionManager: {fileID: 1170620445}
@@ -1642,7 +1646,6 @@ MonoBehaviour:
   playSound: {fileID: 1137475561}
   popSound: {fileID: 8300000, guid: bc42d51929043a99eab8470c2d460030, type: 3}
   dropSound: {fileID: 8300000, guid: 6964d2fbfc5f20d5197d6732fe1f30b5, type: 3}
-  emptyInventory: []
   objectGroup: {fileID: 1758393940}
 --- !u!4 &587663286
 Transform:
@@ -5266,18 +5269,6 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-      - m_Target: {fileID: 2039029811}
-        m_TargetAssemblyTypeName: OpenRotate, Assembly-CSharp
-        m_MethodName: RotateImage
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
 --- !u!1 &1849435147
 GameObject:
   m_ObjectHideFlags: 0
@@ -5822,7 +5813,6 @@ GameObject:
   - component: {fileID: 2039029808}
   - component: {fileID: 2039029810}
   - component: {fileID: 2039029809}
-  - component: {fileID: 2039029811}
   m_Layer: 5
   m_Name: Image
   m_TagString: Untagged
@@ -5887,19 +5877,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2039029807}
   m_CullTransparentMesh: 1
---- !u!114 &2039029811
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2039029807}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9ca061fc991529f47b750dba3640da7a, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  imageTransform: {fileID: 2039029808}
 --- !u!1 &2049232599
 GameObject:
   m_ObjectHideFlags: 0
