@@ -4,9 +4,12 @@ namespace DontFall.UI
 {
     public class Settings : MonoBehaviour
     {
+        [SerializeField] private bool startClosed;
+
         private void Awake()
         {
-            CloseOption();
+            if (startClosed)
+                CloseOption();
         }
 
         public void OpenOption()
