@@ -11,6 +11,7 @@ TagManager:
   - Plant
   - WateringCan
   - Lock
+  - FishTank
   layers:
   - Default
   - TransparentFX
