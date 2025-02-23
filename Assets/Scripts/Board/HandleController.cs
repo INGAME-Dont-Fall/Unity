@@ -18,7 +18,7 @@ namespace DontFall.Board
 
         void IDragHandler.OnDrag(PointerEventData pointer)
         {
-            if (board != null && !board.Moving)
+            if (pointer.button == PointerEventData.InputButton.Left && board != null && !board.Moving)
             {
                 Vector2 pos = Camera.main.ScreenToWorldPoint(pointer.position);
 
