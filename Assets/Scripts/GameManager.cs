@@ -56,6 +56,7 @@ public class GameManager : MonoBehaviour
     [SerializeField] private TransitionManager transitionManager;
     [SerializeField] private BoardController boardController;
     [SerializeField] private TMP_Text timer;
+    [SerializeField] private TMP_Text itemCountDisplay;
     [SerializeField] private TMP_Text pointText;
     [SerializeField] private float maxTime = 30.00f;
     [SerializeField] private int maxPoint; //초기에 주어지는 포인트
@@ -115,6 +116,7 @@ public class GameManager : MonoBehaviour
         PointUpdate();
         currentTime = maxTime;
         TimerUpdate();
+        ItemCountUpdate();
     }
 
     private void SetRoundProbability()
@@ -207,6 +209,7 @@ public class GameManager : MonoBehaviour
     public void DecreaseItemsCount()
     {
         itemsCount--;
+        ItemCountUpdate();
         if(itemsCount < targetItemsCount)
         {
             startButton.SetActive(false);
@@ -216,6 +219,7 @@ public class GameManager : MonoBehaviour
     public void IncreaseItemsCount()
     {
         itemsCount++;
+        ItemCountUpdate();
         if (itemsCount >= targetItemsCount)
         {
             startButton.SetActive(true);
@@ -438,5 +442,10 @@ public class GameManager : MonoBehaviour
             isStart = false;
             StartCoroutine(GameOverRoutine(true));
         }
+    }
+
+    public void ItemCountUpdate()
+    {
+        itemCountDisplay.text = $"{itemsCount}/{targetItemsCount}";
     }
 }
