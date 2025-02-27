@@ -94,14 +94,13 @@ public class GameManager : MonoBehaviour
     private void RoundStart()
     {
         startButton.SetActive(false);
-        itemsCount = 0;
         inventoryArea.SetActive(true);
         boardController.Moving = false;
         maxPoint = 30 + (currentRound - 1) * 5;
         curObjectsList.Clear();
         DeadLine.GetComponent<BoxCollider2D>().isTrigger = false;
 
-        Debug.Log(targetItemsCount);
+        itemsCount = 0;
         targetItemsCount = ((currentRound - 1) / 5) + 2;
 
         //인벤토리를 다 비운다.
@@ -208,7 +207,9 @@ public class GameManager : MonoBehaviour
     public void IncreaseItemsCount()
     {
         itemsCount++;
-        
+
+        Debug.Log(itemsCount);
+
         if (itemsCount >= targetItemsCount)
         {
             startButton.SetActive(true);
