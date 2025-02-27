@@ -2446,6 +2446,8 @@ MonoBehaviour:
     - {fileID: 11400000, guid: 18788230843ac4d4796029364b57986c, type: 2}
     - {fileID: 11400000, guid: 9517b2b2ea5e5354f8e19620672f40e1, type: 2}
     - {fileID: 11400000, guid: b71a61c53573d9b43bbc8da5962f39b2, type: 2}
+    - {fileID: 11400000, guid: 5629cacde99deb34ab13168ba6b0b313, type: 2}
+    - {fileID: 11400000, guid: 44af730ec2aa20948a0bd812b9db2851, type: 2}
   - size: 1
     objectList:
     - {fileID: 11400000, guid: 5edb0340050806d4791d00b4501bc77f, type: 2}
@@ -2454,6 +2456,8 @@ MonoBehaviour:
     - {fileID: 11400000, guid: e09d74a199ef39649b4be75258815c9b, type: 2}
     - {fileID: 11400000, guid: 11a845b8170b91b45ada564437c2d6ad, type: 2}
     - {fileID: 11400000, guid: 25b999e5df834ec4da74bd211701a3d2, type: 2}
+    - {fileID: 11400000, guid: d177fd0fa9e0aef4a9132e2874fd4563, type: 2}
+    - {fileID: 11400000, guid: c8281299d12731b4f949d3e91a298742, type: 2}
   - size: 2
     objectList:
     - {fileID: 11400000, guid: eaa449b029792704b93bb7efe2df9fff, type: 2}
@@ -2469,6 +2473,10 @@ MonoBehaviour:
     - {fileID: 11400000, guid: 1d31abf07b1b96e4b80cdbe0e93d9795, type: 2}
     - {fileID: 11400000, guid: cd7e9869f9f51444db87564dae9c17be, type: 2}
     - {fileID: 11400000, guid: b46eb8fd974081747b02c43af4b0a5c3, type: 2}
+    - {fileID: 11400000, guid: 907d8d1ee44c67e4985ee92ff428164c, type: 2}
+    - {fileID: 11400000, guid: c46693ae32d690846a63cc7a81e0f17e, type: 2}
+    - {fileID: 11400000, guid: 7647940bc90ca714ba4bdc25aaae13e1, type: 2}
+    - {fileID: 11400000, guid: c004c607b2af09d4eb4846e5b08bb80a, type: 2}
   - size: 4
     objectList: []
   objectCount: 10
@@ -7442,7 +7450,7 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-      - m_Target: {fileID: 2039029811}
+      - m_Target: {fileID: 0}
         m_TargetAssemblyTypeName: OpenRotate, Assembly-CSharp
         m_MethodName: RotateImage
         m_Mode: 1

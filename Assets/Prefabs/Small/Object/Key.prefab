@@ -131,7 +131,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   size: 0
-  index: 0
+  index: 19
   DifficultyLevel: 1
   isClicked: 0
 --- !u!60 &5910376022086897345

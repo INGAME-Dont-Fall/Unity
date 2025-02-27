@@ -103,8 +103,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 13e745f9a64dfd8479d18adca30d2ba8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  size: 0
-  index: 0
+  size: 1
+  index: 7
   DifficultyLevel: 7
   isClicked: 0
 --- !u!60 &4889095215689822735
