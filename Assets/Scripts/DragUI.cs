@@ -40,7 +40,10 @@ public class DragUI : MonoBehaviour, IBeginDragHandler, IEndDragHandler, IDragHa
             gameObject.GetComponent<Image>().enabled = false;
             currentDraggedObject = Instantiate(GameManager.Instance.Objects[(int)size].objectList[index].go, GameManager.Instance.objectGroup.transform);
 
-            currentDraggedObject.GetComponent<Collider2D>().isTrigger = true;
+            if(currentDraggedObject.GetComponent<Collider2D>() != null)
+            {
+                currentDraggedObject.GetComponent<Collider2D>().isTrigger = true;
+            }
             currentDraggedObject.GetComponent<DragObj>().index = index;
             currentDraggedObject.GetComponent<DragObj>().isClicked = true;
         }
@@ -68,7 +71,10 @@ public class DragUI : MonoBehaviour, IBeginDragHandler, IEndDragHandler, IDragHa
             if (currentDraggedObject != null)
             {
                 currentDraggedObject.GetComponent<DragObj>().InputDisable();
-                currentDraggedObject.GetComponent<Collider2D>().isTrigger = false;
+                if (currentDraggedObject.GetComponent<Collider2D>() != null)
+                {
+                    currentDraggedObject.GetComponent<Collider2D>().isTrigger = false;
+                }
 
                 //다시 집어 넣기
                 if (RectTransformUtility.RectangleContainsScreenPoint(inventory.GetComponent<RectTransform>(), Mouse.current.position.ReadValue(), canvas.worldCamera))
@@ -83,13 +89,15 @@ public class DragUI : MonoBehaviour, IBeginDragHandler, IEndDragHandler, IDragHa
                 }
                 else
                 {
-                    currentDraggedObject.GetComponent<SpriteRenderer>().sortingLayerName = "Object";
+                    currentDraggedObject.GetComponentInChildren<SpriteRenderer>().sortingLayerName = "Object";
                     currentDraggedObject.GetComponent<DragObj>().isClicked = false;
                     currentDraggedObject.GetComponent<Rigidbody2D>().gravityScale = 1.0f;
                     GameManager.Instance.IncreaseItemsCount();
                     currentDraggedObject.transform.SendMessage("ItemDrop", SendMessageOptions.DontRequireReceiver);
 
                     canvasGroup.blocksRaycasts = true;
+
+                    GameManager.Instance.IncreaseItemsCount();
 
                     Destroy(transform.parent.gameObject);
                 }

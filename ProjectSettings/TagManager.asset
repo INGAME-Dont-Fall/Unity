@@ -12,6 +12,7 @@ TagManager:
   - WateringCan
   - Lock
   - FishTank
+  - UmbrellaStand
   layers:
   - Default
   - TransparentFX

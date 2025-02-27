@@ -1,17 +1,29 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.EventSystems;
+using static UnityEngine.RuleTile.TilingRuleOutput;
 
 public class Fish : MonoBehaviour
 {
+    [SerializeField] private Collider2D fish;
+
     private List<Collider2D> overlapResults = new List<Collider2D>();
+    private Animator animator;
+
+    private void Awake()
+    {
+        animator = GetComponent<Animator>();
+        fish.isTrigger = true;
+    }
 
     public void ItemDrop()
     {
         ContactFilter2D filter = new ContactFilter2D();
         filter.NoFilter();
 
-        int count = GetComponent<Collider2D>().Overlap(filter, overlapResults);
+        fish.isTrigger = false;
+
+        int count = fish.Overlap(filter, overlapResults);
 
         if (count > 0)
         {
@@ -19,12 +31,16 @@ public class Fish : MonoBehaviour
             {
                 if (overlapped.CompareTag("FishTank"))
                 {
-                    Destroy(GetComponent<Rigidbody2D>());
-                    Destroy(GetComponent<Collider2D>());
+                    fish.isTrigger = true;
+
+                    GetComponent<Rigidbody2D>().simulated = false;
+
+                    animator.SetTrigger("Stop");
                     transform.SetParent(overlapped.transform);
-                    overlapped.transform.localPosition = Vector3.zero;
-                    overlapped.transform.localRotation = Quaternion.identity;
-                    GameManager.Instance.DecreaseItemsCount();
+                    transform.localPosition = new Vector3(0.0f, -0.5f, 0.0f);
+                    transform.localScale = new Vector3(0.13f, 0.13f, 0.13f);
+                    transform.localRotation = Quaternion.identity;
+
                     Destroy(this);
                 }
             }
