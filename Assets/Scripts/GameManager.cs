@@ -93,7 +93,6 @@ public class GameManager : MonoBehaviour
 
     private void RoundStart()
     {
-        targetItemsCount = (currentRound - 1) % 5 + 3;
         startButton.SetActive(false);
         itemsCount = 0;
         inventoryArea.SetActive(true);
@@ -101,6 +100,9 @@ public class GameManager : MonoBehaviour
         maxPoint = 30 + (currentRound - 1) * 5;
         curObjectsList.Clear();
         DeadLine.GetComponent<BoxCollider2D>().isTrigger = false;
+
+        Debug.Log(targetItemsCount);
+        targetItemsCount = ((currentRound - 1) / 5) + 2;
 
         //인벤토리를 다 비운다.
         foreach (Transform child in inventory.transform)
@@ -203,19 +205,10 @@ public class GameManager : MonoBehaviour
         ui.playSound = playSound;
         ui.dropSound = dropSound;
     }
-
-    public void DecreaseItemsCount()
-    {
-        itemsCount--;
-        if(itemsCount < targetItemsCount)
-        {
-            startButton.SetActive(false);
-        }
-    }
-
     public void IncreaseItemsCount()
     {
         itemsCount++;
+        
         if (itemsCount >= targetItemsCount)
         {
             startButton.SetActive(true);
@@ -269,6 +262,7 @@ public class GameManager : MonoBehaviour
         point -= 10;
 
         PointUpdate();
+        startButton.SetActive(false);
 
         int random = UnityEngine.Random.Range(0, 100);
         List<ObjectData> curObj = null;
@@ -335,6 +329,13 @@ public class GameManager : MonoBehaviour
         //모든 오브젝트에 접근해서 하나씩 지우기
         foreach (var obj in objs)
         {
+            if(obj.transform.childCount >= 1)
+            {
+                foreach (Transform child in obj.transform)
+                {
+                    score += ((int)child.gameObject.GetComponent<Rigidbody2D>().mass * obj.GetComponent<DragObj>().DifficultyLevel * currentRound);
+                }
+            }
             //물체가 가진 고유 포인트 합산
             score += ((int)obj.GetComponent<Rigidbody2D>().mass * obj.GetComponent<DragObj>().DifficultyLevel * currentRound);
             //오브젝트 삭제
@@ -381,16 +382,21 @@ public class GameManager : MonoBehaviour
         {
             return;
         }
+
+        itemsCount = 0;
+
         if (point <= 0)
         {
             point = 0;
+            PointUpdate();
             return;
         }
+
         point -= 5;
+        PointUpdate();
 
         foreach (Transform obj in objectGroup.transform)
         {
-            DecreaseItemsCount();
             obj.GetComponent<DragObj>().InputDisable();
             Destroy(obj.gameObject);
         }

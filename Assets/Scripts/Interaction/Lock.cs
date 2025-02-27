@@ -9,7 +9,6 @@ public class Lock : MonoBehaviour
     {
         GameManager.Instance.AddObject(unLock);
         GameManager.Instance.CanvasGroup.blocksRaycasts = true;
-        GameManager.Instance.DecreaseItemsCount();
         Destroy(gameObject);
     }
 }
