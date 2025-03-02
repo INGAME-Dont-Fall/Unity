@@ -4,5 +4,5 @@ using UnityEngine;
 public class ScoreSO : ScriptableObject
 {
     public int totalScore;
-    public int roundScore;
+    public int round;
 }

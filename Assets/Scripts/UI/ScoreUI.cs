@@ -12,6 +12,6 @@ public class ScoreUI : MonoBehaviour
     void Start()
     {
         textTotalScore.text = string.Format("{0:D6}", scoreData.totalScore);
-        textRoundScore.text = string.Format("{0:D6}", scoreData.roundScore);
+        textRoundScore.text = string.Format("{0:D6}", scoreData.round);
     }
 }

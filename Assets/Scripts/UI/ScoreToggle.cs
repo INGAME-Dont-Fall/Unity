@@ -42,7 +42,7 @@ namespace DontFall.UI
             }
         }
 
-        public int Point
+        public int Round
         {
             get
             {
@@ -50,7 +50,7 @@ namespace DontFall.UI
             }
             set
             {
-                PointText = string.Format("{0:D6}", value);
+                PointText = string.Format("Round {0}", value);
             }
         }
 

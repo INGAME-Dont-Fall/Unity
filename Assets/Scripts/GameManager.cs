@@ -99,6 +99,7 @@ public class GameManager : MonoBehaviour
         maxPoint = 30 + (currentRound - 1) * 5;
         curObjectsList.Clear();
         DeadLine.GetComponent<BoxCollider2D>().isTrigger = false;
+        scoreToggle.Round = currentRound;
 
         itemsCount = 0;
         targetItemsCount = ((currentRound - 1) / 5) + 2;
@@ -269,6 +270,7 @@ public class GameManager : MonoBehaviour
         if(point <= 0)
         {
             point = 0;
+            PointUpdate();
             return;
         }
         point -= 10;
@@ -364,7 +366,8 @@ public class GameManager : MonoBehaviour
 
         //마지막으로 남은 포인트까지 합산
         score += (point * currentRound);
-   
+        totalScore += score;
+
         ScoreUpdate();
         yield return new WaitForSeconds(1f);
 
@@ -372,7 +375,6 @@ public class GameManager : MonoBehaviour
         {
             transitionManager.StartTransition(true, true, () => {
                 Debug.Log("클리어");
-                totalScore += score;
                 score = 0;
                 currentRound++;
                 RoundStart();
@@ -383,7 +385,7 @@ public class GameManager : MonoBehaviour
         {
             transitionManager.StartTransition(true, true, () => {
                 scoreData.totalScore = totalScore;
-                scoreData.roundScore = score;
+                scoreData.round = currentRound;
                 SceneManager.LoadScene("GameOverScene");
             });
         }
@@ -423,7 +425,6 @@ public class GameManager : MonoBehaviour
     public void ScoreUpdate()
     {
         scoreToggle.Score = totalScore;
-        scoreToggle.Point = score;
     }
 
     public void PointUpdate()
