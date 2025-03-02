@@ -9,6 +9,8 @@ using DontFall.UI;
 using DontFall.Transition;
 using DontFall.Board;
 using UnityEngine.UI;
+using NUnit.Framework.Internal;
+using static UnityEngine.Rendering.DebugUI;
 
 [Serializable]
 public class ObjectList
@@ -39,6 +41,7 @@ public class GameManager : MonoBehaviour
     private List<ObjectData> curObjectsList;
     private OverlayController overlayController;
 
+    [SerializeField] private TMP_Text objectCountText;
     [SerializeField] private Slider zoom;
     [SerializeField] private GameObject DeadLine;
     [SerializeField] private List<RoundData> roundSO;
@@ -94,6 +97,7 @@ public class GameManager : MonoBehaviour
 
     private void RoundStart()
     {
+        Camera.main.transform.position = new Vector3(0, 0, -10);
         zoom.value = 13;
         startButton.SetActive(false);
         inventoryArea.SetActive(true);
@@ -101,10 +105,12 @@ public class GameManager : MonoBehaviour
         maxPoint = 30 + (currentRound - 1) * 5;
         curObjectsList.Clear();
         DeadLine.GetComponent<BoxCollider2D>().isTrigger = false;
+        DeadLine.GetComponent<BoxCollider2D>().enabled = false;
         scoreToggle.Round = currentRound;
 
         itemsCount = 0;
         targetItemsCount = ((currentRound - 1) / 5) + 2;
+        UpdateObjectCount();
 
         //인벤토리를 다 비운다.
         foreach (Transform child in inventory.transform)
@@ -166,12 +172,17 @@ public class GameManager : MonoBehaviour
         }
     }
 
+    private void UpdateObjectCount()
+    {
+        objectCountText.text = string.Format("{0}/{1}", itemsCount, targetItemsCount);
+    }
+
     private void SetStart()
     {
         inventoryArea.SetActive(false);
-
         isStart = true;
         boardController.Moving = true;
+        DeadLine.GetComponent<BoxCollider2D>().enabled = true;
         DeadLine.GetComponent<BoxCollider2D>().isTrigger = true;
 
         GameStart?.Invoke();
@@ -226,9 +237,7 @@ public class GameManager : MonoBehaviour
     public void IncreaseItemsCount()
     {
         itemsCount++;
-
-        Debug.Log(itemsCount);
-
+        UpdateObjectCount();
         if (itemsCount >= targetItemsCount)
         {
             startButton.SetActive(true);
@@ -401,6 +410,7 @@ public class GameManager : MonoBehaviour
         }
 
         itemsCount = 0;
+        UpdateObjectCount();
         startButton.SetActive(false);
 
         if (point < 5)

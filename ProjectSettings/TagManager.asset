@@ -15,6 +15,7 @@ TagManager:
   - UmbrellaStand
   - UnLock
   - Daruma
+  - Board
   layers:
   - Default
   - TransparentFX
