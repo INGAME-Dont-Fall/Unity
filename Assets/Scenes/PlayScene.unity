@@ -1361,7 +1361,7 @@ BoxCollider2D:
   m_UsedByEffector: 0
   m_CompositeOperation: 0
   m_CompositeOrder: 0
-  m_Offset: {x: 0.030439377, y: -5.6009364}
+  m_Offset: {x: 0, y: -25}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0, y: 0}
@@ -1371,7 +1371,7 @@ BoxCollider2D:
     drawMode: 0
     adaptiveTiling: 0
   m_AutoTiling: 0
-  m_Size: {x: 50.48, y: 11.790204}
+  m_Size: {x: 150, y: 10}
   m_EdgeRadius: 0
 --- !u!4 &344385725
 Transform:
@@ -1382,8 +1382,8 @@ Transform:
   m_GameObject: {fileID: 344385722}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.11, y: -13.41, z: -0.12847726}
-  m_LocalScale: {x: -1.77, y: 1, z: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
@@ -3792,10 +3792,10 @@ MonoBehaviour:
   m_FillRect: {fileID: 0}
   m_HandleRect: {fileID: 1339782629}
   m_Direction: 2
-  m_MinValue: 1
-  m_MaxValue: 25
+  m_MinValue: 5
+  m_MaxValue: 20
   m_WholeNumbers: 0
-  m_Value: 13
+  m_Value: 12
   m_OnValueChanged:
     m_PersistentCalls:
       m_Calls:
@@ -4631,7 +4631,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 0}
-  m_AnchoredPosition: {x: 0, y: 710}
+  m_AnchoredPosition: {x: 0, y: 709.798}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 1}
 --- !u!114 &1222345486
@@ -6580,7 +6580,7 @@ Camera:
   far clip plane: 1000
   field of view: 60
   orthographic: 1
-  orthographic size: 13
+  orthographic size: 12
   m_Depth: -1
   m_CullingMask:
     serializedVersion: 2
@@ -6685,6 +6685,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   zoomSlider: {fileID: 980629800}
   zoomMultiplier: 1
+  limitTopLeft: {x: -40, y: 25}
+  limitBottomRight: {x: 40, y: -25}
 --- !u!1 &1747954691
 GameObject:
   m_ObjectHideFlags: 0
