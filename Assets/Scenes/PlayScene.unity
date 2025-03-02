@@ -2494,6 +2494,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 21b53c79d39883c41bb6112af7320735, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  zoom: {fileID: 980629800}
   DeadLine: {fileID: 344385722}
   roundSO:
   - {fileID: 11400000, guid: 5d3d6cd03e6311f47ab5b362bc8217bf, type: 2}
