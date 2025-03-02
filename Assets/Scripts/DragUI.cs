@@ -14,7 +14,9 @@ public class DragUI : MonoBehaviour, IBeginDragHandler, IEndDragHandler, IDragHa
 
     public DontFall.PlaySound playSound;
     public AudioClip dropSound;
-    
+
+    public GameObject go = null;
+
     private GameObject inventory;
     private CanvasGroup canvasGroup;
     private GameObject currentDraggedObject;
@@ -38,9 +40,18 @@ public class DragUI : MonoBehaviour, IBeginDragHandler, IEndDragHandler, IDragHa
 
             //이미지는 끄고 정해진 오브젝트를 생성
             gameObject.GetComponent<Image>().enabled = false;
-            currentDraggedObject = Instantiate(GameManager.Instance.Objects[(int)size].objectList[index].go, GameManager.Instance.objectGroup.transform);
+            if(go == null)
+            {
+                currentDraggedObject = Instantiate(GameManager.Instance.Objects[(int)size].objectList[index].go, GameManager.Instance.objectGroup.transform);
 
-            if(currentDraggedObject.GetComponent<Collider2D>() != null)
+            }
+            else
+            {
+                currentDraggedObject = Instantiate(go, GameManager.Instance.objectGroup.transform);
+
+            }
+
+            if (currentDraggedObject.GetComponent<Collider2D>() != null)
             {
                 currentDraggedObject.GetComponent<Collider2D>().isTrigger = true;
             }
@@ -89,9 +100,18 @@ public class DragUI : MonoBehaviour, IBeginDragHandler, IEndDragHandler, IDragHa
                 }
                 else
                 {
+                    foreach(Transform child in currentDraggedObject.transform)
+                    {
+                        if(child.GetComponentInChildren<SpriteRenderer>() != null)
+                        {
+                            child.GetComponentInChildren<SpriteRenderer>().sortingLayerName = "Object";
+                        }
+                    }
                     currentDraggedObject.GetComponentInChildren<SpriteRenderer>().sortingLayerName = "Object";
+
                     currentDraggedObject.GetComponent<DragObj>().isClicked = false;
                     currentDraggedObject.GetComponent<Rigidbody2D>().gravityScale = 1.0f;
+
                     currentDraggedObject.transform.SendMessage("ItemDrop", SendMessageOptions.DontRequireReceiver);
 
                     canvasGroup.blocksRaycasts = true;

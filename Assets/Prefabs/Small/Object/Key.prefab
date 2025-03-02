@@ -16,7 +16,7 @@ GameObject:
   - component: {fileID: 2332502801621439432}
   m_Layer: 0
   m_Name: Key
-  m_TagString: Key
+  m_TagString: Object
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -31,7 +31,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 9.413399, y: -4.438183, z: 0}
-  m_LocalScale: {x: 0.5, y: 0.5, z: 0.5}
+  m_LocalScale: {x: 0.75, y: 0.75, z: 0.75}
   m_ConstrainProportionsScale: 1
   m_Children: []
   m_Father: {fileID: 0}
@@ -79,7 +79,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: -1511592661
   m_SortingLayer: 3
-  m_SortingOrder: 1
+  m_SortingOrder: 2
   m_Sprite: {fileID: 7070758892173877812, guid: 2bb7e789f27abab4181244ef991902b2, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -131,7 +131,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   size: 0
-  index: 19
+  index: 0
   DifficultyLevel: 1
   isClicked: 0
 --- !u!60 &5910376022086897345
@@ -258,3 +258,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cdc0c7e81a6dac446b1df337b27d325a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  data: {fileID: 11400000, guid: 5629cacde99deb34ab13168ba6b0b313, type: 2}

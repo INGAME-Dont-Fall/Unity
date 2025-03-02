@@ -2,7 +2,7 @@ using UnityEngine;
 
 namespace DontFall.Objects
 {
-    public class Clock : MonoBehaviour
+    public class Clock : Special
     {
         [SerializeField] private Vector2 timeRange;
         [SerializeField] private float shakeInterval;

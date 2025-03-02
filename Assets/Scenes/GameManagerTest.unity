@@ -175,6 +175,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9bf5fe0d9ede524a2ae75bbe85db22bf, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  openButtonTransform: {fileID: 0}
   initiallyShowing: 0
   interpolationCurve:
     serializedVersion: 2
@@ -1582,7 +1583,6 @@ MonoBehaviour:
   objects:
   - size: 0
     objectList:
-    - {fileID: 11400000, guid: 9f67975ef67559b42b4b0c7fd769baaa, type: 2}
     - {fileID: 11400000, guid: 912ee30c01707bc4dac05382e018cdd0, type: 2}
     - {fileID: 11400000, guid: 8f280deec16d2b84695ead1c76c155b1, type: 2}
     - {fileID: 11400000, guid: 612be6304fae3b04981733130f5bac2d, type: 2}
@@ -1601,6 +1601,8 @@ MonoBehaviour:
     - {fileID: 11400000, guid: 28b973e484c1e4c47a76f97e3c7cada4, type: 2}
     - {fileID: 11400000, guid: 18788230843ac4d4796029364b57986c, type: 2}
     - {fileID: 11400000, guid: 9517b2b2ea5e5354f8e19620672f40e1, type: 2}
+    - {fileID: 11400000, guid: b71a61c53573d9b43bbc8da5962f39b2, type: 2}
+    - {fileID: 11400000, guid: 5629cacde99deb34ab13168ba6b0b313, type: 2}
   - size: 1
     objectList:
     - {fileID: 11400000, guid: 5edb0340050806d4791d00b4501bc77f, type: 2}
@@ -1609,6 +1611,8 @@ MonoBehaviour:
     - {fileID: 11400000, guid: e09d74a199ef39649b4be75258815c9b, type: 2}
     - {fileID: 11400000, guid: 11a845b8170b91b45ada564437c2d6ad, type: 2}
     - {fileID: 11400000, guid: 25b999e5df834ec4da74bd211701a3d2, type: 2}
+    - {fileID: 11400000, guid: d177fd0fa9e0aef4a9132e2874fd4563, type: 2}
+    - {fileID: 11400000, guid: c8281299d12731b4f949d3e91a298742, type: 2}
   - size: 2
     objectList:
     - {fileID: 11400000, guid: eaa449b029792704b93bb7efe2df9fff, type: 2}
@@ -1617,15 +1621,32 @@ MonoBehaviour:
     - {fileID: 11400000, guid: ac8156ef53d78fa46a587d13d06c3d71, type: 2}
     - {fileID: 11400000, guid: 37e7a74e961218047bae0e231201d7ac, type: 2}
   - size: 3
-    objectList: []
+    objectList:
+    - {fileID: 11400000, guid: 53d6cc3effb3b1145b46fb22a037e770, type: 2}
+    - {fileID: 11400000, guid: 917620f66b5426b4e8d35dbeb2ac9a30, type: 2}
+    - {fileID: 11400000, guid: 1d31abf07b1b96e4b80cdbe0e93d9795, type: 2}
+    - {fileID: 11400000, guid: cd7e9869f9f51444db87564dae9c17be, type: 2}
+    - {fileID: 11400000, guid: b46eb8fd974081747b02c43af4b0a5c3, type: 2}
+    - {fileID: 11400000, guid: 907d8d1ee44c67e4985ee92ff428164c, type: 2}
+    - {fileID: 11400000, guid: 7647940bc90ca714ba4bdc25aaae13e1, type: 2}
+    - {fileID: 11400000, guid: 3c546b9b8736d2441aa1cecf292ff0d8, type: 2}
+    - {fileID: 11400000, guid: 0d53af98639587245910327ea32c7bec, type: 2}
+    - {fileID: 11400000, guid: becc589f3f500af408d1c833b6c3bcaa, type: 2}
+    - {fileID: 11400000, guid: c004c607b2af09d4eb4846e5b08bb80a, type: 2}
+    - {fileID: 11400000, guid: 3f97dfc3cba5f7a40b3fc533c0967b3c, type: 2}
+    - {fileID: 11400000, guid: 0e12b38ff920f3541b58ccf5777d8803, type: 2}
   - size: 4
     objectList:
     - {fileID: 11400000, guid: b5fe9118afbe9f34787e2af84b3a0596, type: 2}
     - {fileID: 11400000, guid: 914e736948778754aad40117cfda244a, type: 2}
   objectCount: 10
+  startButton: {fileID: 0}
   scoreData: {fileID: 11400000, guid: 3501d4c82185f184da1e63863d7a2882, type: 2}
+  itmes: {fileID: 0}
   canvas: {fileID: 1163508609}
+  canvasGroup: {fileID: 0}
   inventory: {fileID: 1222345484}
+  inventoryArea: {fileID: 0}
   square: {fileID: 1921764817355458679, guid: 61bfb61638c0fba449781659a57690bf, type: 3}
   scoreToggle: {fileID: 0}
   transitionManager: {fileID: 0}
@@ -1638,7 +1659,6 @@ MonoBehaviour:
   playSound: {fileID: 0}
   popSound: {fileID: 0}
   dropSound: {fileID: 0}
-  emptyInventory: []
   objectGroup: {fileID: 1758393940}
 --- !u!4 &587663286
 Transform:
@@ -3018,7 +3038,8 @@ MonoBehaviour:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
-  audioSource: {fileID: 0}
+  playSound: {fileID: 0}
+  audioClip: {fileID: 0}
   runOnStart: 1
 --- !u!4 &1170620446
 Transform:

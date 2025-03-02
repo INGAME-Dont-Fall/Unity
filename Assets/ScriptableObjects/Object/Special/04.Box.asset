@@ -16,5 +16,5 @@ MonoBehaviour:
   Index: 5
   Mass: 1
   difficultyLevel: 20
-  go: {fileID: 736268287971015822, guid: 0a0d88f767156204b987b1e19f0785b5, type: 3}
-  ui: {fileID: 642308646117570132, guid: 4cb1e26d58a87a349adf587c6ea81cd5, type: 3}
+  go: {fileID: 736268287971015822, guid: 268da547e1f798d46a4318957ff87996, type: 3}
+  ui: {fileID: 642308646117570132, guid: c9d584378fe13c443a35de551284237a, type: 3}

@@ -2,7 +2,7 @@ using UnityEngine;
 
 namespace DontFall.Objects
 {
-    public class Slime : MonoBehaviour
+    public class Slime : Special
     {
         private void OnCollisionEnter2D(Collision2D collision)
         {

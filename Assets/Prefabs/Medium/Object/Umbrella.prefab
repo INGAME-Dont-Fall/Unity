@@ -16,7 +16,7 @@ GameObject:
   - component: {fileID: 9172697119130514674}
   m_Layer: 0
   m_Name: Umbrella
-  m_TagString: WateringCan
+  m_TagString: Object
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -31,7 +31,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 8.844347, y: -2.8098178, z: 0}
-  m_LocalScale: {x: 1.4999999, y: 1.4999999, z: 1.4999999}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 1
   m_Children: []
   m_Father: {fileID: 0}
@@ -79,7 +79,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: -1511592661
   m_SortingLayer: 3
-  m_SortingOrder: 1
+  m_SortingOrder: 2
   m_Sprite: {fileID: -6397037617656003751, guid: 317c796a2b29a914092811e5840fe35a, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -103,8 +103,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 13e745f9a64dfd8479d18adca30d2ba8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  size: 1
-  index: 7
+  size: 0
+  index: 2
   DifficultyLevel: 7
   isClicked: 0
 --- !u!60 &4889095215689822735

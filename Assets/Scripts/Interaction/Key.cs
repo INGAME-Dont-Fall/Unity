@@ -3,6 +3,7 @@ using UnityEngine;
 
 public class Key : MonoBehaviour
 {
+    [SerializeField] private ObjectData data;
     private List<Collider2D> overlapResults = new List<Collider2D>();
     public void ItemDrop()
     {

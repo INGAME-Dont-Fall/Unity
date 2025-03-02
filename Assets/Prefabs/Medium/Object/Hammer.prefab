@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 5267199754146891646}
   - component: {fileID: 1411460954864978541}
   - component: {fileID: 1354072187809221867}
+  - component: {fileID: 8249415592226219154}
   m_Layer: 0
   m_Name: Hammer
   m_TagString: Object
@@ -78,7 +79,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: -1511592661
   m_SortingLayer: 3
-  m_SortingOrder: 1
+  m_SortingOrder: 2
   m_Sprite: {fileID: -2345181119577176186, guid: 317c796a2b29a914092811e5840fe35a, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -196,6 +197,19 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   size: 1
-  index: 2
+  index: 0
   DifficultyLevel: 3
   isClicked: 0
+--- !u!114 &8249415592226219154
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8795459711426012543}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 606f0d632fe0e1048a243169219b9237, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  data: {fileID: 11400000, guid: ab106277b2a221b4ab5515625e3583b3, type: 2}

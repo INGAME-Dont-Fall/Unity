@@ -21,8 +21,14 @@ public class Umbrella : MonoBehaviour
             {
                 if (overlapped.CompareTag("UmbrellaStand"))
                 {
-                    Instantiate(foldUmbrella, overlapped.gameObject.transform);
-                    Destroy(gameObject);
+                    if(overlapped.gameObject.GetComponent<UmbrellaStand>().IncreaseCount())
+                    {
+                        GameObject go = Instantiate(foldUmbrella, overlapped.gameObject.transform);
+                        go.transform.localPosition = overlapped.gameObject.GetComponent<UmbrellaStand>().GetPosition();
+                        go.transform.localRotation = Quaternion.Euler(overlapped.gameObject.GetComponent<UmbrellaStand>().GetRotation());
+
+                        Destroy(gameObject);
+                    }
                 }
             }
         }

@@ -2,7 +2,7 @@ using UnityEngine;
 
 namespace DontFall.Objects
 {
-    public class Bomb : MonoBehaviour
+    public class Bomb : Special
     {
         [SerializeField] private float effectDelay;
         [SerializeField] private float effectRadius;

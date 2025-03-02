@@ -10,11 +10,11 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: a20d6eb58f932cf499440f63197759b4, type: 3}
-  m_Name: 07.Plant_1
+  m_Name: 07.Umbrella 1
   m_EditorClassIdentifier: 
-  Size: 3
+  Size: 0
   Index: 5
-  Mass: 15
+  Mass: 7
   difficultyLevel: 7
-  go: {fileID: 736268287971015822, guid: 6a773949300ef43409f68fa718e0a5e6, type: 3}
-  ui: {fileID: 642308646117570132, guid: f54994ba8ecfe9b4187b07d30e5da137, type: 3}
+  go: {fileID: 736268287971015822, guid: 9b96e7d90e7f93f44b1595e9e69e4192, type: 3}
+  ui: {fileID: 642308646117570132, guid: e9d13dc799ca0a9458539483f81ba0e1, type: 3}

@@ -24,10 +24,10 @@ public class GameManager : MonoBehaviour
     
     private int itemsCount;
     private int targetItemsCount;
-    private int small = 0;
-    private int medium = 0;
-    private int high = 0;
-    private int special = 0;
+    private float small = 0;
+    private float medium = 0;
+    private float high = 0;
+    private float special = 0;
     private int currentRound = 1;
     private int totalScore = 0; //전체 스코어
     private int score; //현재 라운드에 선반 위에 올려진 물체에 매겨진 점수 합산
@@ -132,23 +132,22 @@ public class GameManager : MonoBehaviour
             high = curData.highProbability;
             special = curData.specialProbability;
         }
-        else if (currentRound < 15) //Medium 10~14
+        else if (currentRound < 20) //Medium 10~14
         {
             curData = roundSO[1];
             adjustmentValue = currentRound - 10;
             small = curData.lowProbability - adjustmentValue;
-            medium = curData.mediumProbability;
-            high += curData.highProbability + adjustmentValue;
-            special += curData.specialProbability;
+            medium = curData.mediumProbability + adjustmentValue / 2.0f;
+            high = curData.highProbability + adjustmentValue / 2.0f;
+            special = curData.specialProbability;
         }
         else //High 15 ~
         {
             curData = roundSO[2];
-            adjustmentValue = (currentRound - 15) / 5;
-            small = curData.lowProbability - (adjustmentValue * 4);
+            small = curData.lowProbability;
             medium = curData.mediumProbability;
-            high += curData.highProbability + (adjustmentValue * 3);
-            special += curData.specialProbability + adjustmentValue;
+            high = curData.highProbability;
+            special = curData.specialProbability;
         }
 
         medium += small;
@@ -195,12 +194,29 @@ public class GameManager : MonoBehaviour
         }
     }
 
+    //특정 오브젝트 삭제
+    public void RemoveCurrentList(ObjectData data)
+    {
+        for (int i = 0; i < curObjectsList.Count; ++i)
+        {
+            if (curObjectsList[i] == data)
+            {
+                curObjectsList.RemoveAt(i);
+                break;
+            }
+        }
+    }
+
     //특정 오브젝트 추가
-    public void AddObject(ObjectData data)
+    public void AddObject(ObjectData data, bool isAdd)
     {
         GameObject go = Instantiate(square, inventory.transform);
-        curObjectsList.Add(data);
+        if(isAdd)
+        {
+            curObjectsList.Add(data);
+        }
         var ui = Instantiate(data.ui, go.transform).GetComponent<DragUI>();
+        ui.go = data.go;
         ui.playSound = playSound;
         ui.dropSound = dropSound;
     }
@@ -214,11 +230,6 @@ public class GameManager : MonoBehaviour
         {
             startButton.SetActive(true);
         }
-    }
-
-    public void RemoveObject()
-    {
-
     }
 
 
@@ -265,7 +276,7 @@ public class GameManager : MonoBehaviour
         PointUpdate();
         startButton.SetActive(false);
 
-        int random = UnityEngine.Random.Range(0, 100);
+        float random = UnityEngine.Random.Range(0.0f, 100.0f);
         List<ObjectData> curObj = null;
 
         if (random < small)
@@ -299,7 +310,6 @@ public class GameManager : MonoBehaviour
     //게임 시작 버튼 누를 시
     public void GamePlay()
     {
-
         SetStart();
     }
 
@@ -334,7 +344,10 @@ public class GameManager : MonoBehaviour
             {
                 foreach (Transform child in obj.transform)
                 {
-                    score += ((int)child.gameObject.GetComponent<Rigidbody2D>().mass * obj.GetComponent<DragObj>().DifficultyLevel * currentRound);
+                    if (child.gameObject.GetComponent<Rigidbody2D>() != null)
+                    {
+                        score += ((int)child.gameObject.GetComponent<Rigidbody2D>().mass * obj.GetComponent<DragObj>().DifficultyLevel * currentRound);
+                    }
                 }
             }
             //물체가 가진 고유 포인트 합산
@@ -385,6 +398,7 @@ public class GameManager : MonoBehaviour
         }
 
         itemsCount = 0;
+        startButton.SetActive(false);
 
         if (point <= 0)
         {

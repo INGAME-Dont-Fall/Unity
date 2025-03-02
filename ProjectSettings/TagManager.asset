@@ -13,6 +13,8 @@ TagManager:
   - Lock
   - FishTank
   - UmbrellaStand
+  - UnLock
+  - Daruma
   layers:
   - Default
   - TransparentFX

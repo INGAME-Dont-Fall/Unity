@@ -92,3 +92,4 @@ MonoBehaviour:
   index: 1
   playSound: {fileID: 0}
   dropSound: {fileID: 0}
+  go: {fileID: 0}
