@@ -39,7 +39,8 @@ public class GameManager : MonoBehaviour
     private List<ObjectData> curObjectsList;
     private OverlayController overlayController;
 
-    [SerializeField] GameObject DeadLine;
+    [SerializeField] private Slider zoom;
+    [SerializeField] private GameObject DeadLine;
     [SerializeField] private List<RoundData> roundSO;
     [SerializeField] private ObjectList[] objects;
     [SerializeField] private int objectCount;
@@ -93,6 +94,7 @@ public class GameManager : MonoBehaviour
 
     private void RoundStart()
     {
+        zoom.value = 13;
         startButton.SetActive(false);
         inventoryArea.SetActive(true);
         boardController.Moving = false;
@@ -267,12 +269,11 @@ public class GameManager : MonoBehaviour
     /// </summary>
     public void CreateObj()
     {
-        if(point <= 0)
+        if(point < 10)
         {
-            point = 0;
-            PointUpdate();
             return;
         }
+
         point -= 10;
 
         PointUpdate();
@@ -402,10 +403,8 @@ public class GameManager : MonoBehaviour
         itemsCount = 0;
         startButton.SetActive(false);
 
-        if (point <= 0)
+        if (point < 5)
         {
-            point = 0;
-            PointUpdate();
             return;
         }
 
