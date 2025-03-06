@@ -17,4 +17,4 @@ MonoBehaviour:
   Mass: 2
   difficultyLevel: 1
   go: {fileID: 736268287971015822, guid: be68d565323863d478f3dc397619c7cc, type: 3}
-  ui: {fileID: 736268287971015822, guid: be68d565323863d478f3dc397619c7cc, type: 3}
+  ui: {fileID: 642308646117570132, guid: 4a6e0936848e02148a9ace21701444d5, type: 3}
