@@ -74,9 +74,9 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
-  m_SortingOrder: 0
+  m_SortingLayerID: -1511592661
+  m_SortingLayer: 3
+  m_SortingOrder: 2
   m_Sprite: {fileID: 5946569738099964139, guid: 317c796a2b29a914092811e5840fe35a, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -217,9 +217,9 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
-  m_SortingOrder: 0
+  m_SortingLayerID: -1511592661
+  m_SortingLayer: 3
+  m_SortingOrder: 2
   m_Sprite: {fileID: 5722604008429509304, guid: 317c796a2b29a914092811e5840fe35a, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -370,9 +370,9 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
-  m_SortingOrder: 0
+  m_SortingLayerID: -1511592661
+  m_SortingLayer: 3
+  m_SortingOrder: 2
   m_Sprite: {fileID: -4709076436001539004, guid: 317c796a2b29a914092811e5840fe35a, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -511,9 +511,9 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
-  m_SortingOrder: 0
+  m_SortingLayerID: -1511592661
+  m_SortingLayer: 3
+  m_SortingOrder: 2
   m_Sprite: {fileID: -983568723069178508, guid: 317c796a2b29a914092811e5840fe35a, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -651,9 +651,9 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
-  m_SortingOrder: 0
+  m_SortingLayerID: -1511592661
+  m_SortingLayer: 3
+  m_SortingOrder: 2
   m_Sprite: {fileID: 2775563205397617120, guid: 317c796a2b29a914092811e5840fe35a, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -794,9 +794,9 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
-  m_SortingOrder: 0
+  m_SortingLayerID: -1511592661
+  m_SortingLayer: 3
+  m_SortingOrder: 2
   m_Sprite: {fileID: -1266238715796366264, guid: 317c796a2b29a914092811e5840fe35a, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -875,6 +875,7 @@ GameObject:
   - component: {fileID: 639324708845978154}
   - component: {fileID: 8780247272175606351}
   - component: {fileID: 2616807464999529665}
+  - component: {fileID: 4148857908085408181}
   m_Layer: 0
   m_Name: Daruma
   m_TagString: Daruma
@@ -1153,3 +1154,15 @@ MonoBehaviour:
   index: 10
   DifficultyLevel: 10
   isClicked: 0
+--- !u!114 &4148857908085408181
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7974425577808357711}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6facdc2de55dd0a45b57d14763732003, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

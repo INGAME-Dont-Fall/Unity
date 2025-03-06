@@ -38,7 +38,7 @@ public class Fish : MonoBehaviour
                     animator.SetTrigger("Stop");
                     transform.SetParent(overlapped.transform);
                     transform.localPosition = new Vector3(0.0f, -0.5f, 0.0f);
-                    transform.localScale = new Vector3(0.1f, 0.1f, 0.1f);
+                    transform.localScale = new Vector3(0.15f, 0.15f, 0.15f);
                     transform.localRotation = Quaternion.identity;
 
                     Destroy(this);

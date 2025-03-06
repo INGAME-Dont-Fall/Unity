@@ -10,11 +10,11 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: a20d6eb58f932cf499440f63197759b4, type: 3}
-  m_Name: 21.Fish
+  m_Name: 21.Lock
   m_EditorClassIdentifier: 
   Size: 0
-  Index: 5
-  Mass: 10
-  difficultyLevel: 7
-  go: {fileID: 937081672625206189, guid: 13463d818a850c444b7e9482174c48cf, type: 3}
-  ui: {fileID: 642308646117570132, guid: 192410535e2da004b9ea11ed9c4d778e, type: 3}
+  Index: 1
+  Mass: 2
+  difficultyLevel: 1
+  go: {fileID: 736268287971015822, guid: be68d565323863d478f3dc397619c7cc, type: 3}
+  ui: {fileID: 736268287971015822, guid: be68d565323863d478f3dc397619c7cc, type: 3}
