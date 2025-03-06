@@ -40,7 +40,7 @@ public class Fish : MonoBehaviour
                     transform.localPosition = new Vector3(0.0f, -0.5f, 0.0f);
                     transform.localScale = new Vector3(0.15f, 0.15f, 0.15f);
                     transform.localRotation = Quaternion.identity;
-
+                    GameManager.Instance.DecreaseItemsCount();
                     Destroy(this);
                 }
             }

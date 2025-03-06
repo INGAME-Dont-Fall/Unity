@@ -176,23 +176,23 @@ CompositeCollider2D:
   m_ColliderPaths:
   - m_Collider: {fileID: 790643496132520532}
     m_ColliderPaths:
-    - - X: 21080690
+    - - X: 17254196
+        Y: -25764930
+      - X: 21080690
         Y: 3337194
       - X: 23689672
         Y: 25059998
       - X: -23676810
         Y: 25079768
-      - X: -16890476
-        Y: -25272706
-      - X: 17254196
-        Y: -25764930
+      - X: -16605165
+        Y: -26413960
   m_CompositePaths:
     m_Paths:
-    - - {x: 1.7253942, y: -2.5764928}
+    - - {x: -1.6605198, y: -2.6413708}
+      - {x: 1.7254229, y: -2.576469}
       - {x: 2.108069, y: 0.33371872}
       - {x: 2.3689332, y: 2.5059998}
-      - {x: -2.3676765, y: 2.5079427}
-      - {x: -1.6890233, y: -2.5272708}
+      - {x: -2.3676763, y: 2.5079424}
   m_VertexDistance: 0.0005
   m_OffsetDistance: 0.00005
   m_UseDelaunayMesh: 0
@@ -210,13 +210,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Rotation:
+  - {x: 0, y: 0, z: 10}
+  - {x: 0, y: 2, z: 0}
+  - {x: 0, y: 0, z: -10}
+  Position:
   - {x: -1, y: 2, z: 0}
   - {x: 0, y: 2, z: 0}
   - {x: 1, y: 2, z: 0}
-  Position:
-  - {x: 0, y: 0, z: 10}
-  - {x: 0, y: 0, z: 0}
-  - {x: 0, y: 0, z: -10}
 --- !u!1 &5524144406352323076
 GameObject:
   m_ObjectHideFlags: 0

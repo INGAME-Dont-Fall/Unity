@@ -26,6 +26,7 @@ public class Hammer : MonoBehaviour
                             GameManager.Instance.AddObject(data, false);
                         }
 
+                        GameManager.Instance.DecreaseItemsCount();
                         Destroy(gameObject);
                     }
                 }

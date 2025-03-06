@@ -260,6 +260,16 @@ public class GameManager : MonoBehaviour
         }
     }
 
+    public void DecreaseItemsCount()
+    {
+        itemsCount--;
+        UpdateObjectCount();
+        if (itemsCount >= targetItemsCount)
+        {
+            startButton.SetActive(true);
+        }
+    }
+
 
     /// <summary>
     /// 게임 초기화 시 원 상태로 복구하는 함수

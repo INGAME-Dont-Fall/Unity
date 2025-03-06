@@ -27,6 +27,7 @@ public class Umbrella : MonoBehaviour
                         go.transform.localPosition = overlapped.gameObject.GetComponent<UmbrellaStand>().GetPosition();
                         go.transform.localRotation = Quaternion.Euler(overlapped.gameObject.GetComponent<UmbrellaStand>().GetRotation());
 
+                        GameManager.Instance.DecreaseItemsCount();
                         Destroy(gameObject);
                     }
                 }

@@ -17,6 +17,7 @@ public class WateringCan : MonoBehaviour
             {
                 if (overlapped.CompareTag("Plant"))
                 {
+                    GameManager.Instance.DecreaseItemsCount();
                     overlapped.gameObject.GetComponent<Plant>().GetWateringCan(transform.parent);
                     Destroy(gameObject);
                 }

@@ -22,6 +22,7 @@ public class UnLock : MonoBehaviour
                 }
                 Destroy(overlapped.gameObject.GetComponent<Special>());
                 GetComponent<DragObj>().InputDisable();
+                GameManager.Instance.DecreaseItemsCount();
                 Destroy(gameObject);
             }
             else if (!overlapped.gameObject.CompareTag("Object"))
@@ -32,6 +33,7 @@ public class UnLock : MonoBehaviour
                     Destroy(overlapped.gameObject.GetComponent<AudioSource>());
                 }
                 GetComponent<DragObj>().InputDisable();
+                GameManager.Instance.DecreaseItemsCount();
                 Destroy(gameObject);
             }
         }
