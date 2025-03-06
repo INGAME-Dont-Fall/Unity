@@ -7,7 +7,7 @@ namespace DontFall.UI
     public class ScoreToggle : MonoBehaviour, IPointerClickHandler
     {
         [SerializeField] private RectTransform score;
-        [SerializeField] private RectTransform point;
+        [SerializeField] private RectTransform round;
 
         [SerializeField] private float animationDuration;
         [SerializeField] private Vector2 flipDistance;
@@ -24,10 +24,10 @@ namespace DontFall.UI
             set => score.GetComponentInChildren<TMP_Text>().text = value;
         }
 
-        public string PointText
+        public string RoundText
         {
-            get => point.GetComponentInChildren<TMP_Text>().text;
-            set => point.GetComponentInChildren<TMP_Text>().text = value;
+            get => round.GetComponentInChildren<TMP_Text>().text;
+            set => round.GetComponentInChildren<TMP_Text>().text = value;
         }
 
         public int Score
@@ -46,11 +46,11 @@ namespace DontFall.UI
         {
             get
             {
-                return int.Parse(PointText);
+                return int.Parse(RoundText);
             }
             set
             {
-                PointText = string.Format("Round {0}", value);
+                RoundText = string.Format("Round {0}", value);
             }
         }
 
@@ -66,7 +66,7 @@ namespace DontFall.UI
             var rectTransform = transform as RectTransform;
 
             score.localPosition = rectTransform.rect.center;
-            point.localPosition = rectTransform.rect.center + stackOffset;
+            round.localPosition = rectTransform.rect.center + stackOffset;
         }
 
         private void Update()
@@ -78,19 +78,19 @@ namespace DontFall.UI
                 if (animationPosition < 0.5f)
                 {
                     score.localPosition = rectTransform.rect.center + Vector2.Lerp(currentFront * stackOffset, (currentFront * 2 - 1) * flipDistance, animationPosition * 2);
-                    point.localPosition = rectTransform.rect.center + Vector2.Lerp((1 - currentFront) * stackOffset, (1 - currentFront * 2) * flipDistance, animationPosition * 2);
+                    round.localPosition = rectTransform.rect.center + Vector2.Lerp((1 - currentFront) * stackOffset, (1 - currentFront * 2) * flipDistance, animationPosition * 2);
                 }
                 else if (animationPosition < 1)
                 {
                     score.localPosition = rectTransform.rect.center + Vector2.Lerp((1 - currentFront) * stackOffset, (currentFront * 2 - 1) * flipDistance, (1 - animationPosition) * 2);
-                    point.localPosition = rectTransform.rect.center + Vector2.Lerp(currentFront * stackOffset, (1 - currentFront * 2) * flipDistance, (1 - animationPosition) * 2);
+                    round.localPosition = rectTransform.rect.center + Vector2.Lerp(currentFront * stackOffset, (1 - currentFront * 2) * flipDistance, (1 - animationPosition) * 2);
                 }
                 else
                 {
                     animationPosition = -1;
                     currentFront = 1 - currentFront;
                     score.localPosition = rectTransform.rect.center + currentFront * stackOffset;
-                    point.localPosition = rectTransform.rect.center + (1 - currentFront) * stackOffset;
+                    round.localPosition = rectTransform.rect.center + (1 - currentFront) * stackOffset;
 
                     if (inputBuffer > 0)
                     {
@@ -101,8 +101,8 @@ namespace DontFall.UI
 
                 if (animationPosition < 0.5f && animationPosition + Time.deltaTime / animationDuration >= 0.5f)
                 {
-                    (score, point) = (point, score);
-                    (ScoreText, PointText) = (PointText, ScoreText);
+                    (score, round) = (round, score);
+                    (ScoreText, RoundText) = (RoundText, ScoreText);
                 }
                 if (animationPosition >= 0)
                 {

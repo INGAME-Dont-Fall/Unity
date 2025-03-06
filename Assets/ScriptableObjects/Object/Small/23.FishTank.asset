@@ -10,11 +10,11 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: a20d6eb58f932cf499440f63197759b4, type: 3}
-  m_Name: 11.UmbrellaStand
+  m_Name: 23.FishTank
   m_EditorClassIdentifier: 
-  Size: 3
+  Size: 0
   Index: 1
-  Mass: 7
-  difficultyLevel: 7
-  go: {fileID: 736268287971015822, guid: ec7a72103f4f3b4448c89ec1275d0584, type: 3}
-  ui: {fileID: 642308646117570132, guid: e8033c5b3fcce6c43894a3766fae5baf, type: 3}
+  Mass: 10
+  difficultyLevel: 10
+  go: {fileID: 736268287971015822, guid: 873d448d56cb19b438fd0df271d434eb, type: 3}
+  ui: {fileID: 8970387422910102703, guid: 2f0c203b24917f54f92bbf3220772aae, type: 3}

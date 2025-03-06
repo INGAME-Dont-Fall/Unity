@@ -10,11 +10,11 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: a20d6eb58f932cf499440f63197759b4, type: 3}
-  m_Name: 12.Daruma
+  m_Name: 09.Plant_1
   m_EditorClassIdentifier: 
-  Size: 3
-  Index: 1
-  Mass: 5
-  difficultyLevel: 10
-  go: {fileID: 7974425577808357711, guid: 61fef9daa42798542bef45e0cfcd9e36, type: 3}
-  ui: {fileID: 8970387422910102703, guid: e132fb059b7f9dd4d8a082f8fc70c5c5, type: 3}
+  Size: 1
+  Index: 5
+  Mass: 15
+  difficultyLevel: 7
+  go: {fileID: 736268287971015822, guid: 6a773949300ef43409f68fa718e0a5e6, type: 3}
+  ui: {fileID: 642308646117570132, guid: f54994ba8ecfe9b4187b07d30e5da137, type: 3}

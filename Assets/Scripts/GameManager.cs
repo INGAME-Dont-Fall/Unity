@@ -162,6 +162,11 @@ public class GameManager : MonoBehaviour
         medium += small;
         high += medium;
         special += high;
+
+        Debug.Log(string.Format("small : {0}%", small));
+        Debug.Log(string.Format("meditum : {0}%", medium));
+        Debug.Log(string.Format("high : {0}%", high));
+        Debug.Log(string.Format("special : {0}%", special));
     }
 
     private void Update()
@@ -186,6 +191,17 @@ public class GameManager : MonoBehaviour
         DeadLine.GetComponent<BoxCollider2D>().isTrigger = true;
 
         GameStart?.Invoke();
+    }
+
+    public void SkipRound()
+    {
+        transitionManager.StartTransition(true, true, () => {
+            Debug.Log("클리어");
+            score = 0;
+            currentRound++;
+            RoundStart();
+            transitionManager.StartTransition(false, true, () => { });
+        });
     }
 
     private void ObjectInit()
@@ -291,6 +307,7 @@ public class GameManager : MonoBehaviour
         float random = UnityEngine.Random.Range(0.0f, 100.0f);
         List<ObjectData> curObj = null;
 
+        Debug.Log(string.Format("random : {0}%", random));
         if (random < small)
         {
             curObj = objects[(int)Size.Small].objectList.ToList();
@@ -409,14 +426,14 @@ public class GameManager : MonoBehaviour
             return;
         }
 
-        itemsCount = 0;
-        UpdateObjectCount();
-        startButton.SetActive(false);
-
         if (point < 5)
         {
             return;
         }
+
+        itemsCount = 0;
+        UpdateObjectCount();
+        startButton.SetActive(false);
 
         point -= 5;
         PointUpdate();
