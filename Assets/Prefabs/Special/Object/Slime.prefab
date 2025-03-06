@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 9198340017141220883}
   - component: {fileID: 5951982796594422858}
   - component: {fileID: 6591710625200901017}
-  - component: {fileID: 8582650406894967909}
+  - component: {fileID: -3087139876763782129}
   m_Layer: 0
   m_Name: Slime
   m_TagString: Object
@@ -171,7 +171,7 @@ CapsuleCollider2D:
   m_Offset: {x: 0, y: 0}
   m_Size: {x: 4.75, y: 0.99}
   m_Direction: 1
---- !u!114 &8582650406894967909
+--- !u!114 &-3087139876763782129
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}

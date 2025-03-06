@@ -113,6 +113,14 @@ public class DragUI : MonoBehaviour, IBeginDragHandler, IEndDragHandler, IDragHa
                     currentDraggedObject.GetComponent<Rigidbody2D>().gravityScale = 1.0f;
 
                     currentDraggedObject.transform.SendMessage("ItemDrop", SendMessageOptions.DontRequireReceiver);
+                    ContactFilter2D contactFilter = new();
+                    contactFilter.NoFilter();
+                    List<Collider2D> overlaps = new();
+                    currentDraggedObject.GetComponent<Rigidbody2D>().Overlap(contactFilter, overlaps);
+                    foreach (var overlap in overlaps)
+                    {
+                        overlap.transform.SendMessage("ItemDropped", currentDraggedObject, SendMessageOptions.DontRequireReceiver);
+                    }
 
                     canvasGroup.blocksRaycasts = true;
 
