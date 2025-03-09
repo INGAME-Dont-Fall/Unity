@@ -383,9 +383,9 @@ public class GameManager : MonoBehaviour
             {
                 foreach (Transform child in obj.transform)
                 {
-                    if (child.gameObject.GetComponent<Rigidbody2D>() != null)
+                    if (child.gameObject.GetComponent<Rigidbody2D>() != null && child.gameObject.GetComponent<DragObj>() != null)
                     {
-                        score += ((int)child.gameObject.GetComponent<Rigidbody2D>().mass * obj.GetComponent<DragObj>().DifficultyLevel * currentRound);
+                        score += ((int)child.gameObject.GetComponent<Rigidbody2D>().mass * child.GetComponent<DragObj>().DifficultyLevel * currentRound);
                     }
                 }
             }

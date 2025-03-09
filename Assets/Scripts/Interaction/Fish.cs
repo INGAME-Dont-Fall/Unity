@@ -37,8 +37,9 @@ public class Fish : MonoBehaviour
 
                     animator.SetTrigger("Stop");
                     transform.SetParent(overlapped.transform);
+                    GetComponent<DragObj>().DifficultyLevel = 25;
                     transform.localPosition = new Vector3(0.0f, -0.5f, 0.0f);
-                    transform.localScale = new Vector3(0.15f, 0.15f, 0.15f);
+                    transform.localScale = transform.localScale * 0.5f;
                     transform.localRotation = Quaternion.identity;
                     GameManager.Instance.DecreaseItemsCount();
                     Destroy(this);
