@@ -5,13 +5,16 @@ using DontFall.Transition;
 
 public class ScoreUI : MonoBehaviour
 {
+    public static ScoreUI Instance { get; private set; } 
+
     [SerializeField] private TMP_Text textTotalScore;
     [SerializeField] private TMP_Text textRoundScore;
-    [SerializeField] private ScoreSO scoreData;
+    public ScoreSO scoreData;
 
     void Start()
     {
         textTotalScore.text = string.Format("{0:D6}", scoreData.totalScore);
         textRoundScore.text = string.Format("{0:D6}", scoreData.round);
+        GetComponent<SaveMaxScore>().ExcuteSave(scoreData.totalScore);
     }
 }
