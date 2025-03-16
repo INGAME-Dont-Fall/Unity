@@ -1,11 +1,12 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
-using UnityEditor;
 using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.InputSystem;
 using UnityEngine.UI;
 using UnityEngine.UIElements;
+using UnityEngine.Rendering.Universal;
 
 
 public class DragObj : MonoBehaviour
@@ -13,8 +14,16 @@ public class DragObj : MonoBehaviour
     public Size size;
     public int index = 0;
     public int DifficultyLevel = 0;
+    public ObjectID[] interactables;
     private PlayerInput inputActions;
     private Rigidbody2D rb2D;
+
+    [Serializable]
+    public struct ObjectID
+    {
+        public Size size;
+        public int index;
+    }
 
     public bool isClicked;
     private void Awake()
@@ -47,5 +56,38 @@ public class DragObj : MonoBehaviour
     public void OnPointerUp(PointerEventData eventData)
     {
         isClicked = false;
+    }
+
+    private bool IsInteracting(GameObject other)
+    {
+        var otherObj = other.GetComponent<DragObj>();
+        if (otherObj == null)
+            return false;
+
+        return Array.Exists(interactables, (ObjectID i) => i.size == otherObj.size && (i.index < 0 || i.index == otherObj.index));
+    }
+
+    private void OnTriggerEnter2D(Collider2D other)
+    {
+        if (IsInteracting(other.gameObject))
+        {
+            var light = GetComponent<Light2D>();
+            if (light != null)
+            {
+                light.enabled = true;
+            }
+        }
+    }
+
+    private void OnTriggerExit2D(Collider2D other)
+    {
+        if (IsInteracting(other.gameObject))
+        {
+            var light = GetComponent<Light2D>();
+            if (light != null)
+            {
+                light.enabled = false;
+            }
+        }
     }
 }

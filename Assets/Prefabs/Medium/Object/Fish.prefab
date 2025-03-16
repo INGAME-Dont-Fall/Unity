@@ -235,6 +235,7 @@ MonoBehaviour:
   size: 1
   index: 11
   DifficultyLevel: 7
+  interactables: []
   isClicked: 0
 --- !u!95 &2893262261967530845
 Animator:

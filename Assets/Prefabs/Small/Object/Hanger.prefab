@@ -132,6 +132,7 @@ MonoBehaviour:
   size: 0
   index: 7
   DifficultyLevel: 1
+  interactables: []
   isClicked: 0
 --- !u!68 &1439217867995978074
 EdgeCollider2D:

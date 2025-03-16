@@ -105,6 +105,7 @@ MonoBehaviour:
   size: 0
   index: 10
   DifficultyLevel: 1
+  interactables: []
   isClicked: 0
 --- !u!50 &1103488791796724491
 Rigidbody2D:

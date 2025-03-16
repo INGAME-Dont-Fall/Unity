@@ -199,6 +199,7 @@ MonoBehaviour:
   size: 1
   index: 2
   DifficultyLevel: 3
+  interactables: []
   isClicked: 0
 --- !u!114 &8249415592226219154
 MonoBehaviour:

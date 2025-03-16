@@ -178,4 +178,5 @@ MonoBehaviour:
   size: 1
   index: 3
   DifficultyLevel: 2
+  interactables: []
   isClicked: 0

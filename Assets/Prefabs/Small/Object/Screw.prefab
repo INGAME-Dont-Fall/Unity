@@ -132,6 +132,7 @@ MonoBehaviour:
   size: 0
   index: 13
   DifficultyLevel: 1
+  interactables: []
   isClicked: 0
 --- !u!60 &7328684545788934136
 PolygonCollider2D:
