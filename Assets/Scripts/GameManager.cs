@@ -9,8 +9,6 @@ using DontFall.UI;
 using DontFall.Transition;
 using DontFall.Board;
 using UnityEngine.UI;
-using NUnit.Framework.Internal;
-using static UnityEngine.Rendering.DebugUI;
 
 [Serializable]
 public class ObjectList
