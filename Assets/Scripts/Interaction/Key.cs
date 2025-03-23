@@ -16,7 +16,7 @@ public class Key : MonoBehaviour
         {
             foreach (Collider2D overlapped in overlapResults)
             {
-                if(overlapped.CompareTag("Lock"))
+                if(overlapped.gameObject.GetComponent<Lock>() != null)
                 {
                     GameManager.Instance.DecreaseItemsCount();
                     overlapped.gameObject.GetComponent<Lock>().GetKey();

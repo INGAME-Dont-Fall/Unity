@@ -1639,7 +1639,7 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 118038806}
   m_HandleRect: {fileID: 118038805}
   m_Direction: 2
-  m_Value: 1
+  m_Value: 0
   m_Size: 1
   m_NumberOfSteps: 0
   m_OnValueChanged:
@@ -2253,6 +2253,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 21b53c79d39883c41bb6112af7320735, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  playData: {fileID: 11400000, guid: 0c918c0a5fe6c234f80de4b836701f58, type: 2}
   objectCountText: {fileID: 1319640080}
   zoom: {fileID: 980629800}
   DeadLine: {fileID: 344385722}
@@ -2316,7 +2317,11 @@ MonoBehaviour:
     - {fileID: 11400000, guid: cd7e9869f9f51444db87564dae9c17be, type: 2}
     - {fileID: 11400000, guid: b46eb8fd974081747b02c43af4b0a5c3, type: 2}
   - size: 4
-    objectList: []
+    objectList:
+    - {fileID: 11400000, guid: c46693ae32d690846a63cc7a81e0f17e, type: 2}
+    - {fileID: 11400000, guid: 3c546b9b8736d2441aa1cecf292ff0d8, type: 2}
+    - {fileID: 11400000, guid: 0d53af98639587245910327ea32c7bec, type: 2}
+    - {fileID: 11400000, guid: becc589f3f500af408d1c833b6c3bcaa, type: 2}
   objectCount: 10
   startButton: {fileID: 1884993716}
   scoreData: {fileID: 11400000, guid: 3501d4c82185f184da1e63863d7a2882, type: 2}
@@ -4192,7 +4197,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 80, y: -17.500015}
+  m_AnchoredPosition: {x: 80, y: -17.5}
   m_SizeDelta: {x: 91, y: -555}
   m_Pivot: {x: 0, y: 0.5}
 --- !u!114 &980629800
@@ -8872,7 +8877,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 0, y: -115.000015}
+  m_AnchoredPosition: {x: 0, y: -115}
   m_SizeDelta: {x: -60, y: -290}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &2106151440

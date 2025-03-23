@@ -3268,6 +3268,7 @@ MonoBehaviour:
   textTotalScore: {fileID: 192102599}
   textRoundScore: {fileID: 364093910}
   scoreData: {fileID: 11400000, guid: 3501d4c82185f184da1e63863d7a2882, type: 2}
+  playData: {fileID: 11400000, guid: 0c918c0a5fe6c234f80de4b836701f58, type: 2}
 --- !u!114 &1847917904
 MonoBehaviour:
   m_ObjectHideFlags: 0

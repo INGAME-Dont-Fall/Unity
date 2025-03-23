@@ -103,10 +103,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 13e745f9a64dfd8479d18adca30d2ba8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  isRock: 0
   size: 3
   index: 3
+  mass: 20
   DifficultyLevel: 30
-  interactables: []
+  interactables:
+  - size: 4
+    index: 0
   isClicked: 0
 --- !u!50 &5951982796594422858
 Rigidbody2D:

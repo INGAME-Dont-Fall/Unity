@@ -2,7 +2,7 @@ using UnityEngine;
 
 namespace DontFall.Objects
 {
-    public class Safe : MonoBehaviour
+    public class Safe : Special
     {
         [SerializeField] private Sprite closed;
 

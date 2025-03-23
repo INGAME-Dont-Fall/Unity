@@ -2,7 +2,7 @@ using NUnit.Framework;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Daruma : MonoBehaviour
+public class Daruma : Special
 {
     private List<GameObject> objects = new List<GameObject>();
 

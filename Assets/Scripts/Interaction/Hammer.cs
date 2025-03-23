@@ -17,7 +17,7 @@ public class Hammer : MonoBehaviour
         {
             foreach (Collider2D overlapped in overlapResults)
             {
-                if (overlapped.CompareTag("Daruma"))
+                if (overlapped.gameObject.GetComponent<Daruma>() != null)
                 {
                     if(overlapped.gameObject.GetComponent<Daruma>().RemoveBlock())
                     {

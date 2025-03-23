@@ -11,8 +11,10 @@ using UnityEngine.Rendering.Universal;
 
 public class DragObj : MonoBehaviour
 {
+    public bool isRock;
     public Size size;
     public int index = 0;
+    public float mass = 0;
     public int DifficultyLevel = 0;
     public ObjectID[] interactables;
     private PlayerInput inputActions;
@@ -28,6 +30,7 @@ public class DragObj : MonoBehaviour
     public bool isClicked;
     private void Awake()
     {
+        isRock = false;
         inputActions = new PlayerInput();
         inputActions.PlayerActions.Enable();
         rb2D = GetComponent<Rigidbody2D>();
@@ -58,8 +61,10 @@ public class DragObj : MonoBehaviour
         isClicked = false;
     }
 
+
     private bool IsInteracting(GameObject other)
     {
+        if (isRock) return false;
         var otherObj = other.GetComponent<DragObj>();
         if (otherObj == null)
             return false;

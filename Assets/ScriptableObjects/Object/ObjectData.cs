@@ -7,7 +7,7 @@ public enum Size
     Medium,
     Large,
     Special,
-    Assist
+    Unobtainable
 }
 
 [CreateAssetMenu(fileName = "ObjectData", menuName = "Scriptable Objects/ObjectData")]

@@ -1,7 +1,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class UmbrellaStand : MonoBehaviour
+public class UmbrellaStand : Special
 {
     [SerializeField] private List<Vector3> Rotation;
     [SerializeField] private List<Vector3> Position;

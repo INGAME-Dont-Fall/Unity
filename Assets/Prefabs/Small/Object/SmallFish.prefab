@@ -336,7 +336,7 @@ GameObject:
   - component: {fileID: 331498823018366345}
   m_Layer: 0
   m_Name: SmallFish
-  m_TagString: Untagged
+  m_TagString: Object
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -398,8 +398,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 13e745f9a64dfd8479d18adca30d2ba8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  isRock: 0
   size: 0
   index: 21
+  mass: 7
   DifficultyLevel: 3
   interactables: []
   isClicked: 0

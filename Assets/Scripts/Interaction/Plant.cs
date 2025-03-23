@@ -1,7 +1,7 @@
 using UnityEngine;
 using UnityEngine.EventSystems;
 
-public class Plant : MonoBehaviour
+public class Plant : Special
 {
     public int index;
     [SerializeField] private ObjectData[] plants;

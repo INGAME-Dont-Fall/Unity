@@ -14,9 +14,10 @@ GameObject:
   - component: {fileID: 5951982796594422858}
   - component: {fileID: 1926787201596314609}
   - component: {fileID: 287084255558136687}
+  - component: {fileID: -8289498315644499167}
   m_Layer: 0
   m_Name: FishTank
-  m_TagString: FishTank
+  m_TagString: Object
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -103,10 +104,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 13e745f9a64dfd8479d18adca30d2ba8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  isRock: 0
   size: 1
   index: 12
+  mass: 10
   DifficultyLevel: 10
-  interactables: []
+  interactables:
+  - size: 0
+    index: 21
+  - size: 1
+    index: 11
+  - size: 4
+    index: 0
   isClicked: 0
 --- !u!50 &5951982796594422858
 Rigidbody2D:
@@ -290,3 +299,16 @@ MonoBehaviour:
   - {x: 0.5, y: -0.5, z: 0}
   - {x: 0.5, y: 0.5, z: 0}
   - {x: -0.5, y: 0.5, z: 0}
+--- !u!114 &-8289498315644499167
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 736268287971015822}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 85dbb8f61b2399a40a0652163241340f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  hasFish: 0

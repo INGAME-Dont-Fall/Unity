@@ -12,8 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a20d6eb58f932cf499440f63197759b4, type: 3}
   m_Name: 06.UnLock
   m_EditorClassIdentifier: 
-  Size: 3
-  Index: 12
+  Size: 4
+  Index: 0
   Mass: 2
   difficultyLevel: 1
   go: {fileID: 736268287971015822, guid: d6af2106f44c59e4a84fd7f250b2aa68, type: 3}

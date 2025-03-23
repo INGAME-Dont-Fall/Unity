@@ -879,7 +879,7 @@ GameObject:
   - component: {fileID: 1089689522398944184}
   m_Layer: 0
   m_Name: Daruma
-  m_TagString: Daruma
+  m_TagString: Object
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1151,10 +1151,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 13e745f9a64dfd8479d18adca30d2ba8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  isRock: 0
   size: 1
   index: 10
+  mass: 5
   DifficultyLevel: 10
-  interactables: []
+  interactables:
+  - size: 4
+    index: 0
+  - size: 1
+    index: 2
   isClicked: 0
 --- !u!114 &4148857908085408181
 MonoBehaviour:

@@ -1,7 +1,7 @@
 using UnityEngine;
 using UnityEngine.EventSystems;
 
-public class Lock : MonoBehaviour
+public class Lock : Special
 {
     [SerializeField] private ObjectData unLock; //자물쇠 풀린 뒤 데이터
 

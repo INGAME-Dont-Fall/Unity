@@ -22,17 +22,7 @@ public class UnLock : MonoBehaviour
                 }
                 Destroy(overlapped.gameObject.GetComponent<Special>());
                 GetComponent<DragObj>().InputDisable();
-                GameManager.Instance.DecreaseItemsCount();
-                Destroy(gameObject);
-            }
-            else if (!overlapped.gameObject.CompareTag("Object"))
-            {
-                overlapped.gameObject.tag = "Object";
-                if (overlapped.gameObject.GetComponent<AudioSource>() != null)
-                {
-                    Destroy(overlapped.gameObject.GetComponent<AudioSource>());
-                }
-                GetComponent<DragObj>().InputDisable();
+                GetComponent<DragObj>().isRock = true;
                 GameManager.Instance.DecreaseItemsCount();
                 Destroy(gameObject);
             }

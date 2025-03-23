@@ -29,8 +29,10 @@ public class Fish : MonoBehaviour
         {
             foreach (Collider2D overlapped in overlapResults)
             {
-                if (overlapped.CompareTag("FishTank"))
+                if (overlapped.gameObject.GetComponent<FishTank>() != null)
                 {
+                    if (overlapped.gameObject.GetComponent<FishTank>().hasFish) return;
+
                     fish.isTrigger = true;
 
                     GetComponent<Rigidbody2D>().simulated = false;
@@ -42,6 +44,7 @@ public class Fish : MonoBehaviour
                     transform.localScale = transform.localScale * 0.5f;
                     transform.localRotation = Quaternion.identity;
                     GameManager.Instance.DecreaseItemsCount();
+                    overlapped.gameObject.GetComponent<FishTank>().hasFish = true;
                     Destroy(this);
                 }
             }

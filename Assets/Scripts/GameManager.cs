@@ -41,6 +41,7 @@ public class GameManager : MonoBehaviour
     private List<ObjectData> curObjectsList;
     private OverlayController overlayController;
 
+    [SerializeField] private PlayData playData;
     [SerializeField] private TMP_Text objectCountText;
     [SerializeField] private Slider zoom;
     [SerializeField] private GameObject DeadLine;
@@ -97,6 +98,9 @@ public class GameManager : MonoBehaviour
 
     private void RoundStart()
     {
+        currentRound = playData.currentRound;
+        totalScore = playData.totalScore;
+        score = 0;
         Camera.main.transform.position = new Vector3(0, 0, -10);
         zoom.value = 13;
         startButton.SetActive(false);
@@ -198,9 +202,9 @@ public class GameManager : MonoBehaviour
         transitionManager.StartTransition(true, true, () => {
             Debug.Log("클리어");
             score = 0;
-            currentRound++;
-            RoundStart();
-            transitionManager.StartTransition(false, true, () => { });
+            playData.currentRound++;
+            playData.totalScore = totalScore;
+            SceneManager.LoadScene("PlayScene");
         });
     }
 
@@ -219,6 +223,7 @@ public class GameManager : MonoBehaviour
                 data.ui.GetComponent<DragUI>().size = data.Size;
 
                 data.go.GetComponent<Rigidbody2D>().mass = data.Mass;
+                data.go.GetComponent<DragObj>().mass = data.Mass;
                 data.go.GetComponent<DragObj>().DifficultyLevel = data.difficultyLevel;
             }
         }
@@ -383,14 +388,15 @@ public class GameManager : MonoBehaviour
             {
                 foreach (Transform child in obj.transform)
                 {
-                    if (child.gameObject.GetComponent<Rigidbody2D>() != null && child.gameObject.GetComponent<DragObj>() != null)
+                    if (child.gameObject.GetComponent<DragObj>() != null)
                     {
-                        score += ((int)child.gameObject.GetComponent<Rigidbody2D>().mass * child.GetComponent<DragObj>().DifficultyLevel * currentRound);
+                        float mass = child.gameObject.GetComponent<DragObj>().mass;
+                        score += ((int)mass * child.GetComponent<DragObj>().DifficultyLevel * currentRound);
                     }
                 }
             }
             //물체가 가진 고유 포인트 합산
-            score += ((int)obj.GetComponent<Rigidbody2D>().mass * obj.GetComponent<DragObj>().DifficultyLevel * currentRound);
+            score += ((int)obj.GetComponent<DragObj>().mass * obj.GetComponent<DragObj>().DifficultyLevel * currentRound);
             //오브젝트 삭제
             Vector3 transform = obj.gameObject.transform.position;
             obj.GetComponent<DragObj>().InputDisable();
@@ -413,7 +419,8 @@ public class GameManager : MonoBehaviour
             transitionManager.StartTransition(true, true, () => {
                 Debug.Log("클리어");
                 score = 0;
-                currentRound++;
+                playData.currentRound++;
+                playData.totalScore = totalScore;
                 RoundStart();
                 transitionManager.StartTransition(false, true, () => { });
             });

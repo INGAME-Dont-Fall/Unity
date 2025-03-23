@@ -19,7 +19,7 @@ public class Umbrella : MonoBehaviour
         {
             foreach (Collider2D overlapped in overlapResults)
             {
-                if (overlapped.CompareTag("UmbrellaStand"))
+                if (overlapped.gameObject.GetComponent<UmbrellaStand>() != null)
                 {
                     if(overlapped.gameObject.GetComponent<UmbrellaStand>().IncreaseCount())
                     {
@@ -27,6 +27,8 @@ public class Umbrella : MonoBehaviour
                         go.transform.localPosition = overlapped.gameObject.GetComponent<UmbrellaStand>().GetPosition();
                         go.transform.localRotation = Quaternion.Euler(overlapped.gameObject.GetComponent<UmbrellaStand>().GetRotation());
 
+                        overlapped.gameObject.GetComponent<Rigidbody2D>().simulated = false;
+                        overlapped.gameObject.GetComponent<Rigidbody2D>().simulated = true;
                         GameManager.Instance.DecreaseItemsCount();
                         Destroy(gameObject);
                     }
