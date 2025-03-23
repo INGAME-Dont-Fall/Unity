@@ -9,8 +9,6 @@ using DontFall.UI;
 using DontFall.Transition;
 using DontFall.Board;
 using UnityEngine.UI;
-using NUnit.Framework.Internal;
-using static UnityEngine.Rendering.DebugUI;
 
 [Serializable]
 public class ObjectList
@@ -416,13 +414,13 @@ public class GameManager : MonoBehaviour
 
         if (clear) //다음 라운드 진행
         {
-            transitionManager.StartTransition(true, true, () => {
-                Debug.Log("클리어");
-                score = 0;
-                playData.currentRound++;
-                playData.totalScore = totalScore;
-                RoundStart();
-                transitionManager.StartTransition(false, true, () => { });
+            Debug.Log("클리어");
+            score = 0;
+            playData.currentRound++;
+            playData.totalScore = totalScore;
+            transitionManager.StartTransition(true, true, () =>
+            {
+                SceneManager.LoadScene("WinScene");
             });
         }
         else //게임오버 씬으로 이동 or 종료창
