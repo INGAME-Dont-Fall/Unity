@@ -407,9 +407,6 @@ public class GameManager : MonoBehaviour
 
         //마지막으로 남은 포인트까지 합산
         score += (point * currentRound);
-        totalScore += score;
-
-        ScoreUpdate();
         yield return new WaitForSeconds(1f);
 
         if (clear) //다음 라운드 진행
@@ -417,6 +414,7 @@ public class GameManager : MonoBehaviour
             Debug.Log("클리어");
             score = 0;
             playData.currentRound++;
+            totalScore += score;
             playData.totalScore = totalScore;
             transitionManager.StartTransition(true, true, () =>
             {
