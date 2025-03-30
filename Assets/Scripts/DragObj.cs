@@ -1,11 +1,6 @@
 using System;
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.EventSystems;
-using UnityEngine.InputSystem;
-using UnityEngine.UI;
-using UnityEngine.UIElements;
 using UnityEngine.Rendering.Universal;
 
 
@@ -43,7 +38,7 @@ public class DragObj : MonoBehaviour
 
     private void Update()
     {
-        if(isClicked)
+        if (isClicked)
         {
             float rotateDirection = -inputActions.PlayerActions.Rotate.ReadValue<float>();
             gameObject.transform.Rotate(Vector3.forward * rotateDirection * Time.deltaTime * 100.0f);

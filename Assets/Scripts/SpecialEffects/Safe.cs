@@ -8,7 +8,7 @@ namespace DontFall.Objects
 
         public void ItemDropped(object obj)
         {
-            if(obj is GameObject gobj)
+            if (obj is GameObject gobj)
             {
                 var renderer = GetComponent<SpriteRenderer>();
                 renderer.sprite = closed;
@@ -16,7 +16,7 @@ namespace DontFall.Objects
                 var rigidbody = GetComponent<Rigidbody2D>();
                 rigidbody.mass += gobj.GetComponent<Rigidbody2D>().mass;
 
-                foreach(var collider in GetComponents<Collider2D>())
+                foreach (var collider in GetComponents<Collider2D>())
                 {
                     collider.enabled = !collider.enabled;
                 }

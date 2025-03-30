@@ -5,5 +5,5 @@ public class PlayData : ScriptableObject
 {
     public int currentRound;
     public int totalScore;
-    
+
 }

@@ -19,7 +19,7 @@ public class Hammer : MonoBehaviour
             {
                 if (overlapped.gameObject.GetComponent<Daruma>() != null)
                 {
-                    if(overlapped.gameObject.GetComponent<Daruma>().RemoveBlock())
+                    if (overlapped.gameObject.GetComponent<Daruma>().RemoveBlock())
                     {
                         if (Random.Range(0, 10) < 8)
                         {

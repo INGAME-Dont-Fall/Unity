@@ -1,4 +1,3 @@
-using NUnit.Framework;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -8,7 +7,7 @@ public class Daruma : Special
 
     private void Awake()
     {
-        foreach(Transform child in transform)
+        foreach (Transform child in transform)
         {
             objects.Add(child.gameObject);
         }
@@ -17,7 +16,7 @@ public class Daruma : Special
 
     public bool RemoveBlock()
     {
-        if(objects.Count > 1)
+        if (objects.Count > 1)
         {
             Destroy(objects[0]);
             objects.RemoveAt(0);

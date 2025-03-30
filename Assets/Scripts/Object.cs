@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -12,7 +10,7 @@ public class Object : MonoBehaviour
 
     private float deadTime;
 
-    [SerializeField]GameObject Effect;
+    [SerializeField] GameObject Effect;
     private GameObject gameObj;
     private SpriteRenderer spriteRenderer;
     private Rigidbody2D rb2d;

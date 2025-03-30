@@ -6,7 +6,7 @@ public class OpenRotate : MonoBehaviour
 
     public void RotateImage()
     {
-        imageTransform.Rotate(0,0,180);
+        imageTransform.Rotate(0, 0, 180);
     }
 
 }

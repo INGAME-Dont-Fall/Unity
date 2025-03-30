@@ -10,7 +10,7 @@ public class UmbrellaStand : Special
 
     public bool IncreaseCount()
     {
-        if(count < 2)
+        if (count < 2)
         {
             count++;
             return true;

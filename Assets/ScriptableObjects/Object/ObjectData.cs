@@ -1,8 +1,7 @@
-using System;
 using UnityEngine;
 
 public enum Size
-{ 
+{
     Small,
     Medium,
     Large,

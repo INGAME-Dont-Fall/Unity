@@ -1,7 +1,4 @@
-using System.Collections;
 using System.Collections.Generic;
-using Unity.VisualScripting;
-using UnityEditor;
 using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.InputSystem;
@@ -40,7 +37,7 @@ public class DragUI : MonoBehaviour, IBeginDragHandler, IEndDragHandler, IDragHa
 
             //이미지는 끄고 정해진 오브젝트를 생성
             gameObject.GetComponent<Image>().enabled = false;
-            if(go == null)
+            if (go == null)
             {
                 currentDraggedObject = Instantiate(GameManager.Instance.Objects[(int)size].objectList[index].go, GameManager.Instance.objectGroup.transform);
 
@@ -100,9 +97,9 @@ public class DragUI : MonoBehaviour, IBeginDragHandler, IEndDragHandler, IDragHa
                 }
                 else
                 {
-                    foreach(Transform child in currentDraggedObject.transform)
+                    foreach (Transform child in currentDraggedObject.transform)
                     {
-                        if(child.GetComponentInChildren<SpriteRenderer>() != null)
+                        if (child.GetComponentInChildren<SpriteRenderer>() != null)
                         {
                             child.GetComponentInChildren<SpriteRenderer>().sortingLayerName = "Object";
                         }

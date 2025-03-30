@@ -14,7 +14,7 @@ public class UnLock : MonoBehaviour
         if (count > 0)
         {
             Collider2D overlapped = overlapResults[0];
-            if(overlapped.gameObject.GetComponent<Special>() != null)
+            if (overlapped.gameObject.GetComponent<Special>() != null)
             {
                 if (overlapped.gameObject.GetComponent<AudioSource>() != null)
                 {

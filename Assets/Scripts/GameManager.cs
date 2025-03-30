@@ -1,13 +1,13 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
-using UnityEngine;
-using TMPro;
-using UnityEngine.SceneManagement;
 using System.Linq;
-using DontFall.UI;
-using DontFall.Transition;
 using DontFall.Board;
+using DontFall.Transition;
+using DontFall.UI;
+using TMPro;
+using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 [Serializable]
@@ -21,7 +21,7 @@ public class ObjectList
 public class GameManager : MonoBehaviour
 {
     private static GameManager instance;
-    
+
     private int itemsCount;
     private int targetItemsCount;
     private float small = 0;
@@ -197,7 +197,8 @@ public class GameManager : MonoBehaviour
 
     public void SkipRound()
     {
-        transitionManager.StartTransition(true, true, () => {
+        transitionManager.StartTransition(true, true, () =>
+        {
             Debug.Log("클리어");
             score = 0;
             playData.currentRound++;
@@ -244,7 +245,7 @@ public class GameManager : MonoBehaviour
     public void AddObject(ObjectData data, bool isAdd)
     {
         GameObject go = Instantiate(square, inventory.transform);
-        if(isAdd)
+        if (isAdd)
         {
             curObjectsList.Add(data);
         }
@@ -307,7 +308,7 @@ public class GameManager : MonoBehaviour
     /// </summary>
     public void CreateObj()
     {
-        if(point < 10)
+        if (point < 10)
         {
             return;
         }
@@ -382,7 +383,7 @@ public class GameManager : MonoBehaviour
         //모든 오브젝트에 접근해서 하나씩 지우기
         foreach (var obj in objs)
         {
-            if(obj.transform.childCount >= 1)
+            if (obj.transform.childCount >= 1)
             {
                 foreach (Transform child in obj.transform)
                 {
@@ -423,7 +424,8 @@ public class GameManager : MonoBehaviour
         }
         else //게임오버 씬으로 이동 or 종료창
         {
-            transitionManager.StartTransition(true, true, () => {
+            transitionManager.StartTransition(true, true, () =>
+            {
                 scoreData.totalScore = totalScore;
                 scoreData.round = currentRound;
                 SceneManager.LoadScene("GameOverScene");
@@ -434,7 +436,7 @@ public class GameManager : MonoBehaviour
     //초기화 버튼 이벤트
     public void Restart()
     {
-        if(objectGroup.transform.childCount == 0)
+        if (objectGroup.transform.childCount == 0)
         {
             return;
         }

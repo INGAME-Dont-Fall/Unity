@@ -6,7 +6,7 @@ public class Umbrella : MonoBehaviour
     [SerializeField] private GameObject foldUmbrella;
 
     private List<Collider2D> overlapResults = new List<Collider2D>();
-    
+
 
     public void ItemDrop()
     {
@@ -21,7 +21,7 @@ public class Umbrella : MonoBehaviour
             {
                 if (overlapped.gameObject.GetComponent<UmbrellaStand>() != null)
                 {
-                    if(overlapped.gameObject.GetComponent<UmbrellaStand>().IncreaseCount())
+                    if (overlapped.gameObject.GetComponent<UmbrellaStand>().IncreaseCount())
                     {
                         GameObject go = Instantiate(foldUmbrella, overlapped.gameObject.transform);
                         go.transform.localPosition = overlapped.gameObject.GetComponent<UmbrellaStand>().GetPosition();

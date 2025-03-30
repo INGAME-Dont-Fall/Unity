@@ -1,11 +1,9 @@
-using UnityEngine;
 using TMPro;
-using UnityEngine.SceneManagement;
-using DontFall.Transition;
+using UnityEngine;
 
 public class ScoreUI : MonoBehaviour
 {
-    public static ScoreUI Instance { get; private set; } 
+    public static ScoreUI Instance { get; private set; }
 
     [SerializeField] private TMP_Text textTotalScore;
     [SerializeField] private TMP_Text textRoundScore;

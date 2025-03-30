@@ -1,10 +1,9 @@
-using System.Linq;
 using UnityEngine;
 
 public enum Level
-{ 
+{
     Low,
-    Medium, 
+    Medium,
     High
 }
 
