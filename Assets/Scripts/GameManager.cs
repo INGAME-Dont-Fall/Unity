@@ -107,7 +107,6 @@ public class GameManager : MonoBehaviour
         maxPoint = 30 + (currentRound - 1) * 5;
         curObjectsList.Clear();
         DeadLine.GetComponent<BoxCollider2D>().isTrigger = false;
-        DeadLine.GetComponent<BoxCollider2D>().enabled = false;
         scoreToggle.Round = currentRound;
 
         itemsCount = 0;
@@ -189,7 +188,6 @@ public class GameManager : MonoBehaviour
         inventoryArea.SetActive(false);
         isStart = true;
         boardController.Moving = true;
-        DeadLine.GetComponent<BoxCollider2D>().enabled = true;
         DeadLine.GetComponent<BoxCollider2D>().isTrigger = true;
 
         GameStart?.Invoke();
