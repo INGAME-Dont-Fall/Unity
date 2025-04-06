@@ -12,6 +12,8 @@ namespace DontFall.UI
 
         [SerializeField] private SceneMove sceneMove;
 
+        [SerializeField] private float delay;
+
         public void PlayPressed()
         {
             transitionManager.StartTransition(false, false, () =>
@@ -20,7 +22,7 @@ namespace DontFall.UI
                 dropObjects.OnStart();
                 transitionManager.StartTransition(true, false, () =>
                 {
-                    Invoke(nameof(Delayed), 7);
+                    Invoke(nameof(Delayed), delay);
                 });
             });
         }

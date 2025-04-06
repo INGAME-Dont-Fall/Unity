@@ -1331,6 +1331,7 @@ MonoBehaviour:
   cover: {fileID: 1005135754}
   dropObjects: {fileID: 1972902880}
   sceneMove: {fileID: 678567296}
+  delay: 4
 --- !u!4 &1233354478
 Transform:
   m_ObjectHideFlags: 0
@@ -2549,7 +2550,7 @@ Transform:
   m_GameObject: {fileID: 737065796850909669}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0.54, y: 42.26, z: 0}
+  m_LocalPosition: {x: 3.64, y: 42.26, z: 0}
   m_LocalScale: {x: 1.1, y: 1.1, z: 1}
   m_ConstrainProportionsScale: 1
   m_Children: []
@@ -2909,7 +2910,7 @@ Transform:
   m_GameObject: {fileID: 233725934795515216}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 1.6437323, y: 17.443869, z: 0}
+  m_LocalPosition: {x: -1.84, y: 17.13, z: 0}
   m_LocalScale: {x: 0.28, y: 0.28, z: 1}
   m_ConstrainProportionsScale: 1
   m_Children: []
