@@ -316,7 +316,6 @@ public class GameManager : MonoBehaviour
         point -= 10;
 
         PointUpdate();
-        startButton.SetActive(false);
 
         float random = UnityEngine.Random.Range(0.0f, 100.0f);
         List<ObjectData> curObj = null;
