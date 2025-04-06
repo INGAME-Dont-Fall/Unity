@@ -6,9 +6,12 @@ namespace DontFall.UI
     {
         [SerializeField] private bool startClosed;
 
+        public bool Openned { get; private set; }
+
         private void Awake()
         {
-            if (startClosed)
+            Openned = !startClosed;
+            if (!Openned)
                 CloseOption();
         }
 
@@ -16,12 +19,14 @@ namespace DontFall.UI
         {
             Time.timeScale = 0;
             gameObject.SetActive(true);
+            Openned = true;
         }
 
         public void CloseOption()
         {
             Time.timeScale = 1;
             gameObject.SetActive(false);
+            Openned = false;
         }
     }
 }

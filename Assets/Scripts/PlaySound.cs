@@ -10,5 +10,11 @@ namespace DontFall
             var audioSource = GetComponent<AudioSource>();
             audioSource.PlayOneShot(clip);
         }
+
+        public void ToggleMute()
+        {
+            var audioSource = GetComponent<AudioSource>();
+            audioSource.pitch = 1 - audioSource.pitch;
+        }
     }
 }

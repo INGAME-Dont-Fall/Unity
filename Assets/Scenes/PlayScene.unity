@@ -1668,7 +1668,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 419093692}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1137475561}
+        m_TargetAssemblyTypeName: DontFall.PlaySound, Assembly-CSharp
+        m_MethodName: ToggleMute
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!222 &419093689
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -2542,6 +2554,7 @@ MonoBehaviour:
   playSound: {fileID: 1137475561}
   popSound: {fileID: 8300000, guid: bc42d51929043a99eab8470c2d460030, type: 3}
   dropSound: {fileID: 8300000, guid: 6964d2fbfc5f20d5197d6732fe1f30b5, type: 3}
+  settings: {fileID: 12052688}
   objectGroup: {fileID: 1758393940}
 --- !u!4 &587663286
 Transform:

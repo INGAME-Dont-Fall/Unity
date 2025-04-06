@@ -9,6 +9,7 @@ using TMPro;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
+using UnityEngine.InputSystem;
 
 [Serializable]
 public class ObjectList
@@ -67,6 +68,8 @@ public class GameManager : MonoBehaviour
     [SerializeField] private DontFall.PlaySound playSound;
     [SerializeField] private AudioClip popSound;
     [SerializeField] private AudioClip dropSound;
+
+    [SerializeField] private Settings settings;
 
     public static GameManager Instance => instance;
 
@@ -175,6 +178,18 @@ public class GameManager : MonoBehaviour
         if (isStart && !isOver)
         {
             TimerDecrease();
+        }
+
+        if (Keyboard.current.escapeKey.wasPressedThisFrame)
+        {
+            if (settings.Openned)
+            {
+                settings.CloseOption();
+            }
+            else
+            {
+                settings.OpenOption();
+            }
         }
     }
 
