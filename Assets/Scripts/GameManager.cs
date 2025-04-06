@@ -408,6 +408,9 @@ public class GameManager : MonoBehaviour
 
         //마지막으로 남은 포인트까지 합산
         score += (point * currentRound);
+        if (clear)
+            totalScore += score;
+        ScoreUpdate();
         yield return new WaitForSeconds(1f);
 
         if (clear) //다음 라운드 진행
