@@ -64,7 +64,7 @@ Material:
     - _EnableExternalAlpha: 0
     - _Inverse: 1
     - _Invert: 1
-    - _LinearAngle: 0.7853982
+    - _LinearAngle: 0
     - _Progress: 1
     - _Reverse: 0
     - _TYPE: 0
@@ -72,7 +72,7 @@ Material:
     m_Colors:
     - _Albedo: {r: 0.85490197, g: 0.7058824, b: 0.6156863, a: 1}
     - _BlockColor: {r: 0.85490197, g: 0.7058824, b: 0.6156863, a: 1}
-    - _CircularCenter: {r: 0.5, g: 0.5, b: 0, a: 0}
+    - _CircularCenter: {r: 0, g: 0, b: 0, a: 0}
     - _Color: {r: 1, g: 1, b: 1, a: 1}
     - _RendererColor: {r: 1, g: 1, b: 1, a: 1}
   m_BuildTextureStacks: []
